@@ -513,6 +513,8 @@ const MoleculeDesigner = () => {
       setShowThinkingProcess(true);
       showSnackbar('AI generated molecules successfully', 'success');
       
+      console.log("[MoleculeDesigner] AI Generation Success:", { molecules, requestId: response.data.requestId });
+      
     } catch (err) {
       console.error('Error generating molecules with AI:', err);
       setError(err.response?.data?.error || 'Failed to generate molecules with AI');
@@ -881,7 +883,7 @@ const MoleculeDesigner = () => {
                                   {key}:
                                 </Typography>
                                 <Typography variant="body1">
-                                  {value}
+                                  {typeof value === 'object' && value !== null ? '[Object]' : String(value)}
                                 </Typography>
                               </Grid>
                             ))}
@@ -1049,6 +1051,8 @@ const MoleculeDesigner = () => {
                 Generated Molecules
               </Typography>
               
+              {console.log("[MoleculeDesigner] Rendering AI Tab. State:", { aiGeneratedMolecules, selectedMolecule, aiGenerating })} 
+              
               {aiGeneratedMolecules.length > 0 ? (
                 <div>
                   {selectedMolecule && (
@@ -1089,7 +1093,7 @@ const MoleculeDesigner = () => {
                                   {key}:
                                 </Typography>
                                 <Typography variant="body1">
-                                  {value}
+                                  {typeof value === 'object' && value !== null ? '[Object]' : String(value)}
                                 </Typography>
                               </Grid>
                             ))}

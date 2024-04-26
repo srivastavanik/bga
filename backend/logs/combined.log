@@ -537,3 +537,78 @@
 {"level":"info","message":"Validating SMILES: CC(C)[C@H](N)C1=CC=CC=C1C(C2=CC=CC=C2)S(=O)NCH3","service":"breaking-good-api","timestamp":"2025-04-20 17:45:25"}
 {"level":"info","message":"Successfully validated SMILES: CC(C)[C@H](N)C1=CC=CC=C1C(C2=CC=CC=C2)S(=O)NCH3","service":"breaking-good-api","timestamp":"2025-04-20 17:45:25"}
 {"level":"info","message":"Validating SMILES: S)-N-(4-fluorophenethyl)-3-(1H-imidazol-5-yl)-2-methyl-propanamide","service":"breaking-good-api","timestamp":"2025-04-20 17:45:25"}
+{"level":"info","message":"Received molecule generation request with requirements: \nI want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Created request ID: 8f7c476b-07f4-46a0-940d-2eeccce0db79","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401. Using fallback molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Extracted 509 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Validating SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Successfully validated SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Validating SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:21"}
+{"level":"info","message":"Successfully validated SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Validating SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Successfully validated SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Validating SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Successfully validated SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Validating SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Successfully validated SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Validated 5 molecules out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Saving results to file for request 8f7c476b-07f4-46a0-940d-2eeccce0db79","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-22 15:03:22"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:03:23"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-22 15:05:52"}
+{"level":"info","message":"Created request ID: 94660d83-dd94-4b2c-80e2-673cc7797043","service":"breaking-good-api","timestamp":"2025-04-22 15:05:52"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-22 15:05:52"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401. Using fallback molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Extracted 509 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Validating SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Successfully validated SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Validating SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Successfully validated SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Validating SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Successfully validated SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Validating SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Successfully validated SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Validating SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:53"}
+{"level":"info","message":"Successfully validated SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Validated 5 molecules out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Saving results to file for request 94660d83-dd94-4b2c-80e2-673cc7797043","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:05:54"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:44"}
+{"level":"info","message":"Created request ID: 41eb4027-95a7-417d-94bb-8aae4f0d3401","service":"breaking-good-api","timestamp":"2025-04-22 15:07:44"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-22 15:07:44"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401. Using fallback molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Extracted 509 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Validating SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Successfully validated SMILES: CN1C2=C(C=C(C=C2)Cl)N(C(=O)CC1=O)CC3=CC=C(C=C3)F","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Validating SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Successfully validated SMILES: C1=CC=C(C=C1)C2=COC3=CC(=CC(=C3)OC4=CC=CC=C4)C2=O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Validating SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Successfully validated SMILES: CC(C)(C)NCC(COC1=CC=CC2=CC=CC=C21)O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Validating SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:07:45"}
+{"level":"info","message":"Successfully validated SMILES: CN1C=NC2=C1C(=O)N(C(=O)N2C)C","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Validating SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Successfully validated SMILES: CC(CS)C(=O)N1CCCC1C(=O)O","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Validated 5 molecules out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Saving results to file for request 41eb4027-95a7-417d-94bb-8aae4f0d3401","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
