@@ -242,38 +242,20 @@ Provide at least 3 distinct candidate molecules with fully specified, valid SMIL
       const useTestMode = process.env.USE_TEST_MODE === 'true' || (req.query && req.query.test === 'true');
        
       if (useTestMode) {
-         logger.info('Using test mode with fallback molecules (bypassing Claude API)');
-         throw new Error('Test mode activated - using fallback molecules');
+         logger.info('Using test mode (bypassing Claude API). This should be removed for production.');
+         // In a real scenario, this test mode might generate predictable mock data
+         // For now, we throw an error to prevent fallback use, as requested by user
+         throw new Error('Test mode activated - real API call bypassed');
       }
        
       claudeResponse = await askClaude(systemPrompt, userPrompt);
       logger.info(`Received Claude response with ID: ${claudeResponse.id}`);
       
     } catch (claudeError) {
-      logger.error(`Claude API call failed: ${claudeError.message}. Using fallback molecules.`);
-      claudeResponse = {
-         id: 'fallback-' + uuidv4(),
-         content: [{ type: 'text', text: `# Fallback Molecules for ADHD Treatment
-
-Since there was an issue connecting to the AI, I'm providing these pre-validated molecules for your review.
-
-## Molecule 1: Flurazepam
-SMILES: ${FALLBACK_SMILES[0]}
-
-## Molecule 2: Flavanone
-SMILES: ${FALLBACK_SMILES[1]}
-
-## Molecule 3: Propranolol
-SMILES: ${FALLBACK_SMILES[2]}
-
-## Molecule 4: Caffeine
-SMILES: ${FALLBACK_SMILES[3]}
-
-## Molecule 5: Captopril
-SMILES: ${FALLBACK_SMILES[4]}` }],
-         model: 'fallback-model',
-         usage: { input_tokens: 0, output_tokens: 0 }
-      };
+      logger.error(`Claude API call failed: ${claudeError.message}`);
+      // Re-throw the error to be caught by the outer catch block
+      // This prevents the fallback mechanism from being used.
+      throw claudeError; 
     }
     
     logger.info('Processing Claude response to extract molecules');
