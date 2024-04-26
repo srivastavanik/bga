@@ -1,6 +1,6 @@
 # Breaking Good
 
-A comprehensive neuropharmacology drug discovery platform for designing, simulating, and analyzing novel ADHD therapeutics.
+A comprehensive neuropharmacology drug discovery platform for designing, simulating, and analyzing novel ADHD therapeutics. Pear.
 
 ## Overview
 
