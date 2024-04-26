@@ -32,7 +32,8 @@ import {
   DialogActions,
   DialogContent,
   DialogTitle,
-  LinearProgress
+  LinearProgress,
+  CardHeader
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import BuildIcon from '@material-ui/icons/Build'; // Using Build icon instead of Science
@@ -48,10 +49,10 @@ import PsychologyAltIcon from '@material-ui/icons/EmojiObjects'; // Using EmojiO
 import DescriptionIcon from '@material-ui/icons/Description';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import MoleculeViewer3D from './MoleculeViewer3DImproved';
-import ThinkingProcess from './ThinkingProcessImproved';
 import AIChatInterface from './AIChatInterface'; // Import the chat interface
 import { drugDesignAPI, simulationAPI, claudeAPI } from '../services/api';
 import StructureEditor from './StructureEditor'; // Import the actual editor
+import ReactMarkdown from 'react-markdown'; // Make sure this is imported
 
 // This would be imported from a third-party library in a real implementation
 const MoleculeViewer = ({ smiles, height = 400 }) => {
@@ -269,6 +270,38 @@ const useStyles = makeStyles((theme) => ({
   generationRequirements: {
     marginBottom: theme.spacing(2),
   },
+  apiResponseSection: {
+    width: '100%',
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(3),
+  },
+  apiResponseTitle: {
+    marginBottom: theme.spacing(2),
+    fontWeight: 500,
+    color: theme.palette.primary.main,
+  },
+  apiResponseContent: {
+    fontSize: '1rem', 
+    lineHeight: 1.6,
+    '& h1, & h2, & h3': {
+      color: theme.palette.primary.dark,
+      marginTop: theme.spacing(3),
+      marginBottom: theme.spacing(1),
+    },
+    '& p': {
+      marginBottom: theme.spacing(2),
+    },
+    '& ul, & ol': {
+      paddingLeft: theme.spacing(3),
+      marginBottom: theme.spacing(2),
+    },
+    '& code': {
+      fontFamily: '"Roboto Mono", monospace',
+      backgroundColor: 'rgba(0, 0, 0, 0.04)',
+      padding: theme.spacing(0.5),
+      borderRadius: 4,
+    },
+  },
 }));
 
 const MoleculeDesigner = () => {
@@ -299,7 +332,7 @@ const MoleculeDesigner = () => {
   const [aiGenerating, setAiGenerating] = useState(false);
   const [aiGeneratedMolecules, setAiGeneratedMolecules] = useState([]);
   const [aiRequestId, setAiRequestId] = useState(null);
-  const [showThinkingProcess, setShowThinkingProcess] = useState(false);
+  const [rawApiResponse, setRawApiResponse] = useState(null); // New state for raw response
   
   const [editorSmiles, setEditorSmiles] = useState('');
   const [chatContext, setChatContext] = useState('General molecule design'); // Context for the chat
@@ -407,7 +440,7 @@ const MoleculeDesigner = () => {
       setError(null);
       setAiGeneratedMolecules([]);
       setAiRequestId(null);
-      setShowThinkingProcess(false);
+      setRawApiResponse(null); // Reset raw response
       
       const response = await claudeAPI.generateMolecule({
         requirements: aiRequirements,
@@ -444,7 +477,6 @@ const MoleculeDesigner = () => {
             admet: molData.admet || null,
             timestamp: new Date().toISOString(),
             aiGenerated: true,
-            requestId: response.data.requestId,
           };
           
           molecules.push(molecule);
@@ -477,7 +509,6 @@ const MoleculeDesigner = () => {
               },
               timestamp: new Date().toISOString(),
               aiGenerated: true,
-              requestId: response.data.requestId,
             };
             
             molecules.push(molecule);
@@ -493,7 +524,6 @@ const MoleculeDesigner = () => {
               },
               timestamp: new Date().toISOString(),
               aiGenerated: true,
-              requestId: response.data.requestId,
             });
           }
         }
@@ -508,81 +538,21 @@ const MoleculeDesigner = () => {
         setSelectedMolecule(molecules[0]);
       }
       
-      // Save request ID for thinking process
+      // Save request ID and raw response text
       setAiRequestId(response.data.requestId);
-      setShowThinkingProcess(true);
+      setRawApiResponse(response.data.rawClaudeResponse || 'No text response received.'); // Store raw response
       showSnackbar('AI generated molecules successfully', 'success');
       
-      console.log("[MoleculeDesigner] AI Generation Success:", { molecules, requestId: response.data.requestId });
+      console.log("[MoleculeDesigner] AI Generation Success:", { molecules, requestId: response.data.requestId, rawResponseLength: response.data.rawClaudeResponse?.length });
       
     } catch (err) {
       console.error('Error generating molecules with AI:', err);
       setError(err.response?.data?.error || 'Failed to generate molecules with AI');
       showSnackbar('Failed to generate molecules with AI', 'error');
+      setRawApiResponse(null); // Clear response on error
     } finally {
       setAiGenerating(false);
     }
-  };
-  
-  const handleSelectFromThinking = (smiles) => {
-    // Find if this SMILES is already in the generated molecules
-    const existingMolecule = aiGeneratedMolecules.find(m => m.smiles === smiles);
-    
-    if (existingMolecule) {
-      setSelectedMolecule(existingMolecule);
-      return;
-    }
-    
-    // Otherwise, create a new molecule entry and add it to the list
-    const addNewMolecule = async () => {
-      try {
-        // Get properties
-        const propertiesResponse = await simulationAPI.runRDKit({
-          smiles: smiles,
-          operation: 'descriptors'
-        });
-        
-        const newMolecule = {
-          id: Date.now(),
-          name: `AI-Compound-Extra-${aiGeneratedMolecules.length + 1}`,
-          smiles: smiles,
-          properties: {
-            molecularWeight: `${propertiesResponse.data.molecular_weight.toFixed(2)} g/mol`,
-            logP: propertiesResponse.data.logp.toFixed(2),
-            hBondDonors: propertiesResponse.data.num_h_donors,
-            hBondAcceptors: propertiesResponse.data.num_h_acceptors,
-            rotableBonds: propertiesResponse.data.num_rotatable_bonds,
-            psa: `${propertiesResponse.data.tpsa.toFixed(1)} Å²`,
-            formula: propertiesResponse.data.formula,
-          },
-          timestamp: new Date().toISOString(),
-          aiGenerated: true,
-          requestId: aiRequestId,
-        };
-        
-        setAiGeneratedMolecules(prev => [...prev, newMolecule]);
-        setSelectedMolecule(newMolecule);
-        
-      } catch (err) {
-        console.error('Error creating molecule from SMILES:', err);
-        
-        // Create basic molecule without properties
-        const basicMolecule = {
-          id: Date.now(),
-          name: `AI-Compound-Extra-${aiGeneratedMolecules.length + 1}`,
-          smiles: smiles,
-          properties: { formula: 'Unknown' },
-          timestamp: new Date().toISOString(),
-          aiGenerated: true,
-          requestId: aiRequestId,
-        };
-        
-        setAiGeneratedMolecules(prev => [...prev, basicMolecule]);
-        setSelectedMolecule(basicMolecule);
-      }
-    };
-    
-    addNewMolecule();
   };
   
   const handleSaveMolecule = (molecule) => {
@@ -1036,7 +1006,22 @@ const MoleculeDesigner = () => {
                 </Paper>
               )}
 
-              {/* Add Chat Interface Below Controls */}
+              {/* Display Raw API Response with improved styling */}
+              {rawApiResponse && (
+                <div className={classes.apiResponseSection}>
+                  <Typography variant="h5" className={classes.apiResponseTitle}>
+                    Claude API Response
+                  </Typography>
+                  <Divider />
+                  <div className={classes.apiResponseContent}>
+                    <ReactMarkdown>
+                      {rawApiResponse}
+                    </ReactMarkdown>
+                  </div>
+                </div>
+              )}
+
+              {/* Add Chat Interface Below API Response */}
               <Typography variant="h6" gutterBottom style={{ marginTop: 24 }}>
                 Chat with AI Assistant
               </Typography>
@@ -1136,18 +1121,6 @@ const MoleculeDesigner = () => {
                 </div>
               )}
             </Grid>
-            
-            {showThinkingProcess && aiRequestId && (
-              <Grid item xs={12} className={classes.thinkingContainer}>
-                <Typography variant="h6" gutterBottom>
-                  AI Thinking Process
-                </Typography>
-                <ThinkingProcess 
-                  requestId={aiRequestId}
-                  onSelectMolecule={handleSelectFromThinking}
-                />
-              </Grid>
-            )}
           </Grid>
         </TabPanel>
         
