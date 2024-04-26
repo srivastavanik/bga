@@ -170,16 +170,20 @@ const AIChatInterface = ({ initialContext = 'General drug design', onMoleculeMen
       // Use the apiMessages which might include the implicit context
       const response = await claudeAPI.continueChat(apiMessages, currentContext);
       
-      if (response.data && response.data.response) {
+      // --- Corrected Response Check --- 
+      // Check for the actual content array from Anthropic's response
+      if (response.data && response.data.content && Array.isArray(response.data.content) && response.data.content.length > 0) {
+        // --- Corrected Message Construction --- 
+        // Use response.data.content directly as it's the message content array
         const assistantMessage = { 
             role: 'assistant', 
-            // Ensure content is always in the expected array format
-            content: Array.isArray(response.data.response) ? response.data.response : [{ type: 'text', text: response.data.response.text || '' }] 
+            content: response.data.content 
         }; 
         setMessages(prevMessages => [...prevMessages, assistantMessage]);
         
-        // Check response for SMILES
-        const responseText = assistantMessage.content[0]?.text || ''; 
+        // --- Corrected SMILES Extraction Target --- 
+        // Check response for SMILES within the first text block
+        const responseText = assistantMessage.content[0]?.type === 'text' ? assistantMessage.content[0].text : ''; 
         const smilesRegex = /\b([A-Za-z0-9@+\-\[\]\(\)\\\/%=#$!.~{},*]+)\b/g;
         const potentialSmiles = responseText.match(smilesRegex);
         if (potentialSmiles) {
@@ -191,6 +195,8 @@ const AIChatInterface = ({ initialContext = 'General drug design', onMoleculeMen
         }
 
       } else {
+        // Log the unexpected structure for debugging
+        console.error('Invalid or unexpected response structure from /chat API:', response.data);
         throw new Error('Invalid response format from API');
       }
     } catch (err) {

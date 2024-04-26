@@ -80,9 +80,18 @@ const runRDKitScript = (scriptName, args) => {
 // Make RDKit bridge available to other modules
 app.locals.runRDKitScript = runRDKitScript;
 
-// Start server
-app.listen(PORT, () => {
+// Start server with better error handling
+const server = app.listen(PORT, () => {
   console.log(`Breaking Good API running on port ${PORT}`);
+});
+
+server.on('error', (e) => {
+  if (e.code === 'EADDRINUSE') {
+    console.error(`Port ${PORT} is already in use. Please close the other application using this port or change the PORT in .env file.`);
+    process.exit(1);
+  } else {
+    console.error('Server error:', e);
+  }
 });
 
 module.exports = app; 

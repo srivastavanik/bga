@@ -663,9 +663,9 @@ const ThinkingProcessImproved = ({ requestId, onSelectMolecule, onSaveMolecule }
             <AccordionDetails className={classes.accordionDetails}>
               <div className={classes.markdownContent}>
                 <Collapse in={expandedSection === index} collapsedSize="150px">
-                  <ReactMarkdown>
-                    {section.content}
-                  </ReactMarkdown>
+                <ReactMarkdown>
+                  {section.content}
+                </ReactMarkdown>
                 </Collapse>
               </div>
             </AccordionDetails>
