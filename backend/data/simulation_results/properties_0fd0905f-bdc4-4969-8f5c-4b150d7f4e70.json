@@ -1,0 +1,8 @@
+{
+  "id": "0fd0905f-bdc4-4969-8f5c-4b150d7f4e70",
+  "timestamp": "2025-04-15T06:37:51.912Z",
+  "smiles": "N-(4-fluorophenyl)-2-(4-(dimethylamino)cyclohexyl)acetamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

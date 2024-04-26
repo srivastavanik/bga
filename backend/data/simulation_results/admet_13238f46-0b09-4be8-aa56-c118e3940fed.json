@@ -1,0 +1,8 @@
+{
+  "id": "13238f46-0b09-4be8-aa56-c118e3940fed",
+  "timestamp": "2025-04-15T06:33:19.989Z",
+  "smiles": "1-(4-fluorophenyl)-4-propyl-piperidine-3-carboxamide-N-(1-(2-methoxyphenyl)piperazine",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

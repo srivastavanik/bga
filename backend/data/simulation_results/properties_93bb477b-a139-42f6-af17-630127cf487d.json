@@ -1,0 +1,8 @@
+{
+  "id": "93bb477b-a139-42f6-af17-630127cf487d",
+  "timestamp": "2025-04-15T06:37:50.581Z",
+  "smiles": "COc1cc(CC(=O)N2CCN(C)CC2)cc(OC)c1OCCCf",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

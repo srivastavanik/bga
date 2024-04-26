@@ -1,0 +1,8 @@
+{
+  "id": "1443285f-992a-4c01-842e-2c1034e0e23f",
+  "timestamp": "2025-04-15T08:24:03.014Z",
+  "smiles": "N-methyl-2-(4-methoxyphenyl)-3-oxo-3-((2-oxo-2H-pyran-4-yl)methylamino)propan-1-amine",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

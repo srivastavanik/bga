@@ -1,0 +1,8 @@
+{
+  "id": "9b90d12c-ab76-456c-bf3c-54d7ef913fbc",
+  "timestamp": "2025-04-14T21:14:24.243Z",
+  "smiles": "N-(4-(2-(methylamino)propyl)phenyl)-4-aminobenzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

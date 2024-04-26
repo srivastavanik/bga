@@ -1,0 +1,8 @@
+{
+  "id": "e73b6e29-dfa6-485d-a9d7-73cab769e4d1",
+  "timestamp": "2025-04-15T08:24:02.874Z",
+  "smiles": "N-methyl-N-(3",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

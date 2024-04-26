@@ -1,0 +1,8 @@
+{
+  "id": "7f791042-26fe-46db-84ab-933c20225d44",
+  "timestamp": "2025-04-14T21:15:27.341Z",
+  "smiles": "N-((4-(3-(4-methoxyphenoxy)propyl)piperazin-1-yl)methyl)-4-(trifluoromethyl)benzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

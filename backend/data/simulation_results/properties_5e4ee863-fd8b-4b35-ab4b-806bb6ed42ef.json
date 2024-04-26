@@ -1,0 +1,8 @@
+{
+  "id": "5e4ee863-fd8b-4b35-ab4b-806bb6ed42ef",
+  "timestamp": "2025-04-15T08:24:00.675Z",
+  "smiles": "N-methyl-N-(3",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "4907d5d1-25b8-4dd8-a7ab-a3410f763233",
+  "timestamp": "2025-04-15T07:50:58.188Z",
+  "smiles": "N-(3-(9H-purin-6-ylamino)propyl)-2-(2,5-dimethoxyphenyl)acetamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

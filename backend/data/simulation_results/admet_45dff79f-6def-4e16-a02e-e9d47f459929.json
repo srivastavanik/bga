@@ -1,0 +1,8 @@
+{
+  "id": "45dff79f-6def-4e16-a02e-e9d47f459929",
+  "timestamp": "2025-04-15T08:24:02.738Z",
+  "smiles": "N-(2,2-dimethylpropanoyl)-2-[(4-aminophenyl)sulfonyloxy]acetamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

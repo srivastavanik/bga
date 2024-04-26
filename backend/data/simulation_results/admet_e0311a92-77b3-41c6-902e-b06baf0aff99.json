@@ -1,0 +1,8 @@
+{
+  "id": "e0311a92-77b3-41c6-902e-b06baf0aff99",
+  "timestamp": "2025-04-15T07:50:59.094Z",
+  "smiles": "3,4,5-trimethoxy-N-[1-(3-(1,3-benzodioxol-5-yloxy)propyl)piperidin-4-yl]benzamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

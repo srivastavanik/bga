@@ -1,0 +1,8 @@
+{
+  "id": "15708a49-4b3b-48de-b3c6-3558cbe27a27",
+  "timestamp": "2025-04-15T02:09:21.344Z",
+  "smiles": "N-[(1R)-2-[(cyclohexylsulfinyl)methyl]-1-(2,2-dimethylpropanoyl)ethyl]amide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

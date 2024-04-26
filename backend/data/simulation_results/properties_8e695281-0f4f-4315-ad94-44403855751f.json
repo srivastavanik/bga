@@ -1,0 +1,8 @@
+{
+  "id": "8e695281-0f4f-4315-ad94-44403855751f",
+  "timestamp": "2025-04-15T08:08:37.042Z",
+  "smiles": "3-(benzofuran-4-yl)-N,N-dimethyl-3-(methylamino)propan-1-amine",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

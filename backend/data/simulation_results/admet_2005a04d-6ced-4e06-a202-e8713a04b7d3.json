@@ -1,0 +1,8 @@
+{
+  "id": "2005a04d-6ced-4e06-a202-e8713a04b7d3",
+  "timestamp": "2025-04-15T06:43:04.846Z",
+  "smiles": "2-[(benzylethoxycarbonyl)amino]-N-methyl-N-[(methylsulfinyl)methyl]acetamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

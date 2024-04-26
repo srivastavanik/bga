@@ -1,0 +1,8 @@
+{
+  "id": "36094d1f-8a3d-42c9-937a-3f69dc2fed64",
+  "timestamp": "2025-04-15T01:43:33.018Z",
+  "smiles": "IC50(L-type",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

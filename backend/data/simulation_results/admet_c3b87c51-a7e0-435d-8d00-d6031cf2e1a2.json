@@ -1,0 +1,8 @@
+{
+  "id": "c3b87c51-a7e0-435d-8d00-d6031cf2e1a2",
+  "timestamp": "2025-04-15T08:31:08.357Z",
+  "smiles": "N-(4-fluorophenethyl)-3,4-dimethoxybenzamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

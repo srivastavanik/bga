@@ -1,0 +1,8 @@
+{
+  "id": "8b8526c6-f011-4803-95f2-393d853b7586",
+  "timestamp": "2025-04-14T21:19:32.932Z",
+  "smiles": "N-(3-((2-methyl-5-oxopyrrolidin-2-yl)methoxy)phenyl)-4-fluorobenzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

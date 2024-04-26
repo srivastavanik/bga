@@ -1,0 +1,35 @@
+{
+  "id": "6724909e-fcb6-41f2-b2f1-d0f28757f934",
+  "timestamp": "2025-04-15T08:18:26.448Z",
+  "smiles": "COC1=CC(=CC=C1OC)CCN1CC(CC2=CC=C(Cl)C=C2)N(C)CC1",
+  "admet": {
+    "smiles": "COC1=CC(=CC=C1OC)CCN1CC(CC2=CC=C(Cl)C=C2)N(C)CC1",
+    "absorption": {
+      "caco2_permeability": 1.31,
+      "oral_bioavailability": 64.1
+    },
+    "distribution": {
+      "bbb_penetration": true,
+      "logbb": 1.5,
+      "plasma_protein_binding": 54.8
+    },
+    "metabolism": {
+      "cyp_inhibition": {
+        "CYP2D6": "yes",
+        "CYP3A4": "yes",
+        "CYP2C9": "no"
+      }
+    },
+    "elimination": {
+      "half_life": "medium"
+    },
+    "toxicity": {
+      "herg_inhibition": "high",
+      "hepatotoxicity": "low",
+      "cardiotoxicity_risk": 0.8,
+      "ames_toxic": false,
+      "addiction_potential": "low"
+    },
+    "overall_admet_score": 5.6
+  }
+}

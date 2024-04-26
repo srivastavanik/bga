@@ -1,0 +1,8 @@
+{
+  "id": "fbecdefa-c1e7-4bc6-9a46-31e992ade9a5",
+  "timestamp": "2025-04-15T21:01:09.051Z",
+  "smiles": "CC1(C)OCC(CN(C)C(=O)c2ccc(C)cc2)C(c2ccc(Cl)c(Cl)cc2)N1",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

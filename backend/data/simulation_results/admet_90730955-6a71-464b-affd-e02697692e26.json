@@ -1,0 +1,8 @@
+{
+  "id": "90730955-6a71-464b-affd-e02697692e26",
+  "timestamp": "2025-04-15T06:43:05.003Z",
+  "smiles": "4-(4-fluorophenyl)-2-(N-methyl-N-(2-phenoxyethyl)carbamoyl)piperazine-1-carboxylate",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

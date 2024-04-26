@@ -1,0 +1,8 @@
+{
+  "id": "28c78364-5759-4a7b-b934-fe591dc6f4cc",
+  "timestamp": "2025-04-15T08:08:38.444Z",
+  "smiles": "N-methyl-4-phenyl-3-(pyrrolidin-1-yl)butan-1-amine",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

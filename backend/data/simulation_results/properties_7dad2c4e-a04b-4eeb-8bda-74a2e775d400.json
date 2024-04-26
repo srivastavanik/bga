@@ -1,0 +1,8 @@
+{
+  "id": "7dad2c4e-a04b-4eeb-8bda-74a2e775d400",
+  "timestamp": "2025-04-15T06:33:18.158Z",
+  "smiles": "N-tert-butyl-4-((4-methoxyphenyl)sulfinyl)benzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

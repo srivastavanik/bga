@@ -1,0 +1,8 @@
+{
+  "id": "0b5f6dc5-6927-4860-8aa4-89ec0f7782d6",
+  "timestamp": "2025-04-21T00:45:25.012Z",
+  "smiles": "2-[(R)-1-amino-2-methylpropyl]-N-methyl-benzhydrylsulfinamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}
