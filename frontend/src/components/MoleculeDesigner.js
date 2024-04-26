@@ -49,7 +49,7 @@ import PsychologyAltIcon from '@material-ui/icons/EmojiObjects'; // Using EmojiO
 import DescriptionIcon from '@material-ui/icons/Description';
 import { ToggleButton, ToggleButtonGroup } from '@material-ui/lab';
 import MoleculeViewer3D from './MoleculeViewer3DImproved';
-import AIChatInterface from './AIChatInterface'; // Import the chat interface
+import AIChatInterfaceRedesigned from './AIChatInterfaceRedesigned'; // Import the REDESIGNED chat interface
 import { drugDesignAPI, simulationAPI, claudeAPI } from '../services/api';
 import StructureEditor from './StructureEditor'; // Import the actual editor
 import ReactMarkdown from 'react-markdown'; // Make sure this is imported
@@ -318,7 +318,12 @@ const useStyles = makeStyles((theme) => ({
   },
   apiResponseDivider: {
     marginBottom: theme.spacing(2),
-  }
+  },
+  stickyContainer: {
+    position: 'sticky',
+    top: 0,
+    backgroundColor: theme.palette.background.default,
+  },
 }));
 
 const MoleculeDesigner = () => {
@@ -804,13 +809,13 @@ const MoleculeDesigner = () => {
                           </Typography>
                           
                           <Grid container spacing={2} className={classes.propertyGrid}>
-                            {Object.entries(selectedMolecule.properties).map(([key, value]) => (
+                            {selectedMolecule.properties && typeof selectedMolecule.properties === 'object' && Object.entries(selectedMolecule.properties).map(([key, value]) => (
                               <Grid item xs={6} sm={4} key={key}>
                                 <Typography variant="body2" color="textSecondary">
                                   {key}:
                                 </Typography>
                                 <Typography variant="body1">
-                                  {typeof value === 'object' && value !== null ? '[Object]' : String(value)}
+                                  {value === null ? 'null' : typeof value === 'object' ? '[Object]' : String(value)}
                                 </Typography>
                               </Grid>
                             ))}
@@ -999,10 +1004,10 @@ const MoleculeDesigner = () => {
                             Properties:
                           </Typography>
                           <Grid container spacing={2} className={classes.propertyGrid}>
-                            {selectedMolecule.properties && Object.entries(selectedMolecule.properties).map(([key, value]) => (
+                            {selectedMolecule.properties && typeof selectedMolecule.properties === 'object' && Object.entries(selectedMolecule.properties).map(([key, value]) => (
                               <Grid item xs={6} sm={4} key={key}>
                                 <Typography variant="body2" color="textSecondary">{key}:</Typography>
-                                <Typography variant="body1">{String(value)}</Typography>
+                                <Typography variant="body1">{value === null ? 'null' : typeof value === 'object' ? '[Object]' : String(value)}</Typography>
                               </Grid>
                             ))}
                           </Grid>
@@ -1014,10 +1019,10 @@ const MoleculeDesigner = () => {
                             Other AI-Generated Molecules:
                           </Typography>
                           <div style={{ display: 'flex', flexWrap: 'wrap' }}>
-                            {[...new Map(aiGeneratedMolecules.filter(m => m.id !== selectedMolecule.id).map(item => [item.id || item.smiles, item])).values()]
+                            {[...new Map(aiGeneratedMolecules.filter(m => m.id !== selectedMolecule.id).map(item => [item.smiles, item])).values()]
                               .map(molecule => (
                                 <Chip
-                                  key={molecule.id || molecule.smiles} // Use ID or SMILES as key
+                                  key={molecule.smiles}
                                   label={molecule.name}
                                   clickable
                                   onClick={() => handleMoleculeSelection(molecule)}
@@ -1066,15 +1071,14 @@ const MoleculeDesigner = () => {
               )}
 
               {/* --- CHATBOT MOVED HERE --- */}
-              <Grid item xs={12} style={{marginTop: '24px'}}>
+              <Grid item xs={12} className={classes.stickyContainer}>
                  <Divider style={{marginBottom: '16px'}}/>
                  <Typography variant="h6" gutterBottom>
                    Chat with AI Assistant
                  </Typography>
-                 <AIChatInterface 
+                 <AIChatInterfaceRedesigned 
                    initialContext={chatContext} 
                    onMoleculeMentioned={handleMoleculeMentionedInChat}
-                   // Pass selected molecule if needed by chat context logic
                    selectedMolecule={selectedMolecule} 
                  /> 
               </Grid>
