@@ -1,0 +1,8 @@
+{
+  "id": "cac11d74-e66c-4278-912b-9ca5b4114226",
+  "timestamp": "2025-04-15T08:29:49.112Z",
+  "smiles": "N-methyl-3-methoxy-4-(3-piperidinyloxy)-N-(4-methoxyphenylsulfonyl)benzamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

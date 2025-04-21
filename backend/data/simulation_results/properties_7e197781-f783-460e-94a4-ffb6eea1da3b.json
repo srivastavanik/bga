@@ -1,0 +1,8 @@
+{
+  "id": "7e197781-f783-460e-94a4-ffb6eea1da3b",
+  "timestamp": "2025-04-15T08:00:45.875Z",
+  "smiles": "2-(1-piperidyl)-2-(cyclopentyl)acetate-N-(2-fluorophenyl)piperazine",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

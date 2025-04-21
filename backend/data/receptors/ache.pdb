@@ -1,0 +1,33 @@
+HEADER    ACETYLCHOLINESTERASE                     01-JAN-23   SAMPLE
+TITLE     ACETYLCHOLINESTERASE RECEPTOR - MINIMAL SAMPLE FOR TESTING
+REMARK   1 THIS IS A MINIMAL SAMPLE FILE FOR TESTING PURPOSES ONLY
+ATOM      1  N   SER A   1       8.234  33.179  40.104  1.00 60.00           N  
+ATOM      2  CA  SER A   1       8.234  31.722  40.104  1.00 60.00           C  
+ATOM      3  C   SER A   1       6.795  31.232  40.104  1.00 60.00           C  
+ATOM      4  O   SER A   1       5.885  31.958  39.731  1.00 60.00           O  
+ATOM      5  CB  SER A   1       8.919  31.232  38.836  1.00 60.00           C  
+ATOM      6  OG  SER A   1      10.291  31.593  38.854  1.00 60.00           O  
+ATOM      7  N   GLU A   2       6.593  30.007  40.570  1.00 60.00           N  
+ATOM      8  CA  GLU A   2       5.242  29.453  40.616  1.00 60.00           C  
+ATOM      9  C   GLU A   2       4.372  30.228  41.601  1.00 60.00           C  
+ATOM     10  O   GLU A   2       3.168  30.358  41.405  1.00 60.00           O  
+ATOM     11  CB  GLU A   2       5.307  27.976  41.022  1.00 60.00           C  
+ATOM     12  CG  GLU A   2       5.991  27.119  39.963  1.00 60.00           C  
+ATOM     13  CD  GLU A   2       6.030  25.657  40.344  1.00 60.00           C  
+ATOM     14  OE1 GLU A   2       5.237  25.232  41.224  1.00 60.00           O  
+ATOM     15  OE2 GLU A   2       6.856  24.918  39.770  1.00 60.00           O1-
+ATOM     16  N   HIS A   3       4.993  30.714  42.671  1.00 60.00           N  
+ATOM     17  CA  HIS A   3       4.250  31.463  43.675  1.00 60.00           C  
+ATOM     18  C   HIS A   3       3.880  32.851  43.166  1.00 60.00           C  
+ATOM     19  O   HIS A   3       2.773  33.325  43.412  1.00 60.00           O  
+ATOM     20  CB  HIS A   3       5.061  31.564  44.960  1.00 60.00           C  
+ATOM     21  CG  HIS A   3       5.255  30.253  45.663  1.00 60.00           C  
+ATOM     22  ND1 HIS A   3       6.407  29.497  45.558  1.00 60.00           N  
+ATOM     23  CD2 HIS A   3       4.398  29.533  46.431  1.00 60.00           C  
+ATOM     24  CE1 HIS A   3       6.242  28.387  46.257  1.00 60.00           C  
+ATOM     25  NE2 HIS A   3       5.026  28.410  46.802  1.00 60.00           N  
+TER      26      HIS A   3
+HETATM   27  O   HOH A 101      11.128  30.301  40.826  1.00 60.00           O  
+HETATM   28  O   HOH A 102      14.029  32.772  45.227  1.00 60.00           O  
+HETATM   29  O   HOH A 103       9.002  34.416  43.730  1.00 60.00           O  
+END 

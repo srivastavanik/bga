@@ -1,0 +1,8 @@
+{
+  "id": "992eb17a-2c0f-4afa-be32-21de61a5a854",
+  "timestamp": "2025-04-15T07:32:32.817Z",
+  "smiles": "2-[(diphenylmethyl)sulfinyl]-N-acetamido-acetamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

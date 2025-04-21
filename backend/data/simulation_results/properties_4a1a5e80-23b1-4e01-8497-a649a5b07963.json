@@ -1,0 +1,8 @@
+{
+  "id": "4a1a5e80-23b1-4e01-8497-a649a5b07963",
+  "timestamp": "2025-04-15T07:38:33.764Z",
+  "smiles": "N-substituted-2-amino-3-(4-ethoxy-phenyl)propane",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "ae97ad25-f307-4959-b6b6-d70be0b080ae",
+  "timestamp": "2025-04-14T22:10:16.125Z",
+  "smiles": "N-ethyl-4-methoxy-3-(3-((3-fluorobenzyl)amino)propoxy)benzamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

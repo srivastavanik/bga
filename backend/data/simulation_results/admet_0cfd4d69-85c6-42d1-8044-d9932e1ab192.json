@@ -1,0 +1,8 @@
+{
+  "id": "0cfd4d69-85c6-42d1-8044-d9932e1ab192",
+  "timestamp": "2025-04-14T21:16:32.435Z",
+  "smiles": "2-acetamido-3-(4-methoxyphenyl)sulfinyl-N-(2-(piperazin-1-yl)ethyl)propanamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "cdff765a-4b77-45f3-b8b5-03fc01b55a5d",
+  "timestamp": "2025-04-15T06:37:53.712Z",
+  "smiles": "N-((2S)-1-methyl-2-piperidinyl)-3,4-dimethoxybenzamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

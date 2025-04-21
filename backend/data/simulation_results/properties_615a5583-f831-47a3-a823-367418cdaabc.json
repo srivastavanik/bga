@@ -1,0 +1,8 @@
+{
+  "id": "615a5583-f831-47a3-a823-367418cdaabc",
+  "timestamp": "2025-04-14T21:19:31.747Z",
+  "smiles": "N-methyl-4-methoxy-3-(4-(1-isopropylpiperidin-4-yl)butoxy)benzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "id": "9b7687e1-9603-4fdb-a383-378f2e1faffc",
+  "timestamp": "2025-04-20T20:28:13.951Z",
+  "smiles": "2-[(4-fluorophenyl)(1-methylpiperidin-4-yl)methoxy]-N-methyl-N-(2-phenylethyl)ethan-1-amine",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

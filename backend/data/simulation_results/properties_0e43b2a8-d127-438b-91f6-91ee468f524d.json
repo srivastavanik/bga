@@ -1,0 +1,8 @@
+{
+  "id": "0e43b2a8-d127-438b-91f6-91ee468f524d",
+  "timestamp": "2025-04-14T21:15:26.543Z",
+  "smiles": "N-(2-(4-methylpiperazin-1-yl)ethyl)-2-(3,4,5-trimethoxyphenyl)acetamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

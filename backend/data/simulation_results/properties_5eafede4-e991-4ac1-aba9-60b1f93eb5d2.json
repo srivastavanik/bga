@@ -1,0 +1,8 @@
+{
+  "id": "5eafede4-e991-4ac1-aba9-60b1f93eb5d2",
+  "timestamp": "2025-04-15T08:17:20.144Z",
+  "smiles": "N-(1-(benzylimidazol-1-yl)piperidin-4-yl)-3,4-dimethoxybenzamide",
+  "properties": {
+    "error": "Invalid SMILES string"
+  }
+}

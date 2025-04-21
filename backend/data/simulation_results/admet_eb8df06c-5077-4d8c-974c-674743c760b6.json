@@ -1,0 +1,8 @@
+{
+  "id": "eb8df06c-5077-4d8c-974c-674743c760b6",
+  "timestamp": "2025-04-15T06:33:19.754Z",
+  "smiles": "S)-2-amino-1-(4-methoxyphenyl)-N-(4,4-dimethylcyclohexyl)propan-1-carboxamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

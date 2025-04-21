@@ -1,0 +1,8 @@
+{
+  "id": "c5a88ccd-06f2-4531-9041-ebe037b732b4",
+  "timestamp": "2025-04-14T21:30:33.162Z",
+  "smiles": "N-(3-methylphenyl)-1-(4-fluorobenzyl)-4-(dimethylamino)piperidine-4-carboxamide",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}

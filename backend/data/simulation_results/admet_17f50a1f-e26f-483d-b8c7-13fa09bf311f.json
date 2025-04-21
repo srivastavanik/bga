@@ -1,0 +1,8 @@
+{
+  "id": "17f50a1f-e26f-483d-b8c7-13fa09bf311f",
+  "timestamp": "2025-04-15T01:43:32.961Z",
+  "smiles": "Ki(NET",
+  "admet": {
+    "error": "Invalid SMILES string"
+  }
+}
