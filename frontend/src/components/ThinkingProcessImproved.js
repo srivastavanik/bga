@@ -493,7 +493,14 @@ const ThinkingProcessImproved = ({ requestId, onSelectMolecule, onSaveMolecule }
   }
   
   // Extract the main thinking text
-  const thinkingText = thinkingData.thinking.content[0]?.text || 'No text content found.';
+  let thinkingText = 'No thinking process text available.';
+  if (thinkingData && thinkingData.thinking && Array.isArray(thinkingData.thinking.content) && thinkingData.thinking.content.length > 0) {
+    thinkingText = thinkingData.thinking.content[0]?.text || 'No text content found.';
+  } else if (typeof thinkingData?.thinking === 'string') {
+    // Fallback if thinking is just a string (older format?)
+    thinkingText = thinkingData.thinking;
+  }
+  
   const truncatedText = thinkingText.substring(0, 1000); // Show first 1000 characters
   const needsTruncation = thinkingText.length > 1000;
   
