@@ -658,3 +658,260 @@
 {"level":"info","message":"Saving results to file for request f63128db-e949-4f7a-aa05-9c8daf9855fd","service":"breaking-good-api","timestamp":"2025-04-22 23:02:45"}
 {"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-22 23:02:45"}
 {"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-22 23:02:45"}
+{"level":"error","message":"Error in Claude Chat: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 11:16:12"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"anthropic_version: Extra inputs are not permitted\"}}","service":"breaking-good-api","timestamp":"2025-04-23 11:16:12"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 11:50:43"}
+{"level":"info","message":"Created request ID: 94fb17c9-2e9f-49c3-98dd-045410ce7099","service":"breaking-good-api","timestamp":"2025-04-23 11:50:43"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 11:50:43"}
+{"level":"info","message":"Received Claude response with ID: msg_014tokmXeCPpKd4PF4jkEQLE","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Extracted 7791 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Found 3 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Validating SMILES: COC(=O)C(C)NC(=O)OC1CCN(C(=O)c2ccc(S(=O)(=O)N3CCCC3)cc2)CC1","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Successfully validated SMILES: COC(=O)C(C)NC(=O)OC1CCN(C(=O)c2ccc(S(=O)(=O)N3CCCC3)cc2)CC1","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Validating SMILES: CCOC(=O)C1=C(C)NC(C)=C1C(=O)OC2CC3CCC(C2)N3C","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Successfully validated SMILES: CCOC(=O)C1=C(C)NC(C)=C1C(=O)OC2CC3CCC(C2)N3C","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Validating SMILES: CN1C(=O)N(CC2=CC=CC=C2)C(=O)C1CCN3CCN(C(=O)C4=CC(F)=C(F)C=C4)CC3","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Successfully validated SMILES: CN1C(=O)N(CC2=CC=CC=C2)C(=O)C1CCN3CCN(C(=O)C4=CC(F)=C(F)C=C4)CC3","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Validated 3 molecules out of 3 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Saving results to file for request 94fb17c9-2e9f-49c3-98dd-045410ce7099","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 11:51:21"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 12:38:03"}
+{"level":"info","message":"Created request ID: f1a98ee1-773f-474b-a8eb-6b38d7690299","service":"breaking-good-api","timestamp":"2025-04-23 12:38:03"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 12:38:03"}
+{"level":"info","message":"Received Claude response with ID: msg_01AoRaXFG851THW2otPd9p8h","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Extracted 8686 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Validating SMILES: 2-[(diphenylmethyl)sulfinyl]-N-[2-(pyrrolidin-1-yl)ethyl]acetamide","service":"breaking-good-api","timestamp":"2025-04-23 12:38:45"}
+{"level":"info","message":"Successfully validated SMILES: 2-[(diphenylmethyl)sulfinyl]-N-[2-(pyrrolidin-1-yl)ethyl]acetamide","service":"breaking-good-api","timestamp":"2025-04-23 12:38:46"}
+{"level":"info","message":"Validating SMILES: CC(=O)N(C)CC(C)(C)C(=O)NC1CCN(CC1)Cc1ccc(cc1)S(=O)c1ccccc1","service":"breaking-good-api","timestamp":"2025-04-23 12:38:46"}
+{"level":"info","message":"Successfully validated SMILES: CC(=O)N(C)CC(C)(C)C(=O)NC1CCN(CC1)Cc1ccc(cc1)S(=O)c1ccccc1","service":"breaking-good-api","timestamp":"2025-04-23 12:38:46"}
+{"level":"info","message":"Validating SMILES: OC(=O)C1(NCCCOP(=O)(O)O)CCN(CC1)c1cccc(Cl)c1Cl","service":"breaking-good-api","timestamp":"2025-04-23 12:38:46"}
+{"level":"info","message":"Successfully validated SMILES: OC(=O)C1(NCCCOP(=O)(O)O)CCN(CC1)c1cccc(Cl)c1Cl","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Validating SMILES: CN1CC(OC(=O)c2ccc(F)cc2)CC1CCc1ccc(O)c(O)c1","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Successfully validated SMILES: CN1CC(OC(=O)c2ccc(F)cc2)CC1CCc1ccc(O)c(O)c1","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Validated 4 molecules out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Successfully extracted and validated 4 molecules","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Saving results to file for request f1a98ee1-773f-474b-a8eb-6b38d7690299","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 12:38:47"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 12:38:48"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 16:45:30"}
+{"level":"info","message":"Created request ID: 72dc3f95-d940-4400-a9f3-5722fe835ba9","service":"breaking-good-api","timestamp":"2025-04-23 16:45:30"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 16:45:30"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 17:09:53"}
+{"level":"info","message":"Created request ID: f1de2b6a-45bf-42bd-a86f-45e2625339c1","service":"breaking-good-api","timestamp":"2025-04-23 17:09:53"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 17:09:53"}
+{"level":"info","message":"Received Claude response with ID: msg_015E2kD7wKQwM5HbDiYozprt","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Extracted 8790 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Found 3 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Validating SMILES: OC1=CC(CCNCCc2cc(F)c(O)c(F)c2)=C(O)C=C1","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Successfully validated SMILES: OC1=CC(CCNCCc2cc(F)c(O)c(F)c2)=C(O)C=C1","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Validating SMILES: NC[C@H](c1ccccc1)c2ccc3OCCNc3c2","service":"breaking-good-api","timestamp":"2025-04-23 17:10:34"}
+{"level":"info","message":"Successfully validated SMILES: NC[C@H](c1ccccc1)c2ccc3OCCNc3c2","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Validating SMILES: Cc1cc2c(c(C)c1)N=C(CN3CCC(c4ccc(Cl)cc4)CC3)N(Cc1ccccc1SC)C2=O","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Successfully validated SMILES: Cc1cc2c(c(C)c1)N=C(CN3CCC(c4ccc(Cl)cc4)CC3)N(Cc1ccccc1SC)C2=O","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Validated 3 molecules out of 3 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Saving results to file for request f1de2b6a-45bf-42bd-a86f-45e2625339c1","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 17:10:35"}
+{"level":"error","message":"Error in Claude Chat: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 17:12:43"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"anthropic_version: Extra inputs are not permitted\"}}","service":"breaking-good-api","timestamp":"2025-04-23 17:12:43"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 17:33:17"}
+{"level":"info","message":"Created request ID: 8c54b1f2-3cee-4c8f-802e-640a1b94edb7","service":"breaking-good-api","timestamp":"2025-04-23 17:33:17"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 17:33:17"}
+{"level":"info","message":"Received Claude response with ID: msg_01GgLXRPfegMsyp4Q7rS1sm5","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Extracted 6611 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Validating SMILES: R)-3-(3,4-difluorophenyl)-N-ethyl-N-(pyridin-3-yl)methyl-2-methylpropan-1-amine","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Successfully validated SMILES: R)-3-(3,4-difluorophenyl)-N-ethyl-N-(pyridin-3-yl)methyl-2-methylpropan-1-amine","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Validating SMILES: CC(C(CN(CC)Cc1cccnc1)c2ccc(F)c(F)c2)C","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Successfully validated SMILES: CC(C(CN(CC)Cc1cccnc1)c2ccc(F)c(F)c2)C","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Validating SMILES: S)-4-(2-amino-4-chlorophenoxy)-N-(2-(pyrrolidin-1-yl)ethyl)piperidine-1-carboxamide","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Successfully validated SMILES: S)-4-(2-amino-4-chlorophenoxy)-N-(2-(pyrrolidin-1-yl)ethyl)piperidine-1-carboxamide","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Validating SMILES: Nc1cc(Cl)ccc1OC2CCN(C(=O)NCCN3CCCC3)CC2","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Successfully validated SMILES: Nc1cc(Cl)ccc1OC2CCN(C(=O)NCCN3CCCC3)CC2","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Validating SMILES: CC(NC)C(=O)c1ccc(C(F)(F)F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:33:50"}
+{"level":"info","message":"Successfully validated SMILES: CC(NC)C(=O)c1ccc(C(F)(F)F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Validated 5 molecules out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Saving results to file for request 8c54b1f2-3cee-4c8f-802e-640a1b94edb7","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions and Molblocks...","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"warn","message":"Molblock generation failed for R)-3-(3,4-difluorophenyl)-N-ethyl-N-(pyridin-3-yl)methyl-2-methylpropan-1-amine: No molblock returned","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"warn","message":"Molblock generation failed for S)-4-(2-amino-4-chlorophenoxy)-N-(2-(pyrrolidin-1-yl)ethyl)piperidine-1-carboxamide: No molblock returned","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Successfully obtained molblock for CC(NC)C(=O)c1ccc(C(F)(F)F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Successfully obtained molblock for CC(C(CN(CC)Cc1cccnc1)c2ccc(F)c(F)c2)C","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Successfully obtained molblock for Nc1cc(Cl)ccc1OC2CCN(C(=O)NCCN3CCCC3)CC2","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 17:33:51"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 17:42:08"}
+{"level":"info","message":"Created request ID: 99099315-59e7-4104-a90a-727535a7ff77","service":"breaking-good-api","timestamp":"2025-04-23 17:42:08"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 17:42:08"}
+{"level":"info","message":"Received Claude response with ID: msg_01FqeXhY1kaoMhHW28gy7f5u","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Extracted 6685 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Validating SMILES: CCC(=O)Nc1ccc(C(=O)NC2CCN(CCCc3ccccc3F)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Successfully validated SMILES: CCC(=O)Nc1ccc(C(=O)NC2CCN(CCCc3ccccc3F)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Validating SMILES: N-(4-(2-(3-(3-fluorophenethyl)piperazin-1-yl)acetamido)phenyl)propionamide","service":"breaking-good-api","timestamp":"2025-04-23 17:42:43"}
+{"level":"info","message":"Successfully validated SMILES: N-(4-(2-(3-(3-fluorophenethyl)piperazin-1-yl)acetamido)phenyl)propionamide","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Validating SMILES: CNC(=O)c1ccc(N2CCN(C3CCCc4ccc(F)cc43)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Successfully validated SMILES: CNC(=O)c1ccc(N2CCN(C3CCCc4ccc(F)cc43)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Validating SMILES: 4-(4-(7-fluoro-1,2,3,4-tetrahydronaphthalen-1-yl)piperazin-1-yl)-N-methylbenzamide","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Successfully validated SMILES: 4-(4-(7-fluoro-1,2,3,4-tetrahydronaphthalen-1-yl)piperazin-1-yl)-N-methylbenzamide","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Validating SMILES: COc1cc(OC)c(OCCN2CCN(C(=O)c3ccc(F)cc3)CC2)cc1OC","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Successfully validated SMILES: COc1cc(OC)c(OCCN2CCN(C(=O)c3ccc(F)cc3)CC2)cc1OC","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Validated 5 molecules out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Saving results to file for request 99099315-59e7-4104-a90a-727535a7ff77","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions and Molblocks...","service":"breaking-good-api","timestamp":"2025-04-23 17:42:44"}
+{"level":"warn","message":"Molblock generation failed for N-(4-(2-(3-(3-fluorophenethyl)piperazin-1-yl)acetamido)phenyl)propionamide: No molblock returned","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"warn","message":"Molblock generation failed for 4-(4-(7-fluoro-1,2,3,4-tetrahydronaphthalen-1-yl)piperazin-1-yl)-N-methylbenzamide: No molblock returned","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"info","message":"Successfully obtained molblock for CCC(=O)Nc1ccc(C(=O)NC2CCN(CCCc3ccccc3F)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"info","message":"Successfully obtained molblock for CNC(=O)c1ccc(N2CCN(C3CCCc4ccc(F)cc43)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"info","message":"Successfully obtained molblock for COc1cc(OC)c(OCCN2CCN(C(=O)c3ccc(F)cc3)CC2)cc1OC","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 17:42:45"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 18:06:04"}
+{"level":"info","message":"Created request ID: 08772a44-fb37-4a79-879f-8823433b9556","service":"breaking-good-api","timestamp":"2025-04-23 18:06:04"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 18:06:04"}
+{"level":"info","message":"Received Claude response with ID: msg_01MEQixZr3RPP3EDjnfiRE87","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Extracted 5874 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Validating SMILES: C(=O)(NS(=O)(=O)C1=CC=C(C=C1)OC)C(C2=CC=C(SC3CC3)C=C2)CNC","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Successfully validated SMILES: C(=O)(NS(=O)(=O)C1=CC=C(C=C1)OC)C(C2=CC=C(SC3CC3)C=C2)CNC","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Validating SMILES: R)-2-(diphenylmethyl)-N-methyl-1-phenylethylamine-2-sulfonamide","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Successfully validated SMILES: R)-2-(diphenylmethyl)-N-methyl-1-phenylethylamine-2-sulfonamide","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Validating SMILES: O=C(NC1CCN(CC1)C2=CC=CC=C2)C3=CC=C(C=C3)C(F)(F)F","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Successfully validated SMILES: O=C(NC1CCN(CC1)C2=CC=CC=C2)C3=CC=C(C=C3)C(F)(F)F","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Validating SMILES: CN1C2CCC1CC(C2)OC(C3=CC=CC=C3)C4=CC=C(Cl)C=C4","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Successfully validated SMILES: CN1C2CCC1CC(C2)OC(C3=CC=CC=C3)C4=CC=C(Cl)C=C4","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Validated 4 molecules out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Successfully extracted and validated 4 molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Saving results to file for request 08772a44-fb37-4a79-879f-8823433b9556","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 18:06:35"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 18:06:36"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 18:14:11"}
+{"level":"info","message":"Created request ID: f52719b4-f8a7-4df0-be14-453bb657c061","service":"breaking-good-api","timestamp":"2025-04-23 18:14:11"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 18:14:11"}
+{"level":"info","message":"Received Claude response with ID: msg_01NN9VXE6wyRJeCgZt1x2YTt","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Extracted 8733 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Validating SMILES: FC1=CC(=C(F)C=C1)C2=CCN(C)C(C2)C(=O)N","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Attempting 3D structure generation for: FC1=CC(=C(F)C=C1)C2=CCN(C)C(C2)C(=O)N","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): FC1=CC(=C(F)C=C1)C2=CCN(C)C(C2)C(=O)N","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Validating SMILES: R)-2-(benzhydryloxy)-N-methyl-3-(1H-imidazol-4-yl)propanamide","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"info","message":"Attempting 3D structure generation for: R)-2-(benzhydryloxy)-N-methyl-3-(1H-imidazol-4-yl)propanamide","service":"breaking-good-api","timestamp":"2025-04-23 18:15:00"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: R)-2-(benzhydryloxy)-N-methyl-3-(1H-imidazol-4-yl)propanamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Validating SMILES: O=C(NC)C(OC(C1=CC=CC=C1)C2=CC=CC=C2)[C@H]3CN=CN3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Attempting 3D structure generation for: O=C(NC)C(OC(C1=CC=CC=C1)C2=CC=CC=C2)[C@H]3CN=CN3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): O=C(NC)C(OC(C1=CC=CC=C1)C2=CC=CC=C2)[C@H]3CN=CN3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Validating SMILES: CN1C(=O)N(C)C2=C1C(=O)N(CCO)C(C(=O)N)=C2C3=CC=C(Cl)C=C3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Attempting 3D structure generation for: CN1C(=O)N(C)C2=C1C(=O)N(CCO)C(C(=O)N)=C2C3=CC=C(Cl)C=C3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CN1C(=O)N(C)C2=C1C(=O)N(CCO)C(C(=O)N)=C2C3=CC=C(Cl)C=C3","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Saving results to file for request f52719b4-f8a7-4df0-be14-453bb657c061","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 18:15:01"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 18:15:02"}
+{"level":"error","message":"Error in Claude Chat: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 18:15:26"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"anthropic_version: Extra inputs are not permitted\"}}","service":"breaking-good-api","timestamp":"2025-04-23 18:15:26"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 18:21:23"}
+{"level":"info","message":"Created request ID: 11307025-bd20-41a8-b17c-7db97527e197","service":"breaking-good-api","timestamp":"2025-04-23 18:21:23"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 18:21:23"}
+{"level":"info","message":"Received Claude response with ID: msg_01SDK1Cbt7kGSktdzi8oBcG5","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Extracted 8076 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Validating SMILES: CCC(=O)NCCC1=CC(OC)=C(OC)C=C1NC(=O)C1CC1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:05"}
+{"level":"info","message":"Attempting 3D structure generation for: CCC(=O)NCCC1=CC(OC)=C(OC)C=C1NC(=O)C1CC1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CCC(=O)NCCC1=CC(OC)=C(OC)C=C1NC(=O)C1CC1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Validating SMILES: N-(3-(3,4-dimethoxyphenyl)propyl)-N-(cyclopropanecarbonyl)propionamide","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Attempting 3D structure generation for: N-(3-(3,4-dimethoxyphenyl)propyl)-N-(cyclopropanecarbonyl)propionamide","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: N-(3-(3,4-dimethoxyphenyl)propyl)-N-(cyclopropanecarbonyl)propionamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Validating SMILES: FC(F)(F)c1ccc(C(=O)N2CC3(CCN(C)CC3)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Attempting 3D structure generation for: FC(F)(F)c1ccc(C(=O)N2CC3(CCN(C)CC3)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:06"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): FC(F)(F)c1ccc(C(=O)N2CC3(CCN(C)CC3)CC2)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Validating SMILES: CN1CCC(C(=O)Nc2ccc(OC)c(OC)c2)CC1OC(=O)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Attempting 3D structure generation for: CN1CCC(C(=O)Nc2ccc(OC)c(OC)c2)CC1OC(=O)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CN1CCC(C(=O)Nc2ccc(OC)c(OC)c2)CC1OC(=O)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Saving results to file for request 11307025-bd20-41a8-b17c-7db97527e197","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 18:22:07"}
+{"level":"error","message":"Error in Claude Chat: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 18:24:16"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"anthropic_version: Extra inputs are not permitted\"}}","service":"breaking-good-api","timestamp":"2025-04-23 18:24:16"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 21:30:34"}
+{"level":"info","message":"Created request ID: a366ac6b-6e00-4e15-b958-b63e24b9f363","service":"breaking-good-api","timestamp":"2025-04-23 21:30:34"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 21:30:34"}
+{"level":"error","message":"Claude API error: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 21:30:35"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"invalid_request_error\",\"message\":\"anthropic-version: header is required\"}}","service":"breaking-good-api","timestamp":"2025-04-23 21:30:35"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-23 21:30:35"}
+{"level":"error","message":"Error in molecule generation endpoint: Error calling Claude API: Request failed with status code 400","service":"breaking-good-api","stack":"Error: Error calling Claude API: Request failed with status code 400\n    at askClaude (C:\\Users\\nicks\\Downloads\\breakinggood\\backend\\api\\ai.js:76:11)\n    at process.processTicksAndRejections (node:internal/process/task_queues:105:5)\n    at async C:\\Users\\nicks\\Downloads\\breakinggood\\backend\\api\\ai.js:274:24","timestamp":"2025-04-23 21:30:35"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 21:39:52"}
+{"level":"info","message":"Created request ID: 4cffdee4-5007-4e5f-87c0-2475406c9071","service":"breaking-good-api","timestamp":"2025-04-23 21:39:52"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 21:39:52"}
+{"level":"info","message":"Received Claude response with ID: msg_01Fcuz3epwrRoB1e56yBNsKy","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Extracted 7017 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Validating SMILES: O=C(OC)[C@](Cc1ccc(F)cc1)(c2cccnc2)CNC","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Attempting 3D structure generation for: O=C(OC)[C@](Cc1ccc(F)cc1)(c2cccnc2)CNC","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): O=C(OC)[C@](Cc1ccc(F)cc1)(c2cccnc2)CNC","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Validating SMILES: 2S)-N,N-diethyl-2-(6,7-dihydro-4H-benzo[e][1,3]oxazin-3(5H)-yl)propanamide","service":"breaking-good-api","timestamp":"2025-04-23 21:40:29"}
+{"level":"info","message":"Attempting 3D structure generation for: 2S)-N,N-diethyl-2-(6,7-dihydro-4H-benzo[e][1,3]oxazin-3(5H)-yl)propanamide","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: 2S)-N,N-diethyl-2-(6,7-dihydro-4H-benzo[e][1,3]oxazin-3(5H)-yl)propanamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Validating SMILES: CCN(CC)C(=O)[C@H](C)N1CCc2ccccc2OC1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Attempting 3D structure generation for: CCN(CC)C(=O)[C@H](C)N1CCc2ccccc2OC1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CCN(CC)C(=O)[C@H](C)N1CCc2ccccc2OC1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Validating SMILES: CC(C)[C@H](N)Cc1ccnc(N2CCN(c3cccc(Cl)c3Cl)C(=O)C2)n1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(C)[C@H](N)Cc1ccnc(N2CCN(c3cccc(Cl)c3Cl)C(=O)C2)n1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:30"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(C)[C@H](N)Cc1ccnc(N2CCN(c3cccc(Cl)c3Cl)C(=O)C2)n1","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Saving results to file for request 4cffdee4-5007-4e5f-87c0-2475406c9071","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 21:40:31"}
+{"level":"info","message":"Received molecule generation request with requirements: I want you to help me develop an alternative neuro-stimulant (that simulates Adderall) that will boost someones productivity and performance consistently without the downsides as possible.","service":"breaking-good-api","timestamp":"2025-04-23 22:24:13"}
+{"level":"info","message":"Created request ID: 77d4b80b-f275-4570-9213-9de9f5a147d5","service":"breaking-good-api","timestamp":"2025-04-23 22:24:13"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-23 22:24:13"}
+{"level":"info","message":"Received Claude response with ID: msg_01EeFBE8jxqC1oRDfB6gnLZB","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Extracted 8713 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Validating SMILES: CC(N)CC(=O)N1CCN(C(=O)C2(c3ccccc3)CC2)CC1","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(N)CC(=O)N1CCN(C(=O)C2(c3ccccc3)CC2)CC1","service":"breaking-good-api","timestamp":"2025-04-23 22:25:05"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(N)CC(=O)N1CCN(C(=O)C2(c3ccccc3)CC2)CC1","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Validating SMILES: 2-amino-3-methyl-N-(4-(2-(cyclopropyl(phenyl)methanoyl)piperazin-1-yl)butanamide","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Attempting 3D structure generation for: 2-amino-3-methyl-N-(4-(2-(cyclopropyl(phenyl)methanoyl)piperazin-1-yl)butanamide","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: 2-amino-3-methyl-N-(4-(2-(cyclopropyl(phenyl)methanoyl)piperazin-1-yl)butanamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Validating SMILES: COc1cc(CCN2CCN(C(=O)C3CCC(F)(F)CC3)CC2)c(OC)c2c1OCO2","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Attempting 3D structure generation for: COc1cc(CCN2CCN(C(=O)C3CCC(F)(F)CC3)CC2)c(OC)c2c1OCO2","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): COc1cc(CCN2CCN(C(=O)C3CCC(F)(F)CC3)CC2)c(OC)c2c1OCO2","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Validating SMILES: CCOC(=O)C1=C(C)NC(C)=C(C1c1ccccc1N(C)S(=O)(=O)c1ccc(N)cc1)C(=O)OCC","service":"breaking-good-api","timestamp":"2025-04-23 22:25:06"}
+{"level":"info","message":"Attempting 3D structure generation for: CCOC(=O)C1=C(C)NC(C)=C(C1c1ccccc1N(C)S(=O)(=O)c1ccc(N)cc1)C(=O)OCC","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CCOC(=O)C1=C(C)NC(C)=C(C1c1ccccc1N(C)S(=O)(=O)c1ccc(N)cc1)C(=O)OCC","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Validating SMILES: 2,6-dimethyl-4-(2-(N-methyl-N-(4-aminophenylsulfonyl)amino)phenyl)-1,4-dihydropyridine-3,5-dicarboxylate","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Attempting 3D structure generation for: 2,6-dimethyl-4-(2-(N-methyl-N-(4-aminophenylsulfonyl)amino)phenyl)-1,4-dihydropyridine-3,5-dicarboxylate","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: 2,6-dimethyl-4-(2-(N-methyl-N-(4-aminophenylsulfonyl)amino)phenyl)-1,4-dihydropyridine-3,5-dicarboxylate - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Saving results to file for request 77d4b80b-f275-4570-9213-9de9f5a147d5","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-23 22:25:07"}

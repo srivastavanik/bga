@@ -5,6 +5,7 @@ const { v4: uuidv4 } = require('uuid');
 const fs = require('fs');
 const path = require('path');
 const logger = require('../utils/logger');
+const { Anthropic } = require('@anthropic-ai/sdk');
 
 // Create results directory if it doesn't exist
 const resultsDir = path.join(__dirname, '../data/ai_results');
@@ -13,18 +14,30 @@ if (!fs.existsSync(resultsDir)) {
 }
 
 // Claude API client configuration
-const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY;
+const ANTHROPIC_API_KEY = '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';
 const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
+const ANTHROPIC_VERSION = '2023-06-01'; // Add the required anthropic-version
 
 // Configure Anthropic API client
 const claudeClient = axios.create({
   baseURL: ANTHROPIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
-    'anthropic-version': '2023-06-01',
-    'x-api-key': ANTHROPIC_API_KEY
+    'x-api-key': ANTHROPIC_API_KEY,
+    'anthropic-version': ANTHROPIC_VERSION
   }
 });
+
+// Middleware to require API key
+const requireApiKey = (req, res, next) => {
+  const apiKey = req.headers['x-api-key'] || req.query.apiKey;
+  
+  if (!apiKey || apiKey !== ANTHROPIC_API_KEY) {
+    return res.status(401).json({ error: 'Valid API key is required' });
+  }
+  
+  next();
+};
 
 // Create an axios instance for internal API calls
 const internalApiClient = axios.create({
@@ -170,26 +183,38 @@ const processMoleculeDesign = async (claudeResponse) => {
     for (const smiles of [...new Set(smilesCandidates)]) { // Use Set to avoid duplicate processing
       try {
         logger.info(`Validating SMILES: ${smiles}`);
-        const rdkitResponse = await internalApiClient.post('/api/simulation/properties', { smiles });
+        // First, check basic properties
+        const propertiesResponse = await internalApiClient.post('/api/simulation/properties', { smiles });
         
-        if (rdkitResponse.data && !rdkitResponse.data.error) {
-          validatedMolecules.push({
-            smiles: smiles,
-            name: `Molecule Candidate ${validatedMolecules.length + 1}`,
-            properties: rdkitResponse.data,
-            dateCreated: new Date().toISOString()
-          });
-          logger.info(`Successfully validated SMILES: ${smiles}`);
+        if (propertiesResponse.data && !propertiesResponse.data.error) {
+          // If properties are valid, *also* try generating 3D structure
+          logger.info(`Attempting 3D structure generation for: ${smiles}`);
+          try {
+            const structureResponse = await internalApiClient.post('/api/simulation/3d-structure', { smiles });
+            if (structureResponse.data && structureResponse.data.molblock) {
+              // Only add if both properties AND 3D structure are successful
+              validatedMolecules.push({
+                smiles: smiles,
+                name: `Molecule Candidate ${validatedMolecules.length + 1}`,
+                properties: propertiesResponse.data,
+                dateCreated: new Date().toISOString()
+              });
+              logger.info(`Successfully validated SMILES (Props & 3D): ${smiles}`);
+            } else {
+              logger.warn(`Failed 3D structure generation for valid SMILES: ${smiles} - ${structureResponse.data?.error || 'Unknown structure error'}`);
+            }
+          } catch (structureErr) {
+            logger.warn(`Error during 3D structure call for SMILES ${smiles}: ${structureErr.message}`);
+          }
         } else {
-          logger.warn(`Invalid SMILES structure or property calculation failed: ${smiles} - ${rdkitResponse.data?.error || 'Unknown error'}`);
+          logger.warn(`Invalid SMILES structure or property calculation failed: ${smiles} - ${propertiesResponse.data?.error || 'Unknown properties error'}`);
         }
-      } catch (err) {
-        logger.error(`Error during validation/property call for SMILES ${smiles}: ${err.message}`);
-        // Optionally decide if we should still include the molecule even if props fail
+      } catch (validationErr) {
+        logger.error(`Error during validation/property call for SMILES ${smiles}: ${validationErr.message}`);
       }
     }
 
-    logger.info(`Validated ${validatedMolecules.length} molecules out of ${smilesCandidates.length} candidates.`);
+    logger.info(`Validated ${validatedMolecules.length} molecules (Props & 3D) out of ${smilesCandidates.length} candidates.`);
     if (validatedMolecules.length === 0) {
       logger.error('No valid molecules could be validated from response or fallback.');
       throw new Error('No valid molecules could be validated from Claude response or fallbacks');
@@ -306,11 +331,24 @@ Provide at least 3 distinct candidate molecules with fully specified, valid SMIL
     );
     logger.info('Finished enhancing molecules.');
 
+    // Helper function to safely extract text content from Claude response
+    const getClaudeResponseText = (response) => {
+        if (!response || !response.content) return '';
+        if (Array.isArray(response.content)) {
+            return response.content.map(block => block.text || '').join('\n');
+        } else if (typeof response.content === 'string') {
+            return response.content;
+        }
+        return '';
+    };
+
     return res.json({
       requestId,
       molecules: enhancedMolecules,
       // Include smiles array for backward compatibility
-      smiles: enhancedMolecules.map(m => m.smiles)
+      smiles: enhancedMolecules.map(m => m.smiles),
+      // Add the raw text response from Claude
+      rawClaudeResponse: getClaudeResponseText(claudeResponse)
     });
 
   } catch (error) {
@@ -640,42 +678,40 @@ router.get('/thinking-process/:requestId', async (req, res) => {
 });
 
 // Handle continued chat conversation
-router.post('/chat', async (req, res) => {
+router.post('/chat', requireApiKey, async (req, res) => {
   try {
-    const { messages, context } = req.body; // messages should be an array like [{ role: 'user', content: '...' }, { role: 'assistant', content: '...' }]
+    const { 
+      messages, 
+      model = 'claude-3-opus-20240229',
+      temperature = 0.7, 
+      max_tokens = 4000,
+    } = req.body;
 
+    // Validate messages
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
       return res.status(400).json({ error: 'Messages array is required' });
     }
 
-    // Define the system prompt (could be made more dynamic based on context)
-    const systemPrompt = `You are an expert medicinal chemist assisting with drug design. Continue the conversation based on the provided history. Focus on refining molecules, discussing properties, or suggesting next steps. Current context: ${context || 'General drug design discussion'}`;
-
-    // Call Claude API with the existing message history
-    const response = await claudeClient.post('', {
-      model: 'claude-3-7-sonnet-20250219', // Use configured model
-      system: systemPrompt,
-      messages: messages, // Pass the entire conversation history
-      max_tokens: 20000,
-      temperature: 1.0,
-      anthropic_version: "bedrock-2023-05-31",
-      budget_tokens: 16000,
-      stream: false
+    // Create the Claude client
+    const claude = new Anthropic({
+      apiKey: ANTHROPIC_API_KEY,
+      defaultHeaders: {
+        'anthropic-version': ANTHROPIC_VERSION
+      }
     });
 
-    // Extract the assistant's response
-    const assistantMessage = response.data.content[0]; // Assuming the response structure
-
-    res.json({
-      response: assistantMessage
+    // Send the request to Claude
+    const completion = await claude.messages.create({
+      model,
+      messages,
+      temperature,
+      max_tokens,
     });
 
+    res.json(completion);
   } catch (error) {
-    logger.error(`Error in Claude Chat: ${error.message}`);
-    if (error.response) {
-      logger.error(`Claude API response: ${JSON.stringify(error.response.data)}`);
-    }
-    res.status(500).json({ error: `Error processing chat: ${error.message}` });
+    console.error('Error with Claude chat API:', error);
+    res.status(500).json({ error: error.message || 'Error communicating with Claude API' });
   }
 });
 
