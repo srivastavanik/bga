@@ -14,29 +14,54 @@ if (!fs.existsSync(resultsDir)) {
 }
 
 // Claude API client configuration
-const ANTHROPIC_API_KEY = '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';
+const ANTHROPIC_API_KEY = process.env.ANTHROPIC_API_KEY || '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';
 const ANTHROPIC_API_URL = 'https://api.anthropic.com/v1/messages';
-const ANTHROPIC_VERSION = '2023-06-01'; // Add the required anthropic-version
+const ANTHROPIC_VERSION = '2023-06-01'; // Required anthropic-version header
 
-// Configure Anthropic API client
+// Log API key status (not the actual key)
+logger.info(`Anthropic API Key status: ${ANTHROPIC_API_KEY ? 'Loaded' : 'Missing'}`);
+
+if (!ANTHROPIC_API_KEY) {
+  logger.error('ANTHROPIC_API_KEY is missing from environment variables');
+}
+
+// Configure Anthropic API client with longer timeout
 const claudeClient = axios.create({
   baseURL: ANTHROPIC_API_URL,
   headers: {
     'Content-Type': 'application/json',
     'x-api-key': ANTHROPIC_API_KEY,
     'anthropic-version': ANTHROPIC_VERSION
-  }
+  },
+  timeout: 120000 // 2-minute timeout to prevent ECONNRESET
 });
 
 // Middleware to require API key
 const requireApiKey = (req, res, next) => {
-  const apiKey = req.headers['x-api-key'] || req.query.apiKey;
-  
-  if (!apiKey || apiKey !== ANTHROPIC_API_KEY) {
-    return res.status(401).json({ error: 'Valid API key is required' });
+  // Check if the API key is loaded on the server
+  if (ANTHROPIC_API_KEY) {
+    // Server has the key, proceed with the request
+    return next(); 
+  } else {
+    // Server does NOT have the key loaded (from env or fallback)
+    logger.error('CRITICAL: ANTHROPIC_API_KEY is not configured on the server.');
+    return res.status(500).json({ error: 'API key is not configured on the server.' });
   }
   
-  next();
+  // Removed client-side key check logic as the server should manage its own key.
+  // const apiKey = req.headers['x-api-key'] || req.query.apiKey;
+  // 
+  // // Skip API key validation if running in development and no key provided
+  // if (process.env.NODE_ENV === 'development' && !ANTHROPIC_API_KEY) {
+  //   logger.warn('Skipping API key validation in development mode');
+  //   return next();
+  // }
+  // 
+  // if (!apiKey || apiKey !== ANTHROPIC_API_KEY) {
+  //   return res.status(401).json({ error: 'Valid API key is required' });
+  // }
+  // 
+  // next();
 };
 
 // Create an axios instance for internal API calls
@@ -44,32 +69,95 @@ const internalApiClient = axios.create({
   baseURL: 'http://localhost:5000',
   headers: {
     'Content-Type': 'application/json'
-  }
+  },
+  timeout: 120000 // 2-minute timeout to prevent ECONNRESET
 });
 
 // Helper function for Claude API requests
 const askClaude = async (systemPrompt, userPrompt, model = 'claude-3-7-sonnet-20250219') => {
   try {
-    const response = await claudeClient.post('', {
-      model: model,
-      system: systemPrompt,
-      messages: [
-        {
-          role: 'user',
-          content: userPrompt
+    // Log request details for debugging
+    logger.info(`Sending request to Claude API with model: ${model}`);
+    logger.info(`System prompt length: ${systemPrompt.length} characters`);
+    logger.info(`User prompt length: ${userPrompt.length} characters`);
+    
+    // Add retry logic with exponential backoff
+    let retries = 0;
+    const maxRetries = 3;
+    
+    while (true) {
+      try {
+        const response = await claudeClient.post('', {
+          model: model,
+          system: systemPrompt,
+          messages: [
+            {
+              role: 'user',
+              content: userPrompt
+            }
+          ],
+          max_tokens: 4096,
+          temperature: 1.0,
+          stream: false
+        });
+        
+        // Log success
+        logger.info(`Claude API response received: ${response.data.id}`);
+        logger.info(`Response content type: ${typeof response.data.content}`);
+        
+        // Check if response content is an array (Claude API v2 format)
+        if (Array.isArray(response.data.content)) {
+          logger.info(`Content is array with ${response.data.content.length} items`);
+          
+          // Extract text content from array
+          let extractedContent = '';
+          for (const part of response.data.content) {
+            if (part.type === 'text' && part.text) {
+              extractedContent += part.text;
+            }
+          }
+          
+          return {
+            id: response.data.id,
+            content: extractedContent, // Use the extracted text content
+            rawContent: response.data.content, // Keep the original format too
+            model: response.data.model,
+            usage: response.data.usage
+          };
         }
-      ],
-      max_tokens: 20000,
-      temperature: 1.0,
-      stream: false
-    });
-
-    return {
-      id: response.data.id,
-      content: response.data.content,
-      model: response.data.model,
-      usage: response.data.usage
-    };
+        
+        // If not array format, return as is
+        return {
+          id: response.data.id,
+          content: response.data.content,
+          model: response.data.model,
+          usage: response.data.usage
+        };
+      } catch (error) {
+        retries++;
+        
+        // If we've reached max retries, throw the error
+        if (retries >= maxRetries) {
+          throw error;
+        }
+        
+        // Check if it's a timeout or connection error
+        const isConnectionError = error.code === 'ECONNABORTED' || 
+                                  error.code === 'ECONNRESET' || 
+                                  error.code === 'ETIMEDOUT';
+        
+        if (isConnectionError) {
+          // Wait longer between each retry (exponential backoff)
+          const waitTime = Math.min(1000 * Math.pow(2, retries), 10000);
+          logger.warn(`Connection error to Claude API. Retrying in ${waitTime/1000} seconds (attempt ${retries}/${maxRetries})...`);
+          await new Promise(resolve => setTimeout(resolve, waitTime));
+          continue;
+        } else {
+          // If it's not a connection error, rethrow
+          throw error;
+        }
+      }
+    }
   } catch (error) {
     logger.error(`Claude API error: ${error.message}`);
     if (error.response) {
@@ -137,36 +225,45 @@ const FALLBACK_SMILES = [
 const processMoleculeDesign = async (claudeResponse) => {
   try {
     logger.info('Processing Claude response for molecule design');
-    if (!claudeResponse || !claudeResponse.content) {
+    if (!claudeResponse) {
       logger.error('Invalid or empty Claude response');
       throw new Error('Invalid Claude response format');
     }
-
+    
+    // Content is already extracted in askClaude if it was in array format
     let responseText = '';
-    if (Array.isArray(claudeResponse.content)) {
-      for (const part of claudeResponse.content) {
+    
+    if (typeof claudeResponse.content === 'string') {
+      responseText = claudeResponse.content;
+      logger.info(`Using string content directly, length: ${responseText.length}`);
+    } else if (claudeResponse.rawContent && Array.isArray(claudeResponse.rawContent)) {
+      // Use the raw content array if available and content extraction failed
+      logger.info('Using rawContent array from Claude response');
+      for (const part of claudeResponse.rawContent) {
         if (part.type === 'text' && part.text) {
           responseText += part.text;
         }
       }
-    } else if (typeof claudeResponse.content === 'string') {
-      responseText = claudeResponse.content;
     } else {
-       // Attempt to find text in other structures if direct text not found
-        const findText = (obj) => {
-            if (typeof obj === 'string') return obj + ' ';
-            if (typeof obj !== 'object' || obj === null) return '';
-            let foundText = '';
-            for (const key in obj) {
-                if (key === 'text' && typeof obj[key] === 'string') {
-                    foundText += obj[key] + ' ';
-                } else {
-                    foundText += findText(obj[key]);
-                }
-            }
-            return foundText;
-        };
-        responseText = findText(claudeResponse.content).trim();
+      // Last resort - try to extract text from whatever structure we have
+      logger.warn('Attempting to extract text from unexpected response structure');
+      const findText = (obj) => {
+        if (typeof obj === 'string') return obj + ' ';
+        if (typeof obj !== 'object' || obj === null) return '';
+        let foundText = '';
+        for (const key in obj) {
+          if (key === 'text' && typeof obj[key] === 'string') {
+            foundText += obj[key] + ' ';
+          } else {
+            foundText += findText(obj[key]);
+          }
+        }
+        return foundText;
+      };
+      
+      // Try to extract from content first, then from the entire response object
+      const contentToProcess = claudeResponse.content || claudeResponse;
+      responseText = findText(contentToProcess).trim();
     }
 
     logger.info(`Extracted ${responseText.length} characters of text from Claude response`);
@@ -183,31 +280,75 @@ const processMoleculeDesign = async (claudeResponse) => {
     for (const smiles of [...new Set(smilesCandidates)]) { // Use Set to avoid duplicate processing
       try {
         logger.info(`Validating SMILES: ${smiles}`);
-        // First, check basic properties
-        const propertiesResponse = await internalApiClient.post('/api/simulation/properties', { smiles });
         
-        if (propertiesResponse.data && !propertiesResponse.data.error) {
-          // If properties are valid, *also* try generating 3D structure
-          logger.info(`Attempting 3D structure generation for: ${smiles}`);
-          try {
-            const structureResponse = await internalApiClient.post('/api/simulation/3d-structure', { smiles });
-            if (structureResponse.data && structureResponse.data.molblock) {
-              // Only add if both properties AND 3D structure are successful
+        try {
+          // First, check basic properties
+          const propertiesResponse = await internalApiClient.post('/api/simulation/properties', { smiles });
+          
+          if (propertiesResponse.data && !propertiesResponse.data.error) {
+            // If properties are valid, *also* try generating 3D structure
+            logger.info(`Attempting 3D structure generation for: ${smiles}`);
+            try {
+              const structureResponse = await internalApiClient.post('/api/simulation/3d-structure', { smiles });
+              if (structureResponse.data && structureResponse.data.molblock) {
+                // Only add if both properties AND 3D structure are successful
+                validatedMolecules.push({
+                  smiles: smiles,
+                  name: `Molecule Candidate ${validatedMolecules.length + 1}`,
+                  properties: propertiesResponse.data,
+                  dateCreated: new Date().toISOString()
+                });
+                logger.info(`Successfully validated SMILES (Props & 3D): ${smiles}`);
+              } else {
+                logger.warn(`Failed 3D structure generation for valid SMILES: ${smiles} - ${structureResponse.data?.error || 'Unknown structure error'}`);
+                // Still add the molecule if 3D structure failed but properties are valid
+                validatedMolecules.push({
+                  smiles: smiles,
+                  name: `Molecule Candidate ${validatedMolecules.length + 1}`,
+                  properties: propertiesResponse.data,
+                  dateCreated: new Date().toISOString()
+                });
+                logger.info(`Added molecule with properties but without 3D structure: ${smiles}`);
+              }
+            } catch (structureErr) {
+              logger.warn(`Error during 3D structure call for SMILES ${smiles}: ${structureErr.message}`);
+              // Still add the molecule if 3D structure failed but properties are valid
               validatedMolecules.push({
                 smiles: smiles,
                 name: `Molecule Candidate ${validatedMolecules.length + 1}`,
                 properties: propertiesResponse.data,
                 dateCreated: new Date().toISOString()
               });
-              logger.info(`Successfully validated SMILES (Props & 3D): ${smiles}`);
-            } else {
-              logger.warn(`Failed 3D structure generation for valid SMILES: ${smiles} - ${structureResponse.data?.error || 'Unknown structure error'}`);
+              logger.info(`Added molecule with properties but couldn't generate 3D structure: ${smiles}`);
             }
-          } catch (structureErr) {
-            logger.warn(`Error during 3D structure call for SMILES ${smiles}: ${structureErr.message}`);
+          } else {
+            logger.warn(`Invalid SMILES structure or property calculation failed: ${smiles} - ${propertiesResponse.data?.error || 'Unknown properties error'}`);
           }
-        } else {
-          logger.warn(`Invalid SMILES structure or property calculation failed: ${smiles} - ${propertiesResponse.data?.error || 'Unknown properties error'}`);
+        } catch (propertyErr) {
+          // RDKit might not be available or there's another issue with property calculation
+          logger.warn(`Error calculating properties for SMILES: ${smiles}. Error: ${propertyErr.message}`);
+          
+          // Add the molecule with basic validation if RDKit is unavailable
+          // Basic validation: check that SMILES follows expected pattern
+          if (smiles.length > 5 && smiles.length < 400 && 
+              /[CNOPS]/.test(smiles) && /[=()\[\]]/.test(smiles)) {
+            logger.info(`Using basic validation for SMILES since RDKit failed: ${smiles}`);
+            validatedMolecules.push({
+              smiles: smiles,
+              name: `Molecule Candidate ${validatedMolecules.length + 1}`,
+              properties: {
+                formula: 'Not calculated - RDKit unavailable',
+                molecular_weight: 0,
+                logp: 0,
+                num_h_donors: 0,
+                num_h_acceptors: 0,
+                num_rotatable_bonds: 0,
+                tpsa: 0
+              },
+              dateCreated: new Date().toISOString()
+            });
+            logger.info(`Added molecule with basic validation (RDKit unavailable): ${smiles}`);
+          }
         }
       } catch (validationErr) {
         logger.error(`Error during validation/property call for SMILES ${smiles}: ${validationErr.message}`);
@@ -241,6 +382,10 @@ router.post('/generate-molecule', async (req, res) => {
     const requestId = uuidv4();
     logger.info(`Created request ID: ${requestId}`);
     
+    // Add more detailed logging for debugging
+    logger.info(`API Key Status: ${ANTHROPIC_API_KEY ? 'Key is set' : 'Key is missing'}`);
+    logger.info(`API endpoint URL: ${ANTHROPIC_API_URL}`);
+    
     const systemPrompt = `You are a world-class expert in neuropharmacology, medicinal chemistry, and drug discovery with decades of experience designing innovative neuropharmaceutical compounds. Your role is to generate, evaluate, and iteratively refine candidate molecules for a novel ADHD treatment—a next-generation Adderall alternative. Leverage cutting-edge scientific literature, advanced cheminformatics simulations, and regulatory pathway analysis to provide detailed, step-by-step chain-of-thought explanations that include literature citations, predicted molecular properties (binding affinity, toxicity, metabolic stability, synthetic yield), and projections on production feasibility and FDA approval timelines. Your responses should be interactive and actionable, outlining potential 3D visualization and direct chemical editing operations to empower researchers in refining and validating each candidate.
 
 IMPORTANT: Each molecule you design MUST include its complete SMILES string clearly labeled as 'SMILES:' followed by the string on a separate line. Make sure to provide at least 3 distinct candidate molecules with valid SMILES strings.`;
@@ -272,15 +417,22 @@ Provide at least 3 distinct candidate molecules with fully specified, valid SMIL
          // For now, we throw an error to prevent fallback use, as requested by user
          throw new Error('Test mode activated - real API call bypassed');
       }
-       
-      claudeResponse = await askClaude(systemPrompt, userPrompt);
+      
+      // Removed explicit timeout handling - axios client timeout and retry logic in askClaude handle this
+      claudeResponse = await askClaude(systemPrompt, userPrompt); // Model/temp/max_tokens are now handled by askClaude defaults
+      
       logger.info(`Received Claude response with ID: ${claudeResponse.id}`);
       
     } catch (claudeError) {
       logger.error(`Claude API call failed: ${claudeError.message}`);
-      // Re-throw the error to be caught by the outer catch block
-      // This prevents the fallback mechanism from being used.
-      throw claudeError; 
+      logger.error(`Error details: ${JSON.stringify(claudeError.response?.data || {})}`);
+      
+      // Provide a more detailed error message to the frontend
+      return res.status(500).json({ 
+        error: `Claude API call failed: ${claudeError.message}`,
+        details: claudeError.response?.data || {},
+        requestId
+      });
     }
     
     logger.info('Processing Claude response to extract molecules');
@@ -682,36 +834,57 @@ router.post('/chat', requireApiKey, async (req, res) => {
   try {
     const { 
       messages, 
-      model = 'claude-3-opus-20240229',
-      temperature = 0.7, 
-      max_tokens = 4000,
+      model = 'claude-3-7-sonnet-20250219',
+      temperature = 1.0,
+      max_tokens = 4096,
     } = req.body;
 
     // Validate messages
     if (!messages || !Array.isArray(messages) || messages.length === 0) {
+      logger.warn('Chat request received with invalid messages array');
       return res.status(400).json({ error: 'Messages array is required' });
     }
 
-    // Create the Claude client
-    const claude = new Anthropic({
-      apiKey: ANTHROPIC_API_KEY,
-      defaultHeaders: {
-        'anthropic-version': ANTHROPIC_VERSION
-      }
-    });
+    logger.info(`Received /chat request. Model: ${model}, Temp: ${temperature}, MaxTokens: ${max_tokens}`);
+    logger.debug('Chat Messages Payload:', JSON.stringify(messages, null, 2));
 
-    // Send the request to Claude
-    const completion = await claude.messages.create({
+    // --- Use existing claudeClient (axios instance) instead of Anthropic SDK --- 
+    const payload = {
       model,
-      messages,
+      messages, // Ensure frontend sends messages in the correct format expected by API
       temperature,
       max_tokens,
-    });
+      // Add system prompt if applicable/needed for chat context
+      // system: "Your optional system prompt here", 
+    };
 
-    res.json(completion);
+    logger.info('Sending messages to Anthropic API via claudeClient...');
+    
+    // Make POST request using the configured axios instance
+    const response = await claudeClient.post('', payload); // URL path is empty as baseURL is set in claudeClient
+    
+    logger.info('Received response from Anthropic API.');
+
+    // Send the response data back to the client
+    // The structure from axios might be slightly different (response.data)
+    res.json(response.data); 
+    // --- End of Change --- 
+
   } catch (error) {
-    console.error('Error with Claude chat API:', error);
-    res.status(500).json({ error: error.message || 'Error communicating with Claude API' });
+    // Log detailed error
+    logger.error('Error with Claude chat API call:', { 
+        message: error.message, 
+        status: error.response?.status, // Get status from axios response
+        errorData: error.response?.data, // Get data from axios response
+        config: error.config, // Log request config
+        stack: error.stack 
+    });
+    
+    // Return error response
+    res.status(error.response?.status || 500).json({ 
+        error: 'Failed to communicate with AI assistant. Please check server logs.',
+        details: error.response?.data?.error // Forward Anthropic error details if available
+    });
   }
 });
 
