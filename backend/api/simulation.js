@@ -586,5 +586,84 @@ router.post('/3d-structure', async (req, res) => {
   }
 });
 
+// --- NEW SIMULATE ENDPOINT --- 
+router.post('/simulate', async (req, res) => {
+  const { smiles, simulationType } = req.body;
+  logger.info(`Received /api/simulate request for SMILES: ${smiles}, Type: ${simulationType}`);
+
+  if (!smiles) {
+    return res.status(400).json({ message: 'SMILES string is required' });
+  }
+  if (!simulationType || !['binding', 'admet'].includes(simulationType)) {
+    return res.status(400).json({ message: 'Invalid simulationType. Must be \'binding\' or \'admet\'.' });
+  }
+
+  try {
+    // --- 1. Calculate Basic Properties --- 
+    let properties = {};
+    try {
+      properties = await runRDKitScript(MOLECULAR_PROPERTIES_SCRIPT, [smiles]);
+      logger.debug('Successfully calculated molecular properties');
+    } catch (propError) {
+      logger.warn(`Could not calculate properties for ${smiles}: ${propError.message}`);
+      // Don't fail the whole simulation, just return empty properties
+    }
+
+    // --- 2. Perform Simulation based on Type --- 
+    let simulationData = {};
+    if (simulationType === 'admet') {
+      try {
+        simulationData = await runRDKitScript(ADMET_PREDICTION_SCRIPT, [smiles]);
+        logger.debug('Successfully predicted ADMET properties');
+      } catch (admetError) {
+        logger.error(`ADMET prediction failed for ${smiles}: ${admetError.message}`);
+        throw new Error(`ADMET prediction failed: ${admetError.message}`);
+      }
+    } else if (simulationType === 'binding') {
+      // TODO: Implement actual binding affinity prediction/docking call
+      // Requires target receptor info, etc.
+      // Returning MOCK data for now
+      logger.warn('Returning MOCK data for binding affinity simulation');
+      simulationData = {
+        'Dopamine Transporter': { score: Math.floor(Math.random() * 50) + 50, classification: 'Strong' }, // Random score 50-100
+        'Norepinephrine Transporter': { score: Math.floor(Math.random() * 40) + 30, classification: 'Moderate' }, // Random score 30-70
+        'Serotonin Transporter': { score: Math.floor(Math.random() * 30) + 1, classification: 'Weak' }, // Random score 1-30
+        'D1 Receptor': { score: Math.floor(Math.random() * 25) + 1, classification: 'Weak' }, // Random score 1-25
+        'D2 Receptor': { score: Math.floor(Math.random() * 40) + 20, classification: 'Moderate' } // Random score 20-60
+      };
+    }
+
+    // --- 3. Format Response --- 
+    // Attempt to get a molecule name (placeholder - needs implementation)
+    // const moleculeName = getMoleculeName(smiles) || 'Simulated Molecule'; 
+    const moleculeName = 'Simulated Molecule'; // Using placeholder for now
+
+    const results = {
+      type: simulationType,
+      moleculeName: moleculeName, 
+      smiles: smiles,
+      properties: properties, // Include calculated properties
+      ...(simulationType === 'binding' && { bindingAffinities: simulationData }),
+      ...(simulationType === 'admet' && { admet: simulationData }),
+    };
+
+    // --- 4. Save and Respond --- 
+    const resultId = uuidv4();
+    const resultFile = path.join(resultsDir, `simulation_${resultId}.json`);
+    fs.writeFileSync(resultFile, JSON.stringify({ id: resultId, timestamp: new Date().toISOString(), ...results }, null, 2));
+    logger.info(`Simulation successful (ID: ${resultId}). Type: ${simulationType}.`);
+
+    return res.json(results);
+
+  } catch (error) {
+    logger.error(`Error during /api/simulate (${simulationType}) for ${smiles}: ${error.message}`, { stack: error.stack });
+    // Ensure we send a JSON response with a message field
+    return res.status(500).json({
+      message: `Error during ${simulationType} simulation: ${error.message}`,
+    });
+  }
+});
+// --- END NEW SIMULATE ENDPOINT ---
+
 module.exports = router;
  

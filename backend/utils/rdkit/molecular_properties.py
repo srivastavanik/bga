@@ -66,38 +66,68 @@ def calculate_properties(smiles):
         has_basic_nitrogen = 'N' in smiles and not 'NO' in smiles
         has_aromatic = '[nH]' in smiles or 'c1' in smiles
         has_phenyl = 'c1ccccc1' in smiles
-        
+        has_hydroxyl = 'O' in smiles # Simplified check for hydroxyl/ether
+        has_halogen = any(x in smiles for x in ['F', 'Cl', 'Br', 'I'])
+
         dat_affinity = 0.0  # Dopamine transporter
         net_affinity = 0.0  # Norepinephrine transporter
-        
+        sert_affinity = 0.0 # Serotonin transporter
+        d1_affinity = 0.0   # D1 receptor
+        d2_affinity = 0.0   # D2 receptor
+
         if has_basic_nitrogen and has_aromatic:
             dat_affinity += 6.5
             net_affinity += 6.0
-            
+            sert_affinity += 5.0 # SERT often likes similar features but maybe less strongly
+            d2_affinity += 6.0   # D2 often binds basic amines
+
         if has_phenyl:
             dat_affinity += 1.5
             net_affinity += 1.0
-            
+            sert_affinity += 1.8 # Phenyl groups can contribute to SERT binding
+            d2_affinity += 1.0   # Phenyl interaction with D2
+
+        if has_hydroxyl:
+            net_affinity += 0.5  # Hydroxyls can interact with NET
+            sert_affinity += 0.8 # And SERT
+            d1_affinity += 1.5   # Catechol-like features are common for D1
+
+        if has_halogen:
+            sert_affinity += 1.0 # Halogens can sometimes enhance SERT binding
+            d2_affinity += 0.5   # And D2
+
         if 200 < mw < 350:
             dat_affinity += 1.0
             net_affinity += 1.0
-        
+            sert_affinity += 0.8
+            d1_affinity += 1.0
+            d2_affinity += 1.2
+
         if 2 < logp < 4:
             dat_affinity += 1.0
             net_affinity += 1.5
-            
+            sert_affinity += 1.2
+            d1_affinity += 0.5
+            d2_affinity += 1.0
+
         # Randomize slightly to simulate model variance
         np.random.seed(int(sum(bytearray(smiles, 'utf-8'))))  # Deterministic based on SMILES
         dat_affinity += np.random.normal(0, 0.5)
         net_affinity += np.random.normal(0, 0.5)
-        
+        sert_affinity += np.random.normal(0, 0.6) # Slightly more variance
+        d1_affinity += np.random.normal(0, 0.7)
+        d2_affinity += np.random.normal(0, 0.5)
+
         # Clamp values to reasonable range (pKi values typically 4-10)
         dat_affinity = max(4.0, min(10.0, dat_affinity))
         net_affinity = max(4.0, min(10.0, net_affinity))
-        
-        # Create selectivity ratio
-        selectivity = dat_affinity / net_affinity if net_affinity > 0 else 1.0
-        
+        sert_affinity = max(4.0, min(10.0, sert_affinity))
+        d1_affinity = max(4.0, min(10.0, d1_affinity))
+        d2_affinity = max(4.0, min(10.0, d2_affinity))
+
+        # Create selectivity ratio (example: DAT/SERT)
+        selectivity_dat_sert = dat_affinity / sert_affinity if sert_affinity > 0 else 1.0
+
         # Calculate additional CNS-relevant properties
         penetrates_bbb = (logp > 2.0 and logp < 5.0 and mw < 450 and tpsa < 90)
         cns_mpo_score = calculate_cns_mpo_score(mol)
@@ -119,7 +149,10 @@ def calculate_properties(smiles):
             'synthetic_accessibility': round(synth_score, 2),
             'dat_affinity': round(dat_affinity, 2),
             'net_affinity': round(net_affinity, 2),
-            'selectivity': round(selectivity, 2),
+            'sert_affinity': round(sert_affinity, 2),
+            'd1_affinity': round(d1_affinity, 2),
+            'd2_affinity': round(d2_affinity, 2),
+            'selectivity_dat_sert': round(selectivity_dat_sert, 2),
             'penetrates_bbb': penetrates_bbb,
             'cns_mpo_score': round(cns_mpo_score, 2),
             'morgan_fingerprint': morgan_fp_bits
