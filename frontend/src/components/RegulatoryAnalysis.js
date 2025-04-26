@@ -207,23 +207,26 @@ const RegulatoryAnalysis = () => {
       setError('Please select a molecule (SMILES required)');
       return;
     }
-    
     setLoading(true);
     setError(null);
     setAnalysisReportText(null);
-    
-    try {
-      const response = await regulatoryAPI.generateRegulatoryReport(parameters); 
-      
-      if (response.data && response.data.regulatoryReport) {
-        setAnalysisReportText(response.data.regulatoryReport);
-      } else {
-        throw new Error('Invalid response from server or missing report data');
-      }
 
+    try {
+      // this now returns { timeline, readinessScore, … }
+      const reportObj = await regulatoryAPI.generateRegulatoryReport({
+        smiles:           parameters.smiles,
+        targetIndication: parameters.targetIndication,
+        primaryMechanism: parameters.primaryMechanism,
+        novelMechanism:   parameters.novelMechanism,
+        orphanDrug:       parameters.orphanDrug,
+        fastTrack:        parameters.fastTrack
+      });
+
+      // stringify for display
+      setAnalysisReportText(JSON.stringify(reportObj, null, 2));
     } catch (err) {
-      console.error('Error running regulatory analysis:', err);
-      setError(err.response?.data?.error || 'An error occurred during analysis. Please try again.');
+      console.error(err);
+      setError(err.response?.data?.error || 'Failed to generate report');
     } finally {
       setLoading(false);
     }
@@ -327,7 +330,13 @@ const RegulatoryAnalysis = () => {
              </Paper>
           ) : analysisReportText ? (
             <Paper className={`${classes.paper} ${classes.reportContainer}`}>
-              {renderMarkdown(analysisReportText)}
+              <pre style={{
+                whiteSpace: 'pre-wrap',
+                wordBreak:  'break-all',
+                fontFamily: 'monospace'
+              }}>
+                {analysisReportText}
+              </pre>
             </Paper>
           ) : (
             <Paper className={classes.paper} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 500, flexDirection: 'column' }}>

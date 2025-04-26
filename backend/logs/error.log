@@ -253,3 +253,37 @@
 {"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 15:14:52"}
 {"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 15:14:52"}
 {"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 15:14:52"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:03:55"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:03:55"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:07:41"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:07:41"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:17:33"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:17:33"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:25:51"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:25:51"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:26:59"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:26:59"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}

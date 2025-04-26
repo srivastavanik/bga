@@ -666,3 +666,139 @@
 {"level":"info","message":"Saving results to file for request d865a0a5-f161-4957-83b2-7fdde340495a","service":"breaking-good-api","timestamp":"2025-04-26 15:15:50"}
 {"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 15:15:50"}
 {"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 15:15:51"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 15:48:43"}
+{"level":"info","message":"Received molecule generation request with requirements: generator","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"Created request ID: 7eb6e398-cd10-4225-b993-58ce96261734","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"User prompt length: 634 characters","service":"breaking-good-api","timestamp":"2025-04-26 15:48:58"}
+{"level":"info","message":"Claude API response received: msg_01TjTwis6yt4JEWHE21qVBFU","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Received Claude response with ID: msg_01TjTwis6yt4JEWHE21qVBFU","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Using string content directly, length: 7457","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Extracted 7457 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Found 3 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Validating SMILES: CC(C(=O)N1CCN(CC1)C)Cc1ccc(cc1)Oc1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(C(=O)N1CCN(CC1)C)Cc1ccc(cc1)Oc1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(C(=O)N1CCN(CC1)C)Cc1ccc(cc1)Oc1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Validating SMILES: CCN1CCN(CC1)C(=O)C1CCN(CC1)Cc1cccc(c1)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:36"}
+{"level":"info","message":"Attempting 3D structure generation for: CCN1CCN(CC1)C(=O)C1CCN(CC1)Cc1cccc(c1)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:37"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CCN1CCN(CC1)C(=O)C1CCN(CC1)Cc1cccc(c1)c1ccc(F)cc1","service":"breaking-good-api","timestamp":"2025-04-26 15:49:37"}
+{"level":"info","message":"Validating SMILES: COCCNC(=O)C1(C)CCN(CC1)Cc1ccc(cc1)C(F)(F)F","service":"breaking-good-api","timestamp":"2025-04-26 15:49:37"}
+{"level":"info","message":"Attempting 3D structure generation for: COCCNC(=O)C1(C)CCN(CC1)Cc1ccc(cc1)C(F)(F)F","service":"breaking-good-api","timestamp":"2025-04-26 15:49:37"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): COCCNC(=O)C1(C)CCN(CC1)Cc1ccc(cc1)C(F)(F)F","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 3 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Saving results to file for request 7eb6e398-cd10-4225-b993-58ce96261734","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 15:49:38"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:01:16"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:01:31"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:01:32"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:03:42"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:03:54"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:03:54"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:03:55"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:03:55"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:03:55"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:05:25"}
+{"level":"info","message":"Generating regulatory report for SMILES: CC(C)NCC1=CC=CC(OC2=CC=CC=C2)=C1","service":"breaking-good-api","timestamp":"2025-04-26 16:05:36"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:05:37"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:07:30"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:07:40"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:07:40"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:07:41"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:07:41"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:07:41"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:08:49"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:08:59"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:09:00"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:09:35"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:09:45"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:09:46"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:10:31"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:10:41"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:10:42"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:16:48"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:17:01"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:17:18"}
+{"level":"info","message":"Generating regulatory report for SMILES: CC(N)CC1=CC=CC=C1","service":"breaking-good-api","timestamp":"2025-04-26 16:17:32"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:17:32"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:17:33"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:17:33"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:17:33"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:18:22"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:18:30"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:18:31"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:20:40"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:21:00"}
+{"level":"info","message":"Generating regulatory report for SMILES: CC(N)CC1=CC=CC=C1","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:21:07"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:23:07"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:23:26"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:23:30"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:23:31"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:25:14"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:25:39"}
+{"level":"info","message":"Generating regulatory report for SMILES: CC(N)CC1=CC=CC=C1","service":"breaking-good-api","timestamp":"2025-04-26 16:25:50"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:25:50"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:25:51"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:25:51"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:25:51"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:26:48"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:26:58"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:26:58"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:26:59"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:26:59"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:26:59"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:28:58"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:29:08"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:29:09"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 16:33:56"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:38:04"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:38:05"}
+{"level":"info","message":"Generating regulatory report for SMILES: CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C","service":"breaking-good-api","timestamp":"2025-04-26 16:38:17"}
+{"level":"info","message":"Successfully fetched molecular properties.","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}
+{"level":"info","message":"Successfully fetched ADMET predictions.","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}
+{"level":"error","message":"Error fetching similar drugs: Request failed with status code 400","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}
+{"level":"error","message":"Error calling Claude for regulatory analysis: Request failed with status code 404","service":"breaking-good-api","timestamp":"2025-04-26 16:38:18"}
