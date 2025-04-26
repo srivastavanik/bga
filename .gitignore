@@ -1,5 +1,7 @@
 .env
 
+backend/.env
+frontend/.env
 # Dependency directories
 node_modules/
 

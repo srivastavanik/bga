@@ -19,6 +19,7 @@ const MOLECULAR_DOCKING_SCRIPT = path.join(__dirname, '../utils/rdkit/molecular_
 const SIMILARITY_SEARCH_SCRIPT = path.join(__dirname, '../utils/rdkit/similarity_search.py');
 const MOLECULE_OPERATIONS_SCRIPT = path.join(__dirname, '../utils/rdkit/molecule_operations.py');
 const STRUCTURE_GENERATION_SCRIPT = path.join(__dirname, '../utils/rdkit/structure_generation.py');
+const FORMAT_CONVERTER_SCRIPT = path.join(__dirname, '../utils/rdkit/format_converter.py');
 
 // Helper function to create a temporary file
 const createTempFile = (prefix, suffix) => {
@@ -305,44 +306,73 @@ router.post('/generate-3d', async (req, res) => {
 
 // Convert between molecular formats
 router.post('/convert', async (req, res) => {
+  const { input, inputFormat, outputFormat } = req.body;
   try {
-    const { molecule, inputFormat, outputFormat } = req.body;
-    
-    if (!molecule) {
-      return res.status(400).json({ error: 'Molecule data is required' });
+    const molInputPreview = (typeof input === 'string') ? input.substring(0, 200) + (input.length > 200 ? '...' : '') : '[Input not a string]';
+    logger.debug(`Received /convert request. Format: ${inputFormat} -> ${outputFormat}. Preview: ${molInputPreview}`);
+
+    if (!input) {
+      return res.status(400).json({ error: 'Input molecule data is required' });
     }
-    
     if (!inputFormat || !outputFormat) {
       return res.status(400).json({ error: 'Input and output formats are required' });
     }
     
-    // Run conversion script
+    // --- Use the new FORMAT_CONVERTER_SCRIPT --- 
+    // Script expects positional args: input_data, input_format, output_format
+    const scriptArgs = [input, inputFormat, outputFormat];
+    logger.info(`Running format converter script...`);
+    logger.debug('Script args:', scriptArgs);
+
     const conversionResult = await runRDKitScript(
-      MOLECULE_OPERATIONS_SCRIPT, 
-      ['convert', molecule, inputFormat, outputFormat]
+      FORMAT_CONVERTER_SCRIPT, // Call the correct script
+      scriptArgs
     );
+    // -------------------------------------------
+
+    // --- Check for error reported by the script itself --- 
+    if (conversionResult && conversionResult.error) {
+        logger.error(`Format conversion script reported error: ${conversionResult.error}`);
+        // Return 400 for bad input format/data, 500 for others?
+        // Let's assume script errors are due to bad input for now.
+        return res.status(400).json({ 
+            error: 'Format conversion failed', 
+            details: conversionResult.error 
+        });
+    }
+    // ----------------------------------------------------
     
-    // Save result
     const resultId = uuidv4();
     const resultFile = path.join(resultsDir, `conversion_${resultId}.json`);
     fs.writeFileSync(resultFile, JSON.stringify({
       id: resultId,
       timestamp: new Date().toISOString(),
+      inputData: input, 
       inputFormat,
       outputFormat,
-      result: conversionResult
+      // Use the output field from the script's JSON response
+      result: conversionResult.output 
     }, null, 2));
     
     return res.json({
       id: resultId,
-      result: conversionResult
+      // --- Return the 'output' field from the script's JSON --- 
+      output: conversionResult.output 
     });
     
-  } catch (error) {
-    logger.error(`Error converting molecule format: ${error.message}`);
+  } catch (error) { // Catch errors from runRDKitScript (e.g., script crash)
+    const molInputPreview = (typeof input === 'string') ? input.substring(0, 200) + (input.length > 200 ? '...' : '') : '[Input not a string]'; 
+    logger.error(`Error running format conversion script (${inputFormat} -> ${outputFormat}):`, {
+        errorMessage: error.message,
+        inputPreview: molInputPreview,
+        stack: error.stack
+    });
+    const rdkitErrorMatch = error.message.match(/RDKit script exited with code \d+: (.*)/s);
+    const specificError = rdkitErrorMatch ? rdkitErrorMatch[1].trim() : 'Internal server error during script execution.';
+    
     return res.status(500).json({
-      error: 'Error converting molecule format',
-      details: error.message
+      error: 'Format conversion process failed',
+      details: specificError
     });
   }
 });
@@ -557,3 +587,4 @@ router.post('/3d-structure', async (req, res) => {
 });
 
 module.exports = router;
+ 
