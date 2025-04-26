@@ -64,7 +64,7 @@ router.post('/generate', async (req, res) => {
     }
     
     // Call the Claude API through our AI service to generate molecules
-    const claudeResponse = await axios.post('http://localhost:5000/api/ai/generate-molecule', {
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/generate-molecule', {
       requirements
     });
     
@@ -74,7 +74,7 @@ router.post('/generate', async (req, res) => {
     // If target receptor is specified, run docking for each molecule
     if (targetReceptor && generatedMolecules.length > 0) {
       // Call the AI service to analyze and dock the molecules
-      const analysisResponse = await axios.post('http://localhost:5000/api/ai/analyze-molecules', {
+      const analysisResponse = await axios.post('http://localhost:5001/api/ai/analyze-molecules', {
         molecules: generatedMolecules,
         targetReceptor
       });
@@ -118,7 +118,7 @@ router.post('/refine', async (req, res) => {
     }
     
     // Call Claude API through our AI service
-    const claudeResponse = await axios.post('http://localhost:5000/api/ai/ask', {
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/ask', {
       question: refinementPrompt,
       context: `Original SMILES: ${smiles}`
     });
@@ -144,7 +144,7 @@ router.post('/refine', async (req, res) => {
     for (const potentialSmile of potentialSmiles) {
       try {
         // Validate with RDKit via simulation API
-        const validationResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+        const validationResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
           smiles: potentialSmile
         });
         
@@ -182,12 +182,12 @@ router.post('/regulatory-analysis', async (req, res) => {
     }
     
     // Call ADMET prediction API
-    const admetResponse = await axios.post('http://localhost:5000/api/simulation/admet', {
+    const admetResponse = await axios.post('http://localhost:5001/api/simulation/admet', {
       smiles
     });
     
     // Get properties
-    const propertiesResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+    const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
       smiles
     });
     
@@ -208,7 +208,7 @@ Provide:
 5. Key concerns that might arise during regulatory review`;
     
     // Call Claude through our AI service
-    const claudeResponse = await axios.post('http://localhost:5000/api/ai/ask', {
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/ask', {
       question: userPrompt
     });
     
@@ -266,7 +266,7 @@ router.post('/molecules', async (req, res) => {
     // If no properties are provided, calculate them
     if (!moleculeData.properties) {
       try {
-        const propertiesResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+        const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
           smiles: moleculeData.smiles
         });
         

@@ -23,14 +23,14 @@ async function testMolecules() {
       
       try {
         // Call properties endpoint
-        const propertiesResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+        const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
           smiles: smiles
         });
         
         console.log('Properties response:', propertiesResponse.data);
         
         // Call ADMET endpoint
-        const admetResponse = await axios.post('http://localhost:5000/api/simulation/admet', {
+        const admetResponse = await axios.post('http://localhost:5001/api/simulation/admet', {
           smiles: smiles
         });
         
@@ -41,7 +41,7 @@ async function testMolecules() {
     }
     
     // Now test the molecule generation process
-    const generationResponse = await axios.post('http://localhost:5000/api/ai/generate-molecule', {
+    const generationResponse = await axios.post('http://localhost:5001/api/ai/generate-molecule', {
       requirements: 'Design a non-stimulant ADHD medication that targets dopamine transporters with minimal side effects.'
     });
     

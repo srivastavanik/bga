@@ -25,7 +25,7 @@ router.post('/report', async (req, res) => {
     // 1. Get Molecular Properties from Simulation API
     let properties = null;
     try {
-      const propResponse = await axios.post('http://localhost:5000/api/simulation/properties', { smiles });
+      const propResponse = await axios.post('http://localhost:5001/api/simulation/properties', { smiles });
       properties = propResponse.data;
       if (properties.error) throw new Error(properties.error); // Handle errors from the properties call
       logger.info('Successfully fetched molecular properties.');
@@ -37,7 +37,7 @@ router.post('/report', async (req, res) => {
     // 2. Get ADMET Prediction from Simulation API
     let admet = null;
     try {
-      const admetResponse = await axios.post('http://localhost:5000/api/simulation/admet', { smiles });
+      const admetResponse = await axios.post('http://localhost:5001/api/simulation/admet', { smiles });
       admet = admetResponse.data;
       if (admet.error) throw new Error(admet.error);
       logger.info('Successfully fetched ADMET predictions.');
@@ -51,7 +51,7 @@ router.post('/report', async (req, res) => {
     let similarDrugs = [];
     try {
       // Use the dedicated similarity search endpoint
-      const similarityResponse = await axios.post('http://localhost:5000/api/similarity/search', { 
+      const similarityResponse = await axios.post('http://localhost:5001/api/similarity/search', { 
           query: smiles, 
           targets: [], // Ideally, search against an approved drug database target list
           threshold: 85, 
@@ -104,7 +104,7 @@ Provide realistic estimations and justifications based *only* on the provided da
     let analysisReportText = '';
     try {
       // Call Claude via the AI service endpoint
-      const claudeResponse = await axios.post('http://localhost:5000/api/ai/ask', {
+      const claudeResponse = await axios.post('http://localhost:5001/api/ai/ask', {
         question: userPrompt, // Send the full structured prompt
         context: `Regulatory analysis for SMILES: ${smiles}` // Provide context
       });
