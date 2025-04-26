@@ -612,3 +612,307 @@
 {"level":"info","message":"Saving results to file for request 41eb4027-95a7-417d-94bb-8aae4f0d3401","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
 {"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
 {"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-22 15:07:46"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 10:43:06"}
+{"level":"info","message":"Received molecule generation request with requirements: Design something insane","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"Created request ID: 72875021-28ca-42ce-8173-27880c19fa42","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"User prompt length: 648 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 10:44:00"}
+{"level":"info","message":"Received molecule generation request with requirements: Design something insane","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"Created request ID: c0140ab1-8309-4b8d-b56d-3128c95d7b41","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"User prompt length: 648 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 10:44:41"}
+{"level":"info","message":"Received molecule generation request with requirements: yessir","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"Created request ID: a073a8ec-32db-44f0-ac04-5c2a34343783","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"User prompt length: 631 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 10:48:34"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 10:49:00"}
+{"level":"info","message":"Received molecule generation request with requirements: come on adhd","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"Created request ID: 5a7d6279-bf4f-47f1-9ebb-84a1642a4a5c","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"User prompt length: 637 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:49:33"}
+{"level":"info","message":"Claude API response received: msg_01Vyj4bz7EWvnfRyjJL7VLnq","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Received Claude response with ID: msg_01Vyj4bz7EWvnfRyjJL7VLnq","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Using string content directly, length: 7150","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Extracted 7150 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Found 5 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Validating SMILES: CC(NC(C)C)C1=CC(=C(C=C1)OC)C(=O)NC2CCN(CC2)C3CCCC3","service":"breaking-good-api","timestamp":"2025-04-26 10:50:10"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(NC(C)C)C1=CC(=C(C=C1)OC)C(=O)NC2CCN(CC2)C3CCCC3","service":"breaking-good-api","timestamp":"2025-04-26 10:50:11"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(NC(C)C)C1=CC(=C(C=C1)OC)C(=O)NC2CCN(CC2)C3CCCC3","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"info","message":"Validating SMILES: N-(4-methoxy-3-(1-methylethylamino)phenyl)-1-(cyclopentyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"info","message":"Attempting 3D structure generation for: N-(4-methoxy-3-(1-methylethylamino)phenyl)-1-(cyclopentyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: N-(4-methoxy-3-(1-methylethylamino)phenyl)-1-(cyclopentyl)piperidine-4-carboxamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: N-(4-methoxy-3-(1-methylethylamino)phenyl)-1-(cyclopentyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"info","message":"Validating SMILES: COCCNC(=O)C1CCN(CC1)CC2=CC=C(C=C2)C3=NOC(=N3)C4CCCCC4","service":"breaking-good-api","timestamp":"2025-04-26 10:50:12"}
+{"level":"info","message":"Attempting 3D structure generation for: COCCNC(=O)C1CCN(CC1)CC2=CC=C(C=C2)C3=NOC(=N3)C4CCCCC4","service":"breaking-good-api","timestamp":"2025-04-26 10:50:13"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): COCCNC(=O)C1CCN(CC1)CC2=CC=C(C=C2)C3=NOC(=N3)C4CCCCC4","service":"breaking-good-api","timestamp":"2025-04-26 10:50:13"}
+{"level":"info","message":"Validating SMILES: N-(2-methoxyethyl)-1-((4-(3-cyclohexyl-1,2,4-oxadiazol-5-yl)phenyl)methyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:13"}
+{"level":"info","message":"Attempting 3D structure generation for: N-(2-methoxyethyl)-1-((4-(3-cyclohexyl-1,2,4-oxadiazol-5-yl)phenyl)methyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:13"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: N-(2-methoxyethyl)-1-((4-(3-cyclohexyl-1,2,4-oxadiazol-5-yl)phenyl)methyl)piperidine-4-carboxamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 10:50:14"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: N-(2-methoxyethyl)-1-((4-(3-cyclohexyl-1,2,4-oxadiazol-5-yl)phenyl)methyl)piperidine-4-carboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:50:14"}
+{"level":"info","message":"Validating SMILES: CC(C)N1C(=O)C2=C(N=C(N2C3=CC=C(F)C=C3)NC4=CC(=CC=C4)C(=O)N5CCN(CC5)C)C(=O)N1C","service":"breaking-good-api","timestamp":"2025-04-26 10:50:14"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(C)N1C(=O)C2=C(N=C(N2C3=CC=C(F)C=C3)NC4=CC(=CC=C4)C(=O)N5CCN(CC5)C)C(=O)N1C","service":"breaking-good-api","timestamp":"2025-04-26 10:50:14"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(C)N1C(=O)C2=C(N=C(N2C3=CC=C(F)C=C3)NC4=CC(=CC=C4)C(=O)N5CCN(CC5)C)C(=O)N1C","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"info","message":"Validated 5 molecules (Props & 3D) out of 5 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"info","message":"Saving results to file for request 5a7d6279-bf4f-47f1-9ebb-84a1642a4a5c","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 10:50:15"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262510562D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 10:56:54"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:56:54"}
+{"0":"\n  -INDIGO-04262510562D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:56:54"}
+{"level":"info","message":"Received molecule generation request with requirements: generate stuff","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"Created request ID: 3fa3a0ab-47ec-408b-a138-28fc6ce0247a","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"User prompt length: 639 characters","service":"breaking-good-api","timestamp":"2025-04-26 10:57:12"}
+{"level":"info","message":"Claude API response received: msg_01KxKtey92GFhhgB2Cv7wbUN","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Received Claude response with ID: msg_01KxKtey92GFhhgB2Cv7wbUN","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Using string content directly, length: 6807","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Extracted 6807 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Found 7 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Validating SMILES: CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:45"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:46"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Validating SMILES: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Attempting 3D structure generation for: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: Ki(NET - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Validating SMILES: CC(N)Cc1cccc(OCc2noc(C)n2)c1N1CCOCC1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(N)Cc1cccc(OCc2noc(C)n2)c1N1CCOCC1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:47"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(N)Cc1cccc(OCc2noc(C)n2)c1N1CCOCC1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:48"}
+{"level":"info","message":"Validating SMILES: CC(NC(=O)C1CC1)Cc1ccc(OC)c(S(=O)(=O)N2CCN(C)CC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:48"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(NC(=O)C1CC1)Cc1ccc(OC)c(S(=O)(=O)N2CCN(C)CC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:48"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(NC(=O)C1CC1)Cc1ccc(OC)c(S(=O)(=O)N2CCN(C)CC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Validating SMILES: N-(1-(4-methoxy-3-(4-methylpiperazin-1-ylsulfonyl)phenyl)propan-2-yl)cyclopropanecarboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Attempting 3D structure generation for: N-(1-(4-methoxy-3-(4-methylpiperazin-1-ylsulfonyl)phenyl)propan-2-yl)cyclopropanecarboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: N-(1-(4-methoxy-3-(4-methylpiperazin-1-ylsulfonyl)phenyl)propan-2-yl)cyclopropanecarboxamide - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: N-(1-(4-methoxy-3-(4-methylpiperazin-1-ylsulfonyl)phenyl)propan-2-yl)cyclopropanecarboxamide","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Validated 5 molecules (Props & 3D) out of 7 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Saving results to file for request 3fa3a0ab-47ec-408b-a138-28fc6ce0247a","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 10:57:49"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 10:57:50"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262510582D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 10:58:52"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:52"}
+{"0":"\n  -INDIGO-04262510582D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:58:52"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"0":"CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262510582D\n\n 21 22  0  0  0  0  0  0  0  0999 V2000\n   13.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  ...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"0":"\n  -INDIGO-04262510582D\n\n 21 22  0  0  0  0  0  0  0  0999 V2000\n   13.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.3978   -6.5856    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n   12.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   11.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   10.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -4.8535    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n    7.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.3978   -6.5856    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    7.0318   -5.2195    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    8.7638   -6.2195    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -3.9875    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -3.1215    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -2.2555    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -1.3894    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -1.3894    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n    7.8978   -2.2555    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -3.1215    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   10.8978   -3.9875    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0  0  0  0\n  2  3  1  0  0  0  0\n  2  4  1  0  0  0  0\n  4  5  1  0  0  0  0\n  5  6  2  0  0  0  0\n  6  7  1  0  0  0  0\n  7  8  2  0  0  0  0\n  8  9  1  0  0  0  0\n  9 10  1  0  0  0  0\n 10 11  1  0  0  0  0\n 10 12  1  0  0  0  0\n 10 13  1  0  0  0  0\n  8 14  1  0  0  0  0\n 14 15  1  0  0  0  0\n 15 16  1  0  0  0  0\n 16 17  1  0  0  0  0\n 17 18  1  0  0  0  0\n 18 19  1  0  0  0  0\n 19 20  1  0  0  0  0\n 14 21  2  0  0  0  0\n 21  5  1  0  0  0  0\n 20 15  1  0  0  0  0\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:58:55"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"0":"CC(N)Cc1ccc(OC(F)(F)F)c(N2CCNCC2)c1","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262510582D\n\n 21 22  0  0  0  0  0  0  0  0999 V2000\n   13.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  ...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"0":"\n  -INDIGO-04262510582D\n\n 21 22  0  0  0  0  0  0  0  0999 V2000\n   13.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   12.3978   -6.5856    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n   12.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   11.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   10.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -4.8535    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -4.8535    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\n    7.8978   -5.7195    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    7.3978   -6.5856    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    7.0318   -5.2195    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    8.7638   -6.2195    0.0000 F   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -3.9875    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -3.1215    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n    9.8978   -2.2555    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    9.3978   -1.3894    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -1.3894    0.0000 N   0  0  0  0  0  0  0  0  0  0  0  0\n    7.8978   -2.2555    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n    8.3978   -3.1215    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n   10.8978   -3.9875    0.0000 C   0  0  0  0  0  0  0  0  0  0  0  0\n  1  2  1  0  0  0  0\n  2  3  1  0  0  0  0\n  2  4  1  0  0  0  0\n  4  5  1  0  0  0  0\n  5  6  2  0  0  0  0\n  6  7  1  0  0  0  0\n  7  8  2  0  0  0  0\n  8  9  1  0  0  0  0\n  9 10  1  0  0  0  0\n 10 11  1  0  0  0  0\n 10 12  1  0  0  0  0\n 10 13  1  0  0  0  0\n  8 14  1  0  0  0  0\n 14 15  1  0  0  0  0\n 15 16  1  0  0  0  0\n 16 17  1  0  0  0  0\n 17 18  1  0  0  0  0\n 18 19  1  0  0  0  0\n 19 20  1  0  0  0  0\n 14 21  2  0  0  0  0\n 21  5  1  0  0  0  0\n 20 15  1  0  0  0  0\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 10:58:58"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 11:22:08"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 11:34:51"}
+{"level":"info","message":"Searching PubMed for: find me sources on adhd AND (ADHD OR attention deficit hyperactivity disorder OR neuropharmacology OR stimulant OR neurotransmitter), limit: 10, start: 0","service":"breaking-good-api","timestamp":"2025-04-26 11:35:13"}
+{"level":"info","message":"Found 1 IDs (total 1)","service":"breaking-good-api","timestamp":"2025-04-26 11:35:13"}
+{"level":"info","message":"Formatted 1 articles","service":"breaking-good-api","timestamp":"2025-04-26 11:35:14"}
+{"level":"info","message":"Searching PubMed for: find me sources on the world AND (ADHD OR attention deficit hyperactivity disorder OR neuropharmacology OR stimulant OR neurotransmitter), limit: 10, start: NaN","service":"breaking-good-api","timestamp":"2025-04-26 11:35:20"}
+{"level":"info","message":"Found 0 IDs (total 0)","service":"breaking-good-api","timestamp":"2025-04-26 11:35:20"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:24:57"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:25:50"}
+{"level":"info","message":"Searching Europe PMC for: a, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:26:23"}
+{"level":"info","message":"Searching Europe PMC for: AHDD information, limit: 10, page: [object Object]","service":"breaking-good-api","timestamp":"2025-04-26 12:26:31"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:28:14"}
+{"level":"info","message":"Searching Europe PMC for: mm, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:28:30"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:28:48"}
+{"level":"info","message":"Searching Europe PMC for: gmail, limit: 10, page: [object Object]","service":"breaking-good-api","timestamp":"2025-04-26 12:29:05"}
+{"level":"info","message":"Received molecule generation request with requirements: What's good","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"Created request ID: c02bf3c6-40b7-4b73-8244-532f67d0502a","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"User prompt length: 636 characters","service":"breaking-good-api","timestamp":"2025-04-26 12:39:55"}
+{"level":"info","message":"Claude API response received: msg_017k9yg4hC4uH9Xfbeaj9zcC","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Received Claude response with ID: msg_017k9yg4hC4uH9Xfbeaj9zcC","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Using string content directly, length: 7073","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Extracted 7073 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Found 3 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Validating SMILES: CC(C)NCC(O)c1ccc(O)c(O)c1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:29"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(C)NCC(O)c1ccc(O)c(O)c1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:31"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(C)NCC(O)c1ccc(O)c(O)c1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:31"}
+{"level":"info","message":"Validating SMILES: COc1cc(CC(=O)N2CCN(C)CC2)cc(OC)c1OC","service":"breaking-good-api","timestamp":"2025-04-26 12:40:31"}
+{"level":"info","message":"Attempting 3D structure generation for: COc1cc(CC(=O)N2CCN(C)CC2)cc(OC)c1OC","service":"breaking-good-api","timestamp":"2025-04-26 12:40:31"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): COc1cc(CC(=O)N2CCN(C)CC2)cc(OC)c1OC","service":"breaking-good-api","timestamp":"2025-04-26 12:40:32"}
+{"level":"info","message":"Validating SMILES: CNCC1CCC(c2ccc(F)cc2)O1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:32"}
+{"level":"info","message":"Attempting 3D structure generation for: CNCC1CCC(c2ccc(F)cc2)O1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:32"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CNCC1CCC(c2ccc(F)cc2)O1","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Validated 3 molecules (Props & 3D) out of 3 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Successfully extracted and validated 3 molecules","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Saving results to file for request c02bf3c6-40b7-4b73-8244-532f67d0502a","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 12:40:33"}
+{"level":"info","message":"Searching Europe PMC for: m, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:42:25"}
+{"level":"info","message":"Searching Europe PMC for: ADHD, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:43:33"}
+{"level":"info","message":"Searching Europe PMC for: ADHD, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:43:43"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:46:18"}
+{"level":"info","message":"Searching PubMed for: wh AND (ADHD OR attention deficit hyperactivity disorder OR neuropharmacology OR stimulant OR neurotransmitter), limit: 10, start: 0","service":"breaking-good-api","timestamp":"2025-04-26 12:46:30"}
+{"level":"info","message":"Found 10 IDs (total 417)","service":"breaking-good-api","timestamp":"2025-04-26 12:46:31"}
+{"level":"info","message":"Formatted 10 articles","service":"breaking-good-api","timestamp":"2025-04-26 12:46:31"}
+{"level":"info","message":"Searching PubMed for: adhd AND (ADHD OR attention deficit hyperactivity disorder OR neuropharmacology OR stimulant OR neurotransmitter), limit: 10, start: 0","service":"breaking-good-api","timestamp":"2025-04-26 12:46:48"}
+{"level":"info","message":"Found 10 IDs (total 54001)","service":"breaking-good-api","timestamp":"2025-04-26 12:46:49"}
+{"level":"info","message":"Formatted 10 articles","service":"breaking-good-api","timestamp":"2025-04-26 12:46:49"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 12:54:25"}
+{"level":"info","message":"Searching Crossref for: work, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:56:36"}
+{"level":"info","message":"Found 10 articles (total 798111)","service":"breaking-good-api","timestamp":"2025-04-26 12:56:37"}
+{"level":"info","message":"Searching Crossref for: ahdhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:57:01"}
+{"level":"info","message":"Found 0 articles (total 0)","service":"breaking-good-api","timestamp":"2025-04-26 12:57:01"}
+{"level":"info","message":"Searching Crossref for: adhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:57:03"}
+{"level":"info","message":"Found 10 articles (total 30692)","service":"breaking-good-api","timestamp":"2025-04-26 12:57:04"}
+{"level":"info","message":"Searching Crossref for: neurodivergence research focussed on drug creation, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 12:57:44"}
+{"level":"info","message":"Found 10 articles (total 12908025)","service":"breaking-good-api","timestamp":"2025-04-26 12:57:44"}
+{"level":"info","message":"Received molecule generation request with requirements: create something to cure ayush's chronic depression","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"Created request ID: 5d3eaa60-799b-449d-8087-9cea53bd625e","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"User prompt length: 676 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 13:01:24"}
+{"level":"info","message":"Received molecule generation request with requirements: create something to cure ayush's chronic depression","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"Created request ID: 4a949646-dcf7-4d57-881f-fc123b223922","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"User prompt length: 676 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 13:03:11"}
+{"level":"info","message":"Received molecule generation request with requirements: gg","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"Created request ID: b3228ede-2a8d-437f-b374-be566ad13226","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"User prompt length: 627 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"error","message":"Claude API error: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"error","message":"Claude API response: {\"type\":\"error\",\"error\":{\"type\":\"authentication_error\",\"message\":\"invalid x-api-key\"}}","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"error","message":"Claude API call failed: Error calling Claude API: Request failed with status code 401","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"error","message":"Error details: {}","service":"breaking-good-api","timestamp":"2025-04-26 13:03:20"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:03:27"}
+{"level":"info","message":"Received molecule generation request with requirements: ayush paul","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"Created request ID: 76077bc0-5eaf-4f88-8ae4-6515cb264ff1","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"User prompt length: 635 characters","service":"breaking-good-api","timestamp":"2025-04-26 13:03:35"}
+{"level":"info","message":"Claude API response received: msg_01UXstt6up8pT79eejsBFftc","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Received Claude response with ID: msg_01UXstt6up8pT79eejsBFftc","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Using string content directly, length: 7988","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Extracted 7988 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Found 4 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Validating SMILES: 4-(3,4-dichlorophenyl)-N-methyl-1,2,3,4-tetrahydronaphthalen-2-amine","service":"breaking-good-api","timestamp":"2025-04-26 13:04:12"}
+{"level":"info","message":"Attempting 3D structure generation for: 4-(3,4-dichlorophenyl)-N-methyl-1,2,3,4-tetrahydronaphthalen-2-amine","service":"breaking-good-api","timestamp":"2025-04-26 13:04:13"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: 4-(3,4-dichlorophenyl)-N-methyl-1,2,3,4-tetrahydronaphthalen-2-amine - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 13:04:13"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: 4-(3,4-dichlorophenyl)-N-methyl-1,2,3,4-tetrahydronaphthalen-2-amine","service":"breaking-good-api","timestamp":"2025-04-26 13:04:13"}
+{"level":"info","message":"Validating SMILES: CC(NC)C1CCc2ccccc2C1c1ccc(Cl)c(Cl)c1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:13"}
+{"level":"info","message":"Attempting 3D structure generation for: CC(NC)C1CCc2ccccc2C1c1ccc(Cl)c(Cl)c1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:14"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CC(NC)C1CCc2ccccc2C1c1ccc(Cl)c(Cl)c1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:14"}
+{"level":"info","message":"Validating SMILES: O=C1CCC2(CCN(Cc3ccccc3F)CC2)N1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:14"}
+{"level":"info","message":"Attempting 3D structure generation for: O=C1CCC2(CCN(Cc3ccccc3F)CC2)N1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:14"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): O=C1CCC2(CCN(Cc3ccccc3F)CC2)N1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Validating SMILES: CN1CCOCC1Cc1cccc2[nH]ccc12","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Attempting 3D structure generation for: CN1CCOCC1Cc1cccc2[nH]ccc12","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CN1CCOCC1Cc1cccc2[nH]ccc12","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Validated 4 molecules (Props & 3D) out of 4 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Successfully extracted and validated 4 molecules","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Saving results to file for request 76077bc0-5eaf-4f88-8ae4-6515cb264ff1","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 13:04:15"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 13:04:16"}
+{"level":"info","message":"Received /chat request. Model: claude-3-7-sonnet-20250219, Temp: 1, MaxTokens: 4096","service":"breaking-good-api","timestamp":"2025-04-26 13:04:51"}
+{"0":"[","1":"\n","10":"\"","100":"l","101":"o","102":"!","103":" ","104":"H","105":"o","106":"w","107":" ","108":"c","109":"a","11":"r","110":"n","111":" ","112":"I","113":" ","114":"h","115":"e","116":"l","117":"p","118":" ","119":"w","12":"o","120":"i","121":"t","122":"h","123":" ","124":"d","125":"r","126":"u","127":"g","128":" ","129":"d","13":"l","130":"e","131":"s","132":"i","133":"g","134":"n","135":" ","136":"t","137":"o","138":"d","139":"a","14":"e","140":"y","141":"?","142":"\"","143":"\n","144":" ","145":" ","146":" ","147":" ","148":" ","149":" ","15":"\"","150":"}","151":"\n","152":" ","153":" ","154":" ","155":" ","156":"]","157":"\n","158":" ","159":" ","16":":","160":"}","161":",","162":"\n","163":" ","164":" ","165":"{","166":"\n","167":" ","168":" ","169":" ","17":" ","170":" ","171":"\"","172":"r","173":"o","174":"l","175":"e","176":"\"","177":":","178":" ","179":"\"","18":"\"","180":"u","181":"s","182":"e","183":"r","184":"\"","185":",","186":"\n","187":" ","188":" ","189":" ","19":"a","190":" ","191":"\"","192":"c","193":"o","194":"n","195":"t","196":"e","197":"n","198":"t","199":"\"","2":" ","20":"s","200":":","201":" ","202":"[","203":"\n","204":" ","205":" ","206":" ","207":" ","208":" ","209":" ","21":"s","210":"{","211":"\n","212":" ","213":" ","214":" ","215":" ","216":" ","217":" ","218":" ","219":" ","22":"i","220":"\"","221":"t","222":"y","223":"p","224":"e","225":"\"","226":":","227":" ","228":"\"","229":"t","23":"s","230":"e","231":"x","232":"t","233":"\"","234":",","235":"\n","236":" ","237":" ","238":" ","239":" ","24":"t","240":" ","241":" ","242":" ","243":" ","244":"\"","245":"t","246":"e","247":"x","248":"t","249":"\"","25":"a","250":":","251":" ","252":"\"","253":"[","254":"F","255":"o","256":"c","257":"u","258":"s","259":" ","26":"n","260":"o","261":"n","262":" ","263":"M","264":"o","265":"l","266":"e","267":"c","268":"u","269":"l","27":"t","270":"e","271":":","272":" ","273":"M","274":"o","275":"l","276":"e","277":"c","278":"u","279":"l","28":"\"","280":"e","281":" ","282":"C","283":"a","284":"n","285":"d","286":"i","287":"d","288":"a","289":"t","29":",","290":"e","291":" ","292":"3","293":",","294":" ","295":"S","296":"M","297":"I","298":"L","299":"E","3":" ","30":"\n","300":"S","301":":","302":" ","303":"O","304":"=","305":"C","306":"1","307":"C","308":"C","309":"C","31":" ","310":"2","311":"(","312":"C","313":"C","314":"N","315":"(","316":"C","317":"c","318":"3","319":"c","32":" ","320":"c","321":"c","322":"c","323":"c","324":"3","325":"F","326":")","327":"C","328":"C","329":"2","33":" ","330":")","331":"N","332":"1","333":"]","334":"\"","335":"\n","336":" ","337":" ","338":" ","339":" ","34":" ","340":" ","341":" ","342":"}","343":"\n","344":" ","345":" ","346":" ","347":" ","348":"]","349":"\n","35":"\"","350":" ","351":" ","352":"}","353":",","354":"\n","355":" ","356":" ","357":"{","358":"\n","359":" ","36":"c","360":" ","361":" ","362":" ","363":"\"","364":"r","365":"o","366":"l","367":"e","368":"\"","369":":","37":"o","370":" ","371":"\"","372":"u","373":"s","374":"e","375":"r","376":"\"","377":",","378":"\n","379":" ","38":"n","380":" ","381":" ","382":" ","383":"\"","384":"c","385":"o","386":"n","387":"t","388":"e","389":"n","39":"t","390":"t","391":"\"","392":":","393":" ","394":"[","395":"\n","396":" ","397":" ","398":" ","399":" ","4":"{","40":"e","400":" ","401":" ","402":"{","403":"\n","404":" ","405":" ","406":" ","407":" ","408":" ","409":" ","41":"n","410":" ","411":" ","412":"\"","413":"t","414":"y","415":"p","416":"e","417":"\"","418":":","419":" ","42":"t","420":"\"","421":"t","422":"e","423":"x","424":"t","425":"\"","426":",","427":"\n","428":" ","429":" ","43":"\"","430":" ","431":" ","432":" ","433":" ","434":" ","435":" ","436":"\"","437":"t","438":"e","439":"x","44":":","440":"t","441":"\"","442":":","443":" ","444":"\"","445":"w","446":"h","447":"y","448":" ","449":"i","45":" ","450":"s","451":" ","452":"t","453":"h","454":"i","455":"s","456":" ","457":"d","458":"e","459":"s","46":"[","460":"i","461":"g","462":"n","463":" ","464":"m","465":"a","466":"d","467":"e","468":"\"","469":"\n","47":"\n","470":" ","471":" ","472":" ","473":" ","474":" ","475":" ","476":"}","477":"\n","478":" ","479":" ","48":" ","480":" ","481":" ","482":"]","483":"\n","484":" ","485":" ","486":"}","487":"\n","488":"]","49":" ","5":"\n","50":" ","51":" ","52":" ","53":" ","54":"{","55":"\n","56":" ","57":" ","58":" ","59":" ","6":" ","60":" ","61":" ","62":" ","63":" ","64":"\"","65":"t","66":"y","67":"p","68":"e","69":"\"","7":" ","70":":","71":" ","72":"\"","73":"t","74":"e","75":"x","76":"t","77":"\"","78":",","79":"\n","8":" ","80":" ","81":" ","82":" ","83":" ","84":" ","85":" ","86":" ","87":" ","88":"\"","89":"t","9":" ","90":"e","91":"x","92":"t","93":"\"","94":":","95":" ","96":"\"","97":"H","98":"e","99":"l","level":"debug","message":"Chat Messages Payload:","service":"breaking-good-api","timestamp":"2025-04-26 13:04:51"}
+{"level":"info","message":"Sending messages to Anthropic API via claudeClient...","service":"breaking-good-api","timestamp":"2025-04-26 13:04:51"}
+{"level":"info","message":"Received response from Anthropic API.","service":"breaking-good-api","timestamp":"2025-04-26 13:05:00"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262513052D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 13:05:39"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 13:05:39"}
+{"0":"\n  -INDIGO-04262513052D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 13:05:39"}
+{"level":"info","message":"Searching Crossref for: ahdhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:06:48"}
+{"level":"info","message":"Found 0 articles (total 0)","service":"breaking-good-api","timestamp":"2025-04-26 13:06:48"}
+{"level":"info","message":"Searching Crossref for: resources on adhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:06:54"}
+{"level":"info","message":"Found 10 articles (total 571036)","service":"breaking-good-api","timestamp":"2025-04-26 13:06:54"}
+{"level":"info","message":"Searching Crossref for: work, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:07:18"}
+{"level":"info","message":"Found 10 articles (total 798111)","service":"breaking-good-api","timestamp":"2025-04-26 13:07:18"}
+{"level":"info","message":"Searching Crossref for: adhd research, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:07:28"}
+{"level":"info","message":"Found 10 articles (total 12034901)","service":"breaking-good-api","timestamp":"2025-04-26 13:07:29"}
+{"level":"info","message":"Searching Crossref for: research on adhd , limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:08:50"}
+{"level":"info","message":"Found 10 articles (total 12034901)","service":"breaking-good-api","timestamp":"2025-04-26 13:08:51"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:15:20"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:15:26"}
+{"level":"info","message":"Searching Crossref for: adhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:16:09"}
+{"level":"error","message":"Literature search error: Request failed with status code 400","response":{"message":[{"message":"Select institution specified but there is no such select for this route. Valid selects for this route are: abstract, URL, resource, member, posted, score, created, degree, update-policy, short-title, license, ISSN, container-title, issued, update-to, issue, prefix, approved, indexed, article-number, clinical-trial-number, accepted, author, group-title, DOI, is-referenced-by-count, updated-by, event, chair, standards-body, original-title, funder, translator, published, archive, published-print, alternative-id, subject, subtitle, published-online, publisher-location, content-domain, reference, title, link, type, publisher, volume, references-count, ISBN, issn-type, assertion, deposited, page, content-created, short-container-title, relation, editor","type":"select-not-available","value":"institution"},{"message":"Filter has-author specified but there is no such filter for this route. Valid filters for this route are: until-approved-date, has-assertion, from-print-pub-date, until-deposit-date, from-accepted-date, has-authenticated-orcid, from-created-date, relation.object, issn, ror-id, lte-award-amount, until-online-pub-date, group-title, full-text.application, until-created-date, license.version, from-deposit-date, has-abstract, from-awarded-date, has-event, from-approved-date, funder, assertion-group, from-online-pub-date, from-issued-date, directory, content-domain, license.url, from-index-date, full-text.version, full-text.type, until-posted-date, has-orcid, has-archive, type, has-ror-id, is-update, until-event-start-date, update-type, from-pub-date, has-license, funder-doi-asserted-by, isbn, has-full-text, doi, orcid, has-content-domain, prefix, until-event-end-date, has-funder, award.funder, clinical-trial-number, member, has-domain-restriction, until-accepted-date, container-title, license.delay, from-posted-date, has-affiliation, from-update-date, has-award, until-print-pub-date, from-event-start-date, gte-award-amount, has-funder-doi, has-alias, until-index-date, has-update, until-update-date, has-prime-doi, until-issued-date, until-pub-date, award.number, has-references, type-name, has-relation, alternative-id, archive, relation.type, updates, relation.object-type, category-name, until-awarded-date, has-clinical-trial-number, assertion, article-number, has-update-policy, from-event-end-date","type":"filter-not-available","value":"has-author"}],"message-type":"validation-failure","status":"failed"},"service":"breaking-good-api","stack":"AxiosError: Request failed with status code 400\n    at settle (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:2031:12)\n    at IncomingMessage.handleStreamEnd (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:3148:11)\n    at IncomingMessage.emit (node:events:529:35)\n    at endReadableNT (node:internal/streams/readable:1400:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)\n    at Axios.request (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /Users/mohulshukla/Desktop/breakgood/bga/backend/api/literature.js:63:22","timestamp":"2025-04-26 13:16:09"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:18:23"}
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:18:25"}
+{"level":"info","message":"Searching Crossref for: adhd, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:18:26"}
+{"level":"info","message":"Found 10 articles (total 3652)","service":"breaking-good-api","timestamp":"2025-04-26 13:18:27"}
+{"level":"info","message":"Searching Crossref for: neurodivergenet children, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:18:42"}
+{"level":"info","message":"Found 10 articles (total 98502)","service":"breaking-good-api","timestamp":"2025-04-26 13:18:43"}
+{"level":"info","message":"Searching Crossref for: neurodivergence, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:18:50"}
+{"level":"info","message":"Found 10 articles (total 14)","service":"breaking-good-api","timestamp":"2025-04-26 13:18:50"}
+{"level":"info","message":"Searching Crossref for: creating chemical compounds for treating ADHD, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 13:19:29"}
+{"level":"info","message":"Found 10 articles (total 208801)","service":"breaking-good-api","timestamp":"2025-04-26 13:19:30"}
+{"level":"error","message":"Error analyzing literature: Request failed with status code 404","service":"breaking-good-api","stack":"AxiosError: Request failed with status code 404\n    at settle (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:2031:12)\n    at IncomingMessage.handleStreamEnd (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:3148:11)\n    at IncomingMessage.emit (node:events:529:35)\n    at endReadableNT (node:internal/streams/readable:1400:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)\n    at Axios.request (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /Users/mohulshukla/Desktop/breakgood/bga/backend/api/literature.js:404:30","timestamp":"2025-04-26 13:19:38"}
+{"level":"error","message":"Error analyzing literature: Request failed with status code 404","service":"breaking-good-api","stack":"AxiosError: Request failed with status code 404\n    at settle (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:2031:12)\n    at IncomingMessage.handleStreamEnd (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:3148:11)\n    at IncomingMessage.emit (node:events:529:35)\n    at endReadableNT (node:internal/streams/readable:1400:12)\n    at process.processTicksAndRejections (node:internal/process/task_queues:82:21)\n    at Axios.request (/Users/mohulshukla/Desktop/breakgood/bga/backend/node_modules/axios/dist/node/axios.cjs:4258:41)\n    at process.processTicksAndRejections (node:internal/process/task_queues:95:5)\n    at async /Users/mohulshukla/Desktop/breakgood/bga/backend/api/literature.js:404:30","timestamp":"2025-04-26 13:19:40"}
