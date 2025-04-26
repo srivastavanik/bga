@@ -78,7 +78,11 @@ export const simulationAPI = {
   generate3DStructure: (smiles) => api.post('/simulation/3d-structure', { smiles }),
   
   // Compare two molecules
-  compareMolecules: (smiles1, smiles2) => api.post('/simulation/compare', { smiles1, smiles2 }),
+  compareMolecules: (smiles1, smiles2) => api.post('/simulation/compare', { 
+    smiles1, 
+    smiles2,
+    method: 'tanimoto'  // Default to Tanimoto similarity
+  }),
   
   // Calculate binding affinity
   calculateBindingAffinity: (data) => api.post('/simulation/binding-affinity', data),

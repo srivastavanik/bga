@@ -389,8 +389,22 @@ router.post('/compare', async (req, res) => {
     // Run comparison script
     const comparisonResult = await runRDKitScript(
       MOLECULE_OPERATIONS_SCRIPT, 
-      ['compare', smiles1, smiles2, method]
+      ['compare', smiles1, smiles2, '--method', method]
     );
+    
+    // Check for errors in the comparison result
+    if (comparisonResult.error) {
+      return res.status(400).json({ error: comparisonResult.error });
+    }
+    
+    // Validate similarity score
+    const similarityScore = comparisonResult.similarity?.score;
+    if (typeof similarityScore !== 'number' || isNaN(similarityScore)) {
+      return res.status(500).json({ 
+        error: 'Invalid similarity score returned from comparison',
+        details: 'The comparison calculation produced an invalid result'
+      });
+    }
     
     // Save result
     const resultId = uuidv4();
@@ -410,7 +424,6 @@ router.post('/compare', async (req, res) => {
     });
     
   } catch (error) {
-    logger.error(`Error comparing molecules: ${error.message}`);
     return res.status(500).json({
       error: 'Error comparing molecules',
       details: error.message

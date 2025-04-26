@@ -100,7 +100,7 @@ const processMoleculeDesign = async (claudeResponse) => {
     for (const smiles of smilesCandidates) {
       try {
         // Use the simulation API to validate and compute properties
-        const rdkitResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+        const rdkitResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
           smiles: smiles
         });
         
@@ -179,7 +179,7 @@ Make sure to prioritize selectivity for the target and drug-like properties for 
       generatedMolecules.map(async (molecule) => {
         try {
           // Call ADMET prediction
-          const admetResponse = await axios.post('http://localhost:5000/api/simulation/admet', {
+          const admetResponse = await axios.post('http://localhost:5001/api/simulation/admet', {
             smiles: molecule.smiles
           });
           
@@ -299,7 +299,7 @@ router.post('/optimize-molecule', async (req, res) => {
     // Try to get current properties
     let propertiesInfo = '';
     try {
-      const propertiesResponse = await axios.post('http://localhost:5000/api/simulation/properties', {
+      const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
         smiles: smiles
       });
       
