@@ -1,10 +1,10 @@
-import React, { useState, useEffect } from 'react';
-import { 
-  Typography, 
-  Grid, 
-  Paper, 
-  TextField, 
-  Button, 
+import React, { useState, useEffect } from "react";
+import {
+  Typography,
+  Grid,
+  Paper,
+  TextField,
+  Button,
   InputAdornment,
   List,
   ListItem,
@@ -14,13 +14,27 @@ import {
   Chip,
   makeStyles,
   Box,
-  Link
-} from '@material-ui/core';
-import SearchIcon from '@material-ui/icons/Search';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import FormatQuoteIcon from '@material-ui/icons/FormatQuote';
-import { literatureAPI, claudeAPI } from '../services/api';
-import Alert from '@material-ui/lab/Alert';
+  Link,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions,
+  IconButton,
+  Tooltip,
+} from "@material-ui/core";
+import SearchIcon from "@material-ui/icons/Search";
+import MenuBookIcon from "@material-ui/icons/MenuBook";
+import FormatQuoteIcon from "@material-ui/icons/FormatQuote";
+import NoteAddIcon from "@material-ui/icons/NoteAdd";
+import EditIcon from "@material-ui/icons/Edit";
+import DeleteIcon from "@material-ui/icons/Delete";
+import { literatureAPI } from "../services/api";
+import Alert from "@material-ui/lab/Alert";
+import PersonIcon from "@material-ui/icons/Person";
+import LinkIcon from "@material-ui/icons/Link";
+import CopyrightIcon from "@material-ui/icons/Copyright";
+import AttachMoneyIcon from "@material-ui/icons/AttachMoney";
+import BusinessIcon from "@material-ui/icons/Business";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -33,7 +47,7 @@ const useStyles = makeStyles((theme) => ({
   },
   paper: {
     padding: theme.spacing(3),
-    height: '100%',
+    height: "100%",
   },
   searchBar: {
     marginBottom: theme.spacing(3),
@@ -46,35 +60,35 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     marginBottom: theme.spacing(2),
     borderLeft: `3px solid ${theme.palette.primary.main}`,
-    transition: 'all 0.2s',
-    '&:hover': {
-      backgroundColor: '#f5f5f5',
-      transform: 'translateX(5px)',
+    transition: "all 0.2s",
+    "&:hover": {
+      backgroundColor: "#f5f5f5",
+      transform: "translateX(5px)",
     },
   },
   articleTitle: {
     fontWeight: 500,
   },
   articleInfo: {
-    display: 'flex',
-    justifyContent: 'space-between',
+    display: "flex",
+    justifyContent: "space-between",
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
     color: theme.palette.text.secondary,
-    fontSize: '0.875rem',
+    fontSize: "0.875rem",
   },
   abstractText: {
     marginTop: theme.spacing(1),
     marginBottom: theme.spacing(1),
-    fontSize: '0.9rem',
+    fontSize: "0.9rem",
     lineHeight: 1.6,
   },
   chip: {
     margin: theme.spacing(0.5),
   },
   progress: {
-    display: 'flex',
-    justifyContent: 'center',
+    display: "flex",
+    justifyContent: "center",
     margin: theme.spacing(4, 0),
   },
   iconSpacing: {
@@ -90,7 +104,7 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(2, 0),
   },
   citation: {
-    fontStyle: 'italic',
+    fontStyle: "italic",
     marginBottom: theme.spacing(2),
   },
   abstractTitle: {
@@ -99,7 +113,7 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 500,
   },
   emptyState: {
-    textAlign: 'center',
+    textAlign: "center",
     padding: theme.spacing(6),
   },
   emptyStateIcon: {
@@ -107,13 +121,37 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.disabled,
     marginBottom: theme.spacing(2),
   },
+  metadataChip: {
+    margin: theme.spacing(0.5),
+    backgroundColor: theme.palette.success.light,
+    color: theme.palette.success.contrastText,
+  },
+  fundingInfo: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.grey[100],
+    borderRadius: theme.shape.borderRadius,
+  },
+  institutionInfo: {
+    marginTop: theme.spacing(2),
+    padding: theme.spacing(2),
+    backgroundColor: theme.palette.grey[100],
+    borderRadius: theme.shape.borderRadius,
+  },
+  qualityIndicator: {
+    display: "flex",
+    alignItems: "center",
+    marginTop: theme.spacing(1),
+    "& svg": {
+      marginRight: theme.spacing(0.5),
+    },
+  },
 }));
 
 const LiteratureExplorer = () => {
   const classes = useStyles();
-  const [searchQuery, setSearchQuery] = useState('');
+  const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
-  const [loadingDetails, setLoadingDetails] = useState(false);
   const [articles, setArticles] = useState([]);
   const [selectedArticle, setSelectedArticle] = useState(null);
   const [error, setError] = useState(null);
@@ -121,30 +159,33 @@ const LiteratureExplorer = () => {
   const [currentPage, setCurrentPage] = useState(1);
   const [analysisLoading, setAnalysisLoading] = useState(false);
   const [analysisResult, setAnalysisResult] = useState(null);
+  const [notes, setNotes] = useState([]);
+  const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
+  const [currentNote, setCurrentNote] = useState({ title: "", content: "" });
   const articlesPerPage = 10;
-  
+
   const handleSearchChange = (e) => {
     setSearchQuery(e.target.value);
   };
-  
+
   const handleSearch = async (page = 1) => {
     if (!searchQuery.trim()) {
-        setError('Please enter a search query.');
-        return;
+      setError("Please enter a search query.");
+      return;
     }
-    
+
     setLoading(true);
     setSelectedArticle(null);
     setError(null);
     setAnalysisResult(null);
     setCurrentPage(page);
-    
+
     try {
-      const response = await literatureAPI.searchPubMed(searchQuery, { 
-          limit: articlesPerPage, 
-          page: page 
-      }); 
-      
+      const response = await literatureAPI.searchLiterature(searchQuery, {
+        limit: articlesPerPage,
+        page: page,
+      });
+
       if (response.data && response.data.results) {
         setArticles(response.data.results);
         setTotalResults(response.data.total);
@@ -153,57 +194,98 @@ const LiteratureExplorer = () => {
         setTotalResults(0);
       }
     } catch (err) {
-      console.error('Error searching literature:', err);
-      setError(err.response?.data?.error || 'Failed to search literature. Please try again later.');
+      console.error("Error searching literature:", err);
+      setError(
+        err.response?.data?.error ||
+          "Failed to search literature. Please try again later."
+      );
       setArticles([]);
       setTotalResults(0);
     } finally {
       setLoading(false);
     }
   };
-  
+
   const handleKeyPress = (e) => {
-    if (e.key === 'Enter') {
+    if (e.key === "Enter") {
       handleSearch();
     }
   };
-  
+
   const handleArticleSelect = async (article) => {
-    setLoadingDetails(true);
-    setError(null);
-    setAnalysisResult(null);
+    setSelectedArticle(article);
     try {
-        const response = await literatureAPI.getPubMedArticle(article.pmid); 
-        setSelectedArticle(response.data); 
+      const response = await literatureAPI.getNotes(article.doi);
+      setNotes(response.data);
     } catch (err) {
-        console.error('Error fetching article details:', err);
-        setError(err.response?.data?.error || 'Failed to load article details.');
-        setSelectedArticle(article);
-    } finally {
-        setLoadingDetails(false);
+      console.error("Error fetching notes:", err);
+      setNotes([]);
+    }
+  };
+
+  const handleCreateNote = () => {
+    setCurrentNote({ title: "", content: "" });
+    setIsNoteModalOpen(true);
+  };
+
+  const handleSaveNote = async () => {
+    if (!currentNote.title || !currentNote.content) {
+      setError("Note title and content are required.");
+      return;
+    }
+
+    try {
+      const noteData = {
+        articleId: selectedArticle.doi,
+        title: currentNote.title,
+        content: currentNote.content,
+      };
+
+      await literatureAPI.createNote(noteData);
+      const response = await literatureAPI.getNotes(selectedArticle.doi);
+      setNotes(response.data);
+      setIsNoteModalOpen(false);
+    } catch (err) {
+      console.error("Error saving note:", err);
+      setError("Failed to save note. Please try again.");
+    }
+  };
+
+  const handleDeleteNote = async (noteId) => {
+    try {
+      await literatureAPI.deleteNote(noteId);
+      const response = await literatureAPI.getNotes(selectedArticle.doi);
+      setNotes(response.data);
+    } catch (err) {
+      console.error("Error deleting note:", err);
+      setError("Failed to delete note. Please try again.");
     }
   };
 
   const handleAnalyzeArticle = async () => {
-      if (!selectedArticle) return;
-      setAnalysisLoading(true);
-      setAnalysisResult(null);
-      setError(null);
-      try {
-          const context = selectedArticle.fullText || selectedArticle.abstract || '';
-          const query = `Summarize the key findings and relevance to ADHD drug discovery from this article titled "${selectedArticle.title}".`;
-          const response = await claudeAPI.askQuestion(query, context);
-          setAnalysisResult(response.data.response);
-      } catch (err) {
-          console.error('Error analyzing article:', err);
-          setError(err.response?.data?.error || 'Failed to analyze article.');
-      } finally {
-          setAnalysisLoading(false);
-      }
-  }
-  
+    if (!selectedArticle) return;
+    setAnalysisLoading(true);
+    setAnalysisResult(null);
+    setError(null);
+    try {
+      const context = selectedArticle.abstract || "";
+      const query = `Summarize the key findings and relevance to ADHD drug discovery from this article titled "${selectedArticle.title}".`;
+      const response = await literatureAPI.analyzeLiterature(
+        [selectedArticle],
+        query
+      );
+      setAnalysisResult(response.data.analysis);
+    } catch (err) {
+      console.error("Error analyzing article:", err);
+      setError(err.response?.data?.error || "Failed to analyze article.");
+    } finally {
+      setAnalysisLoading(false);
+    }
+  };
+
   const handleBackToResults = () => {
     setSelectedArticle(null);
+    setNotes([]);
   };
 
   return (
@@ -211,7 +293,7 @@ const LiteratureExplorer = () => {
       <Typography variant="h4" className={classes.title}>
         Literature Explorer
       </Typography>
-      
+
       <Grid container spacing={3}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
@@ -220,7 +302,7 @@ const LiteratureExplorer = () => {
                 <TextField
                   fullWidth
                   variant="outlined"
-                  placeholder="Search for research papers, patents, and clinical trials..."
+                  placeholder="Search for research papers..."
                   value={searchQuery}
                   onChange={handleSearchChange}
                   onKeyPress={handleKeyPress}
@@ -245,9 +327,11 @@ const LiteratureExplorer = () => {
                 </Button>
               </Grid>
             </Grid>
-            
+
             {error && (
-                <Alert severity="error" style={{ marginBottom: 16 }}>{error}</Alert>
+              <Alert severity="error" style={{ marginBottom: 16 }}>
+                {error}
+              </Alert>
             )}
 
             {loading ? (
@@ -259,111 +343,212 @@ const LiteratureExplorer = () => {
                 <Button color="primary" onClick={handleBackToResults}>
                   ← Back to results
                 </Button>
-                
+
                 <Typography variant="h5" className={classes.articleDetailTitle}>
                   {selectedArticle.title}
                 </Typography>
-                
-                <Typography variant="subtitle2" gutterBottom>Authors: {selectedArticle.authors || 'N/A'}</Typography>
-                <Typography variant="body2" className={classes.citation}>
-                  {selectedArticle.journal || 'N/A'} ({selectedArticle.publicationYear || 'N/A'}) 
-                  {selectedArticle.doi && (
-                    <> | DOI: <Link href={`https://doi.org/${selectedArticle.doi}`} target="_blank" rel="noopener">{selectedArticle.doi}</Link></>
+
+                <Box display="flex" flexWrap="wrap" mt={2} mb={2}>
+                  {selectedArticle.metadata.hasAbstract && (
+                    <Chip
+                      icon={<FormatQuoteIcon />}
+                      label="Has Abstract"
+                      className={classes.metadataChip}
+                    />
                   )}
-                  {selectedArticle.pmid && ` | PMID: ${selectedArticle.pmid}`}
-                  {selectedArticle.pmcid && ` | PMCID: ${selectedArticle.pmcid}`}
+                  {selectedArticle.metadata.hasAuthors && (
+                    <Chip
+                      icon={<PersonIcon />}
+                      label="Has Authors"
+                      className={classes.metadataChip}
+                    />
+                  )}
+                  {selectedArticle.metadata.hasReferences && (
+                    <Chip
+                      icon={<LinkIcon />}
+                      label="Has References"
+                      className={classes.metadataChip}
+                    />
+                  )}
+                  {selectedArticle.metadata.hasLicense && (
+                    <Chip
+                      icon={<CopyrightIcon />}
+                      label="Has License"
+                      className={classes.metadataChip}
+                    />
+                  )}
+                  {selectedArticle.metadata.hasFunding && (
+                    <Chip
+                      icon={<AttachMoneyIcon />}
+                      label="Has Funding"
+                      className={classes.metadataChip}
+                    />
+                  )}
+                  {selectedArticle.metadata.hasInstitution && (
+                    <Chip
+                      icon={<BusinessIcon />}
+                      label="Has Institution"
+                      className={classes.metadataChip}
+                    />
+                  )}
+                </Box>
+
+                <Typography variant="subtitle2" gutterBottom>
+                  Authors: {selectedArticle.authors}
                 </Typography>
-                
-                <Divider className={classes.divider} />
-                
-                {loadingDetails ? (
-                    <CircularProgress />
-                ) : (
+                <Typography variant="body2" className={classes.citation}>
+                  {selectedArticle.journal} ({selectedArticle.publicationYear})
+                  {selectedArticle.doi && (
                     <>
-                        {selectedArticle.abstract && (
-                            <>
-                                <Typography variant="subtitle1" className={classes.abstractTitle}>
-                                Abstract
-                                </Typography>
-                                <Typography variant="body1" paragraph>
-                                <FormatQuoteIcon fontSize="small" className={classes.iconSpacing} />
-                                {selectedArticle.abstract}
-                                </Typography>
-                            </>
-                        )}
-
-                        {selectedArticle.fullText && (
-                            <>
-                                <Typography variant="subtitle1" className={classes.abstractTitle}>
-                                Full Text
-                                </Typography>
-                                <Paper variant="outlined" style={{ padding: 16, maxHeight: 400, overflowY: 'auto', whiteSpace: 'pre-wrap' }}>
-                                    <Typography variant="body2">{selectedArticle.fullText}</Typography>
-                                </Paper>
-                            </>
-                        )}
-                        
-                        {selectedArticle.keywords && selectedArticle.keywords.length > 0 && (
-                            <Box mt={2}>
-                                <Typography variant="subtitle1" className={classes.abstractTitle}>
-                                Keywords
-                                </Typography>
-                                {selectedArticle.keywords.map((keyword, index) => (
-                                <Chip key={index} label={keyword} className={classes.chip} variant="outlined" color="primary" size="small" />
-                                ))}
-                            </Box>
-                        )}
-                        
-                        {selectedArticle.meshTerms && selectedArticle.meshTerms.length > 0 && (
-                            <Box mt={2}>
-                                <Typography variant="subtitle1" className={classes.abstractTitle}>
-                                MeSH Terms
-                                </Typography>
-                                {selectedArticle.meshTerms.map((term, index) => (
-                                <Chip key={index} label={term} className={classes.chip} variant="outlined" size="small" />
-                                ))}
-                            </Box>
-                        )}
-
-                        <Divider className={classes.divider} />
-                        
-                        <Box mt={2} mb={2}>
-                            <Button 
-                                variant="contained" 
-                                color="secondary" 
-                                onClick={handleAnalyzeArticle}
-                                disabled={analysisLoading}
-                            >
-                                {analysisLoading ? <CircularProgress size={24} /> : 'Analyze with AI'}
-                            </Button>
-                            {analysisResult && (
-                                <Paper elevation={0} style={{ marginTop: 16, padding: 16, backgroundColor: '#e3f2fd' }}>
-                                    <Typography variant="subtitle2" gutterBottom>AI Analysis:</Typography>
-                                    <Typography variant="body2">{analysisResult}</Typography>
-                                </Paper>
-                            )}
-                        </Box>
-
-                        <Grid container spacing={2}>
-                          <Grid item xs={12} sm={6}>
-                            <Button variant="outlined" color="primary" fullWidth>
-                              Download PDF
-                            </Button>
-                          </Grid>
-                          <Grid item xs={12} sm={6}>
-                            <Button variant="outlined" color="primary" fullWidth>
-                              Add to Reference Library
-                            </Button>
-                          </Grid>
-                        </Grid>
+                      {" "}
+                      | DOI:{" "}
+                      <Link
+                        href={`https://doi.org/${selectedArticle.doi}`}
+                        target="_blank"
+                        rel="noopener"
+                      >
+                        {selectedArticle.doi}
+                      </Link>
                     </>
+                  )}
+                </Typography>
+
+                <Divider className={classes.divider} />
+
+                {selectedArticle.abstract && (
+                  <>
+                    <Typography
+                      variant="subtitle1"
+                      className={classes.abstractTitle}
+                    >
+                      Abstract
+                    </Typography>
+                    <Typography variant="body1" paragraph>
+                      <FormatQuoteIcon
+                        fontSize="small"
+                        className={classes.iconSpacing}
+                      />
+                      {selectedArticle.abstract}
+                    </Typography>
+                  </>
+                )}
+
+                {selectedArticle.funders &&
+                  selectedArticle.funders.length > 0 && (
+                    <div className={classes.fundingInfo}>
+                      <Typography variant="subtitle1" gutterBottom>
+                        Funding Information
+                      </Typography>
+                      {selectedArticle.funders.map((funder, index) => (
+                        <Typography key={index} variant="body2">
+                          {funder.name} {funder.award && `- ${funder.award}`}
+                        </Typography>
+                      ))}
+                    </div>
+                  )}
+
+                {selectedArticle.institutions &&
+                  selectedArticle.institutions.length > 0 && (
+                    <div className={classes.institutionInfo}>
+                      <Typography variant="subtitle1" gutterBottom>
+                        Institution Information
+                      </Typography>
+                      {selectedArticle.institutions.map(
+                        (institution, index) => (
+                          <Typography key={index} variant="body2">
+                            {institution.name}{" "}
+                            {institution.place && `- ${institution.place}`}
+                          </Typography>
+                        )
+                      )}
+                    </div>
+                  )}
+
+                <Box mt={2} mb={2}>
+                  <Button
+                    variant="contained"
+                    color="secondary"
+                    onClick={handleAnalyzeArticle}
+                    disabled={analysisLoading}
+                    style={{ marginRight: 16 }}
+                  >
+                    {analysisLoading ? (
+                      <CircularProgress size={24} />
+                    ) : (
+                      "Analyze with AI"
+                    )}
+                  </Button>
+                  <Button
+                    variant="contained"
+                    color="primary"
+                    startIcon={<NoteAddIcon />}
+                    onClick={handleCreateNote}
+                  >
+                    Create Research Note
+                  </Button>
+                </Box>
+
+                {analysisResult && (
+                  <Paper
+                    elevation={0}
+                    style={{
+                      marginTop: 16,
+                      padding: 16,
+                      backgroundColor: "#e3f2fd",
+                    }}
+                  >
+                    <Typography variant="subtitle2" gutterBottom>
+                      AI Analysis:
+                    </Typography>
+                    <Typography variant="body2">{analysisResult}</Typography>
+                  </Paper>
+                )}
+
+                {notes.length > 0 && (
+                  <Box mt={4}>
+                    <Typography variant="h6" gutterBottom>
+                      Research Notes
+                    </Typography>
+                    {notes.map((note) => (
+                      <Paper
+                        key={note.id}
+                        style={{ padding: 16, marginBottom: 16 }}
+                      >
+                        <Box
+                          display="flex"
+                          justifyContent="space-between"
+                          alignItems="center"
+                        >
+                          <Typography variant="subtitle1">
+                            {note.title}
+                          </Typography>
+                          <Box>
+                            <Tooltip title="Delete Note">
+                              <IconButton
+                                size="small"
+                                onClick={() => handleDeleteNote(note.id)}
+                              >
+                                <DeleteIcon />
+                              </IconButton>
+                            </Tooltip>
+                          </Box>
+                        </Box>
+                        <Typography variant="body2" style={{ marginTop: 8 }}>
+                          {note.content}
+                        </Typography>
+                        <Typography variant="caption" color="textSecondary">
+                          Created: {new Date(note.createdAt).toLocaleString()}
+                        </Typography>
+                      </Paper>
+                    ))}
+                  </Box>
                 )}
               </div>
             ) : articles.length > 0 ? (
               <List>
                 {articles.map((article) => (
-                  <Paper 
-                    key={article.pmid}
+                  <Paper
+                    key={article.doi}
                     className={classes.articleItem}
                     onClick={() => handleArticleSelect(article)}
                     elevation={1}
@@ -371,26 +556,24 @@ const LiteratureExplorer = () => {
                     <Typography variant="h6" className={classes.articleTitle}>
                       {article.title}
                     </Typography>
-                    
+
                     <div className={classes.articleInfo}>
-                      <Typography variant="body2">
-                        {article.authors}
-                      </Typography>
+                      <Typography variant="body2">{article.authors}</Typography>
                       <Typography variant="body2">
                         {article.journal} ({article.publicationYear})
                       </Typography>
                     </div>
-                    
-                    <Typography 
-                      variant="body2" 
+
+                    <Typography
+                      variant="body2"
                       className={classes.abstractText}
-                      style={{ 
-                          maxHeight: '60px',
-                          overflow: 'hidden', 
-                          textOverflow: 'ellipsis',
-                          display: '-webkit-box',
-                          WebkitLineClamp: 3,
-                          WebkitBoxOrient: 'vertical' 
+                      style={{
+                        maxHeight: "60px",
+                        overflow: "hidden",
+                        textOverflow: "ellipsis",
+                        display: "-webkit-box",
+                        WebkitLineClamp: 3,
+                        WebkitBoxOrient: "vertical",
                       }}
                     >
                       {article.abstract}
@@ -405,15 +588,55 @@ const LiteratureExplorer = () => {
                   Search for literature
                 </Typography>
                 <Typography variant="body2" color="textSecondary">
-                  Enter keywords to search for research papers related to ADHD treatments
+                  Enter keywords to search for research papers
                 </Typography>
               </div>
             )}
           </Paper>
         </Grid>
       </Grid>
+
+      <Dialog
+        open={isNoteModalOpen}
+        onClose={() => setIsNoteModalOpen(false)}
+        maxWidth="md"
+        fullWidth
+      >
+        <DialogTitle>Create Research Note</DialogTitle>
+        <DialogContent>
+          <TextField
+            autoFocus
+            margin="dense"
+            label="Note Title"
+            fullWidth
+            value={currentNote.title}
+            onChange={(e) =>
+              setCurrentNote({ ...currentNote, title: e.target.value })
+            }
+          />
+          <TextField
+            margin="dense"
+            label="Note Content"
+            fullWidth
+            multiline
+            rows={6}
+            value={currentNote.content}
+            onChange={(e) =>
+              setCurrentNote({ ...currentNote, content: e.target.value })
+            }
+          />
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={() => setIsNoteModalOpen(false)} color="primary">
+            Cancel
+          </Button>
+          <Button onClick={handleSaveNote} color="primary" variant="contained">
+            Save Note
+          </Button>
+        </DialogActions>
+      </Dialog>
     </div>
   );
 };
 
-export default LiteratureExplorer; 
+export default LiteratureExplorer;
