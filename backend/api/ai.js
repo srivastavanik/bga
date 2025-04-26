@@ -74,7 +74,7 @@ const requireApiKey = (req, res, next) => {
 
 // Create an axios instance for internal API calls
 const internalApiClient = axios.create({
-  baseURL: "http://localhost:5001",
+  baseURL: 'http://localhost:5001',
   headers: {
     "Content-Type": "application/json",
   },
@@ -727,6 +727,10 @@ router.post("/optimize-molecule", async (req, res) => {
     // Try to get current properties
     let propertiesInfo = "";
     try {
+      const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
+        smiles: smiles
+      });
+      
       const propertiesResponse = await axios.post(
         "http://localhost:5001/api/simulation/properties",
         {

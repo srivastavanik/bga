@@ -179,17 +179,14 @@
         const resultsElement = document.getElementById("molPropResults");
         resultsElement.innerHTML = "<pre>Loading...</pre>";
 
-        try {
-          const response = await fetchWithTimeout(
-            "http://localhost:5001/api/molecular/properties",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ smiles }),
-            }
-          );
+            try {
+                const response = await fetchWithTimeout('http://localhost:5000/api/molecular/properties', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ smiles })
+                });
 
           const data = await response.json();
           resultsElement.innerHTML = `<pre>${JSON.stringify(
@@ -212,17 +209,14 @@
         const resultsElement = document.getElementById("admetResults");
         resultsElement.innerHTML = "<pre>Loading...</pre>";
 
-        try {
-          const response = await fetchWithTimeout(
-            "http://localhost:5001/api/admet/predict",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ smiles }),
-            }
-          );
+            try {
+                const response = await fetchWithTimeout('http://localhost:5000/api/admet/predict', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ smiles })
+                });
 
           const data = await response.json();
           resultsElement.innerHTML = `<pre>${JSON.stringify(
@@ -245,17 +239,14 @@
         const resultsElement = document.getElementById("structureResults");
         resultsElement.innerHTML = "<pre>Loading...</pre>";
 
-        try {
-          const response = await fetchWithTimeout(
-            "http://localhost:5001/api/structure/generate3d",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ smiles }),
-            }
-          );
+            try {
+                const response = await fetchWithTimeout('http://localhost:5000/api/structure/generate3d', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ smiles })
+                });
 
           const data = await response.json();
           resultsElement.innerHTML = `<pre>${JSON.stringify(
@@ -279,17 +270,14 @@
         const resultsElement = document.getElementById("dockingResults");
         resultsElement.innerHTML = "<pre>Loading...</pre>";
 
-        try {
-          const response = await fetchWithTimeout(
-            "http://localhost:5001/api/simulation/docking",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ smiles, target }),
-            }
-          );
+            try {
+                const response = await fetchWithTimeout('http://localhost:5000/api/simulation/docking', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ smiles, target })
+                });
 
           const data = await response.json();
           resultsElement.innerHTML = `<pre>${JSON.stringify(
@@ -313,17 +301,14 @@
         const resultsElement = document.getElementById("conversionResults");
         resultsElement.innerHTML = "<pre>Loading...</pre>";
 
-        try {
-          const response = await fetchWithTimeout(
-            "http://localhost:5001/api/molecular/convert",
-            {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify({ smiles, format }),
-            }
-          );
+            try {
+                const response = await fetchWithTimeout('http://localhost:5000/api/molecular/convert', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({ smiles, format })
+                });
 
           const data = await response.json();
           resultsElement.innerHTML = `<pre>${JSON.stringify(

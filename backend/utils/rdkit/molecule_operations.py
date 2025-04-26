@@ -3,15 +3,19 @@ import sys
 import json
 import argparse
 from rdkit import Chem
-from rdkit.Chem import AllChem, Descriptors, Crippen, Lipinski, QED
+from rdkit.Chem import AllChem, Descriptors, Crippen, Lipinski, QED, DataStructs, rdFMCS
 from rdkit.Chem.Draw import rdMolDraw2D
 
 def parse_args():
     parser = argparse.ArgumentParser(description='RDKit Molecule Operations')
-    parser.add_argument('--smiles', type=str, help='SMILES string of the molecule')
-    parser.add_argument('--operation', type=str, required=True, 
-                        choices=['validate', 'descriptors', 'svg', 'optimize_3d', 'fingerprint'],
+    parser.add_argument('operation', type=str,
+                        choices=['validate', 'descriptors', 'svg', 'optimize_3d', 'fingerprint', 'compare'],
                         help='Operation to perform')
+    parser.add_argument('smiles1', type=str, nargs='?', help='First SMILES string (for comparison)')
+    parser.add_argument('smiles2', type=str, nargs='?', help='Second SMILES string (for comparison)')
+    parser.add_argument('--method', type=str, default='tanimoto', 
+                       choices=['tanimoto', 'dice', 'cosine'],
+                       help='Similarity calculation method')
     parser.add_argument('--output', type=str, default='json', choices=['json', 'text'],
                         help='Output format')
     return parser.parse_args()
@@ -107,38 +111,94 @@ def generate_fingerprint(smiles):
     
     return {"fingerprint": fp_bits}
 
+def compare_molecules(smiles1, smiles2, method='tanimoto'):
+    """Compare two molecules and calculate their similarity"""
+    # Parse SMILES strings
+    mol1 = Chem.MolFromSmiles(smiles1)
+    mol2 = Chem.MolFromSmiles(smiles2)
+    
+    if mol1 is None:
+        return {"error": "Invalid SMILES string for first molecule"}
+    if mol2 is None:
+        return {"error": "Invalid SMILES string for second molecule"}
+    
+    # Generate Morgan fingerprints (ECFP4)
+    fp1 = AllChem.GetMorganFingerprintAsBitVect(mol1, 2, nBits=2048)
+    fp2 = AllChem.GetMorganFingerprintAsBitVect(mol2, 2, nBits=2048)
+    
+    # Calculate similarity based on method
+    if method == 'tanimoto':
+        similarity = float(DataStructs.TanimotoSimilarity(fp1, fp2))
+    elif method == 'dice':
+        similarity = float(DataStructs.DiceSimilarity(fp1, fp2))
+    elif method == 'cosine':
+        similarity = float(DataStructs.CosineSimilarity(fp1, fp2))
+    else:
+        similarity = float(DataStructs.TanimotoSimilarity(fp1, fp2))
+    
+    # Calculate properties for both molecules
+    props1 = calculate_descriptors(smiles1)
+    props2 = calculate_descriptors(smiles2)
+    
+    # Find Maximum Common Substructure (MCS)
+    mcs = rdFMCS.FindMCS([mol1, mol2])
+    mcs_mol = Chem.MolFromSmarts(mcs.smartsString)
+    
+    result = {
+        "similarity": {
+            "method": method,
+            "score": similarity
+        },
+        "molecule1": {
+            "smiles": smiles1,
+            "properties": props1
+        },
+        "molecule2": {
+            "smiles": smiles2,
+            "properties": props2
+        },
+        "mcs": {
+            "smarts": mcs.smartsString,
+            "num_atoms": mcs.numAtoms,
+            "num_bonds": mcs.numBonds
+        }
+    }
+    
+    return result
+
 def main():
     args = parse_args()
     
-    if args.operation == 'validate':
-        if not args.smiles:
+    if args.operation == 'compare':
+        if not args.smiles1 or not args.smiles2:
+            print(json.dumps({"error": "Two SMILES strings are required for comparison"}))
+            sys.exit(1)
+        result = compare_molecules(args.smiles1, args.smiles2, args.method)
+    elif args.operation == 'validate':
+        if not args.smiles1:
             print(json.dumps({"error": "SMILES string required for validation"}))
             sys.exit(1)
-        result = validate_smiles(args.smiles)
-    
+        result = validate_smiles(args.smiles1)
     elif args.operation == 'descriptors':
-        if not args.smiles:
+        if not args.smiles1:
             print(json.dumps({"error": "SMILES string required for descriptor calculation"}))
             sys.exit(1)
-        result = calculate_descriptors(args.smiles)
-    
+        result = calculate_descriptors(args.smiles1)
     elif args.operation == 'svg':
-        if not args.smiles:
+        if not args.smiles1:
             print(json.dumps({"error": "SMILES string required for SVG generation"}))
             sys.exit(1)
-        result = generate_svg(args.smiles)
-    
+        result = generate_svg(args.smiles1)
     elif args.operation == 'optimize_3d':
-        if not args.smiles:
+        if not args.smiles1:
             print(json.dumps({"error": "SMILES string required for 3D optimization"}))
             sys.exit(1)
-        result = optimize_3d(args.smiles)
-    
+        result = optimize_3d(args.smiles1)
     elif args.operation == 'fingerprint':
-        if not args.smiles:
+        if not args.smiles1:
             print(json.dumps({"error": "SMILES string required for fingerprint generation"}))
             sys.exit(1)
-        result = generate_fingerprint(args.smiles)
+        result = generate_fingerprint(args.smiles1)
     
     # Output the result
     if args.output == 'json':

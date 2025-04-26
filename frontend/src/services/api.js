@@ -84,7 +84,11 @@ export const simulationAPI = {
 
   // Compare two molecules
   compareMolecules: (smiles1, smiles2) =>
-    api.post("/simulation/compare", { smiles1, smiles2 }),
+    api.post("/simulation/compare", { 
+    smiles1, 
+    smiles2,
+    method: 'tanimoto'  // Default to Tanimoto similarity
+  }),
 
   // Calculate binding affinity
   calculateBindingAffinity: (data) =>

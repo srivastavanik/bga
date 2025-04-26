@@ -1,6 +1,6 @@
 # Breaking Good
 
-A comprehensive neuropharmacology drug discovery platform for designing, simulating, and analyzing novel ADHD therapeutics.
+A comprehensive neuropharmacology drug discovery platform for designing, simulating, and analyzing novel ADHD therapeutics. Pear.
 
 ## Overview
 
@@ -169,4 +169,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Anthropic for providing the Claude API
 - RDKit project for the cheminformatics toolkit
 - 3Dmol.js for molecular visualization
-- ChEMBL and PubMed for providing chemical and literature databases
+- ChEMBL and PubMed for providing chemical and literature databases 

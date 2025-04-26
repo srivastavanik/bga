@@ -401,13 +401,10 @@ router.post("/analyze", async (req, res) => {
     const userPrompt = `${query}\n\nBased on the provided literature context:\n${context}`;
 
     // Call Claude via AI service
-    const analysisResponse = await axios.post(
-      "http://localhost:5001/api/ai/ask",
-      {
-        question: query, // Keep the original query separate for clarity
-        context: context, // Provide the compiled context
-      }
-    );
+    const analysisResponse = await axios.post('http://localhost:5001/api/ai/ask', {
+      question: query, // Keep the original query separate for clarity
+      context: context // Provide the compiled context
+    });
 
     res.json({ analysis: analysisResponse.data.response });
   } catch (error) {

@@ -315,8 +315,9 @@ Would you like me to suggest any structural modifications or provide more detail
 
   // Also run periodically to catch UI updates
   setInterval(window.runAllFixes, 5001);
-
-  console.log("Breaking Good platform fixes ready!");
+  
+  console.log('Breaking Good platform fixes ready!');
+  
 } catch (err) {
   console.error("Error applying fixes:", err);
 }

@@ -66,27 +66,21 @@ router.post("/generate", async (req, res) => {
     }
 
     // Call the Claude API through our AI service to generate molecules
-    const claudeResponse = await axios.post(
-      "http://localhost:5001/api/ai/generate-molecule",
-      {
-        requirements,
-      }
-    );
-
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/generate-molecule', {
+      requirements
+    });
+    
     // Get the generated molecules
     const generatedMolecules = claudeResponse.data.molecules || [];
 
     // If target receptor is specified, run docking for each molecule
     if (targetReceptor && generatedMolecules.length > 0) {
       // Call the AI service to analyze and dock the molecules
-      const analysisResponse = await axios.post(
-        "http://localhost:5001/api/ai/analyze-molecules",
-        {
-          molecules: generatedMolecules,
-          targetReceptor,
-        }
-      );
-
+      const analysisResponse = await axios.post('http://localhost:5001/api/ai/analyze-molecules', {
+        molecules: generatedMolecules,
+        targetReceptor
+      });
+      
       res.json({
         requestId: claudeResponse.data.requestId,
         molecules: generatedMolecules,
@@ -126,14 +120,11 @@ router.post("/refine", async (req, res) => {
     }
 
     // Call Claude API through our AI service
-    const claudeResponse = await axios.post(
-      "http://localhost:5001/api/ai/ask",
-      {
-        question: refinementPrompt,
-        context: `Original SMILES: ${smiles}`,
-      }
-    );
-
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/ask', {
+      question: refinementPrompt,
+      context: `Original SMILES: ${smiles}`
+    });
+    
     // Extract SMILES from Claude's response
     const responseText = claudeResponse.data.response;
 
@@ -156,13 +147,10 @@ router.post("/refine", async (req, res) => {
     for (const potentialSmile of potentialSmiles) {
       try {
         // Validate with RDKit via simulation API
-        const validationResponse = await axios.post(
-          "http://localhost:5001/api/simulation/properties",
-          {
-            smiles: potentialSmile,
-          }
-        );
-
+        const validationResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
+          smiles: potentialSmile
+        });
+        
         if (!validationResponse.data.error) {
           // Valid SMILES
           validatedMolecules.push({
@@ -197,21 +185,15 @@ router.post("/regulatory-analysis", async (req, res) => {
     }
 
     // Call ADMET prediction API
-    const admetResponse = await axios.post(
-      "http://localhost:5001/api/simulation/admet",
-      {
-        smiles,
-      }
-    );
-
+    const admetResponse = await axios.post('http://localhost:5001/api/simulation/admet', {
+      smiles
+    });
+    
     // Get properties
-    const propertiesResponse = await axios.post(
-      "http://localhost:5001/api/simulation/properties",
-      {
-        smiles,
-      }
-    );
-
+    const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
+      smiles
+    });
+    
     // Ask Claude for regulatory analysis
     const systemPrompt = `You are an expert in pharmaceutical regulatory affairs and drug development. Provide a detailed analysis of the regulatory pathway for a candidate molecule based on its properties and ADMET profile.`;
 
@@ -229,13 +211,10 @@ Provide:
 5. Key concerns that might arise during regulatory review`;
 
     // Call Claude through our AI service
-    const claudeResponse = await axios.post(
-      "http://localhost:5001/api/ai/ask",
-      {
-        question: userPrompt,
-      }
-    );
-
+    const claudeResponse = await axios.post('http://localhost:5001/api/ai/ask', {
+      question: userPrompt
+    });
+    
     res.json({
       smiles,
       properties: propertiesResponse.data,
@@ -290,13 +269,10 @@ router.post("/molecules", async (req, res) => {
     // If no properties are provided, calculate them
     if (!moleculeData.properties) {
       try {
-        const propertiesResponse = await axios.post(
-          "http://localhost:5001/api/simulation/properties",
-          {
-            smiles: moleculeData.smiles,
-          }
-        );
-
+        const propertiesResponse = await axios.post('http://localhost:5001/api/simulation/properties', {
+          smiles: moleculeData.smiles
+        });
+        
         if (!propertiesResponse.data.error) {
           moleculeData.properties = propertiesResponse.data;
         }
