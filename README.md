@@ -26,19 +26,22 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 ### Backend Setup
 
 1. Clone the repository:
+
    ```
    git clone https://github.com/yourusername/breaking-good.git
    cd breaking-good/backend
    ```
 
 2. Install dependencies:
+
    ```
    npm install
    ```
 
 3. Create a `.env` file in the backend directory with the following variables:
+
    ```
-   PORT=5000
+   PORT=5001
    JWT_SECRET=your_secret_key_for_jwt
    ANTHROPIC_API_KEY=your_anthropic_api_key
    ```
@@ -51,6 +54,7 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 ### Frontend Setup
 
 1. Navigate to the frontend directory:
+
    ```
    cd ../frontend
    ```
@@ -65,12 +69,14 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 ### Development Mode
 
 1. Start the backend server:
+
    ```
    cd backend
    npm run dev
    ```
 
 2. In a separate terminal, start the frontend development server:
+
    ```
    cd frontend
    npm start
@@ -81,24 +87,27 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 ### Production Mode
 
 1. Build the frontend:
+
    ```
    cd frontend
    npm run build
    ```
 
 2. Start the backend server:
+
    ```
    cd backend
    npm start
    ```
 
-3. Access the application at `http://localhost:5000`
+3. Access the application at `http://localhost:5001`
 
 ## User Guide
 
 ### Getting Started
 
 1. Create an account or log in with the default admin credentials:
+
    - Username: admin
    - Password: admin123
 
@@ -131,7 +140,7 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 The backend provides a comprehensive REST API:
 
 - `/api/auth`: Authentication and user management
-- `/api/ai`: Claude AI integration for molecule generation 
+- `/api/ai`: Claude AI integration for molecule generation
 - `/api/drug-design`: Molecular design and analysis
 - `/api/simulation`: Computational chemistry simulations
 - `/api/chemical-data`: ChEMBL database integration
@@ -160,4 +169,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 - Anthropic for providing the Claude API
 - RDKit project for the cheminformatics toolkit
 - 3Dmol.js for molecular visualization
-- ChEMBL and PubMed for providing chemical and literature databases 
+- ChEMBL and PubMed for providing chemical and literature databases
