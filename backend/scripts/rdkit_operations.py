@@ -186,9 +186,86 @@ def run_docking(receptor_pdb, ligand_smiles, exhaustiveness=8, center_x=0, cente
     # ... (existing docking code) ...
     pass # Placeholder
 
-def compare_molecules(smiles1, smiles2):
-    # ... (existing compare code) ...
-    pass # Placeholder
+def compare_molecules(smiles1, smiles2, method='tanimoto'):
+    """
+    Compare two molecules using RDKit and return similarity metrics and properties.
+    
+    Args:
+        smiles1 (str): SMILES string of first molecule
+        smiles2 (str): SMILES string of second molecule
+        method (str): Similarity method to use (default: 'tanimoto')
+        
+    Returns:
+        dict: Dictionary containing comparison results
+    """
+    try:
+        from rdkit import Chem
+        from rdkit.Chem import AllChem, DataStructs, Descriptors, rdMolDescriptors
+        
+        # Parse molecules
+        mol1 = Chem.MolFromSmiles(smiles1)
+        mol2 = Chem.MolFromSmiles(smiles2)
+        
+        if mol1 is None or mol2 is None:
+            raise ValueError("Invalid SMILES strings provided")
+            
+        # Generate fingerprints
+        fp1 = AllChem.GetMorganFingerprintAsBitVect(mol1, 2, nBits=2048)
+        fp2 = AllChem.GetMorganFingerprintAsBitVect(mol2, 2, nBits=2048)
+        
+        # Calculate similarity based on method
+        if method == 'tanimoto':
+            similarity = DataStructs.TanimotoSimilarity(fp1, fp2)
+        elif method == 'dice':
+            similarity = DataStructs.DiceSimilarity(fp1, fp2)
+        elif method == 'cosine':
+            similarity = DataStructs.CosineSimilarity(fp1, fp2)
+        else:
+            similarity = DataStructs.TanimotoSimilarity(fp1, fp2)  # Default to Tanimoto
+        
+        # Calculate molecular properties
+        def get_properties(mol):
+            return {
+                'molWeight': Descriptors.ExactMolWt(mol),
+                'logP': Descriptors.MolLogP(mol),
+                'tpsa': Descriptors.TPSA(mol),
+                'hbd': Descriptors.NumHDonors(mol),
+                'hba': Descriptors.NumHAcceptors(mol),
+                'rotatableBondCount': Descriptors.NumRotatableBonds(mol),
+                'aromaticRings': Descriptors.NumAromaticRings(mol),
+                'qed': Descriptors.qed(mol),
+                'lipinskiViolations': Descriptors.NumLipinskiHBD(mol) + 
+                                    Descriptors.NumLipinskiHBA(mol) +
+                                    Descriptors.NumLipinskiRotatableBonds(mol) +
+                                    Descriptors.NumLipinskiHeteroatoms(mol)
+            }
+        
+        # Get properties for both molecules
+        properties1 = get_properties(mol1)
+        properties2 = get_properties(mol2)
+        
+        # Find maximum common substructure
+        mcs = rdMolDescriptors.FindMCS([mol1, mol2])
+        mcs_smarts = mcs.smartsString if mcs else None
+        mcs_mol = Chem.MolFromSmarts(mcs_smarts) if mcs_smarts else None
+        
+        # Count atoms and bonds in MCS
+        mcs_atom_count = mcs_mol.GetNumAtoms() if mcs_mol else 0
+        mcs_bond_count = mcs_mol.GetNumBonds() if mcs_mol else 0
+        
+        return {
+            'similarity': {
+                'tanimoto': similarity,
+                'mcs_smarts': mcs_smarts,
+                'mcs_atom_count': mcs_atom_count,
+                'mcs_bond_count': mcs_bond_count
+            },
+            'properties1': properties1,
+            'properties2': properties2
+        }
+        
+    except Exception as e:
+        raise Exception(f"Error in molecule comparison: {str(e)}")
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:
