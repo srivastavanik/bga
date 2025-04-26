@@ -123,3 +123,5 @@ frontend/.cache/
 node_modules/
 .cache/
 *.pack
+
+*.log
