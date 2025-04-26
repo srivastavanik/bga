@@ -14,129 +14,15 @@ import {
   MenuItem,
   CircularProgress,
   Divider,
-  makeStyles
+  makeStyles,
+  useTheme
 } from '@material-ui/core';
 import Alert from '@material-ui/lab/Alert';
 import EqualizerIcon from '@material-ui/icons/Equalizer';
 import AssessmentIcon from '@material-ui/icons/Assessment';
-
-// This would be imported from a third-party library in a real implementation
-const MoleculeViewer = ({ smiles, height = 300 }) => {
-  const viewerRef = useRef(null);
-  
-  useEffect(() => {
-    if (smiles && viewerRef.current) {
-      // In a real implementation, this would initialize 3Dmol.js
-      const placeholder = document.createElement('div');
-      placeholder.style.width = '100%';
-      placeholder.style.height = `${height}px`;
-      placeholder.style.backgroundColor = '#f5f5f5';
-      placeholder.style.display = 'flex';
-      placeholder.style.alignItems = 'center';
-      placeholder.style.justifyContent = 'center';
-      
-      const text = document.createElement('div');
-      text.innerHTML = `<strong>SMILES:</strong> ${smiles}<br><br>3D Molecule Viewer would render here`;
-      text.style.textAlign = 'center';
-      text.style.padding = '20px';
-      
-      placeholder.appendChild(text);
-      
-      viewerRef.current.innerHTML = '';
-      viewerRef.current.appendChild(placeholder);
-    }
-  }, [smiles, height]);
-  
-  return <div ref={viewerRef} style={{ width: '100%', height: `${height}px`, border: '1px solid #e0e0e0' }}></div>;
-};
-
-// Mock chart component for binding affinities
-const BindingAffinityChart = ({ data }) => {
-  const chartRef = useRef(null);
-  
-  useEffect(() => {
-    if (data && chartRef.current) {
-      // In a real implementation, this would initialize a Plotly or D3 chart
-      const placeholder = document.createElement('div');
-      placeholder.style.width = '100%';
-      placeholder.style.height = '300px';
-      placeholder.style.backgroundColor = '#f5f5f5';
-      placeholder.style.display = 'flex';
-      placeholder.style.alignItems = 'center';
-      placeholder.style.justifyContent = 'center';
-      
-      const text = document.createElement('div');
-      let chartData = '<strong>Receptor Binding Affinities</strong><br><br>';
-      Object.entries(data).forEach(([receptor, value]) => {
-        chartData += `${receptor}: ${value.score} (${value.classification})<br>`;
-      });
-      
-      text.innerHTML = chartData;
-      text.style.textAlign = 'center';
-      text.style.padding = '20px';
-      
-      placeholder.appendChild(text);
-      
-      chartRef.current.innerHTML = '';
-      chartRef.current.appendChild(placeholder);
-    }
-  }, [data]);
-  
-  return <div ref={chartRef} style={{ width: '100%', height: '300px', border: '1px solid #e0e0e0' }}></div>;
-};
-
-// Mock chart component for ADMET properties
-const AdmetPropertiesChart = ({ data }) => {
-  const chartRef = useRef(null);
-  
-  useEffect(() => {
-    if (data && chartRef.current) {
-      // In a real implementation, this would initialize a Plotly or D3 chart
-      const placeholder = document.createElement('div');
-      placeholder.style.width = '100%';
-      placeholder.style.height = '300px';
-      placeholder.style.backgroundColor = '#f5f5f5';
-      placeholder.style.display = 'flex';
-      placeholder.style.alignItems = 'center';
-      placeholder.style.justifyContent = 'center';
-      placeholder.style.flexDirection = 'column';
-      
-      const text = document.createElement('div');
-      text.innerHTML = '<strong>ADMET Properties Visualization</strong><br><br>Radar chart showing Absorption, Distribution, Metabolism, Excretion, and Toxicity properties would render here';
-      text.style.textAlign = 'center';
-      text.style.padding = '20px';
-      
-      const details = document.createElement('div');
-      details.style.fontSize = '0.8rem';
-      details.style.textAlign = 'left';
-      details.style.maxWidth = '80%';
-      
-      let detailsText = '';
-      if (data.absorption) {
-        detailsText += `<strong>Absorption:</strong> Oral: ${data.absorption.oral.classification}, BBB: ${data.absorption.bbb.classification}<br>`;
-      }
-      if (data.distribution) {
-        detailsText += `<strong>Distribution:</strong> Plasma Protein Binding: ${data.distribution.plasmaProteinBinding.percent}%<br>`;
-      }
-      if (data.metabolism) {
-        detailsText += `<strong>Metabolism:</strong> Half-life: ${data.metabolism.halfLife.hours} hours<br>`;
-      }
-      if (data.toxicity) {
-        detailsText += `<strong>Toxicity:</strong> Hepatotoxicity: ${data.toxicity.hepatotoxicity.risk}, Cardiotoxicity: ${data.toxicity.cardiotoxicity.risk}<br>`;
-      }
-      
-      details.innerHTML = detailsText;
-      
-      placeholder.appendChild(text);
-      placeholder.appendChild(details);
-      
-      chartRef.current.innerHTML = '';
-      chartRef.current.appendChild(placeholder);
-    }
-  }, [data]);
-  
-  return <div ref={chartRef} style={{ width: '100%', height: '300px', border: '1px solid #e0e0e0' }}></div>;
-};
+import MoleculeViewer3DImproved from './MoleculeViewer3DImproved';
+import BindingAffinityBarChart from './BindingAffinityBarChart';
+import AdmetRadarChart from './AdmetRadarChart';
 
 // TabPanel component for tabbed interface
 function TabPanel(props) {
@@ -223,23 +109,77 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.text.disabled,
     marginBottom: theme.spacing(2),
   },
+  resultsPaper: {
+    padding: theme.spacing(3),
+  },
+  chartSection: {
+    marginTop: theme.spacing(3),
+    marginBottom: theme.spacing(2),
+  },
+  detailsSection: {
+    marginTop: theme.spacing(2),
+  }
 }));
 
 const SimulationPanel = () => {
   const classes = useStyles();
+  const theme = useTheme();
   const [loading, setLoading] = useState(false);
   const [tabValue, setTabValue] = useState(0);
   const [simulationType, setSimulationType] = useState('binding');
   const [smiles, setSmiles] = useState('');
   const [simulationResults, setSimulationResults] = useState(null);
   const [error, setError] = useState(null);
+  const [storedMolecules, setStoredMolecules] = useState([]);
   
-  const molecules = [
-    { id: 1, name: 'Methylphenidate', smiles: 'CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C' },
-    { id: 2, name: 'Amphetamine', smiles: 'CC(N)CC1=CC=CC=C1' },
-    { id: 3, name: 'Atomoxetine', smiles: 'CC(C)NCC1=CC=CC(OC2=CC=CC=C2)=C1' },
-    { id: 4, name: 'Novel Amphetamine Derivative', smiles: 'CC(CC1=CC=C(C=C1)O)NC' }
-  ];
+  // Function to load molecules from localStorage
+  const loadMoleculesFromStorage = () => {
+      try {
+          const moleculesString = localStorage.getItem('molecules') || '[]';
+          console.log("Reloading molecules string from localStorage:", moleculesString);
+          const loadedMolecules = JSON.parse(moleculesString);
+          console.log("Parsed molecules on reload:", loadedMolecules);
+
+          if (Array.isArray(loadedMolecules)) {
+              const validMolecules = loadedMolecules.filter(m => m && m.id && m.name && m.smiles);
+              console.log("Filtered valid molecules on reload:", validMolecules);
+              setStoredMolecules(validMolecules);
+              if (validMolecules.length === 0 && loadedMolecules.length > 0) {
+                  console.warn("Some molecules were loaded but deemed invalid (missing id, name, or smiles).");
+              }
+          } else {
+              console.error("Invalid data format found in localStorage for 'molecules': Expected an array.");
+              setStoredMolecules([]);
+          }
+      } catch (e) {
+          console.error("Error loading/parsing molecules from localStorage on reload:", e);
+          setStoredMolecules([]);
+          // Optionally set an error, but might be too noisy if storage clears often
+          // setError("Could not load saved molecules. Check console for details.");
+      }
+  };
+
+  // Initial load on mount
+  useEffect(() => {
+    loadMoleculesFromStorage();
+  }, []); // Empty dependency array means run only once on mount
+
+  // Listen for storage changes specifically for the 'molecules' key
+  useEffect(() => {
+      const handleStorageChange = (event) => {
+          if (event.key === 'molecules') {
+              console.log('Detected storage change for \'molecules\'. Reloading...');
+              loadMoleculesFromStorage();
+          }
+      };
+
+      window.addEventListener('storage', handleStorageChange);
+
+      // Cleanup listener on component unmount
+      return () => {
+          window.removeEventListener('storage', handleStorageChange);
+      };
+  }, []); // Empty dependency array, listener setup once
   
   const handleTabChange = (event, newValue) => {
     setTabValue(newValue);
@@ -258,19 +198,54 @@ const SimulationPanel = () => {
       setError('Please select or enter a molecule SMILES notation');
       return;
     }
-    
+
     setLoading(true);
     setError(null);
-    
+    setSimulationResults(null); // Clear previous results
+
     try {
-      // In a real implementation, this would make an API call to the backend
-      await new Promise(resolve => setTimeout(resolve, 2000));
+      // --- Correct API Call Path ---
+      const response = await fetch('/api/simulation/simulate', { // Corrected path
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ smiles, simulationType }),
+      });
+
+      if (!response.ok) {
+        // Handle HTTP errors
+        let errorMsg = `Simulation failed with status: ${response.status}`;
+        try {
+          const errorData = await response.json();
+          errorMsg = errorData.message || errorMsg; // Use backend error message if available
+        } catch (e) {
+          // Ignore if response body is not JSON
+        }
+        throw new Error(errorMsg);
+      }
+
+      const results = await response.json();
+
+      // Validate response structure (basic check)
+      if (!results || !results.type || !results.smiles || 
+          (results.type === 'binding' && !results.bindingAffinities) || 
+          (results.type === 'admet' && !results.admet)) {
+          throw new Error('Received invalid simulation results from the server.');
+      }
       
-      // Sample simulation results based on simulation type
+      // Set results from API
+      console.log("Received simulation results from API:", JSON.stringify(results, null, 2)); // Log the raw results
+      setSimulationResults(results);
+
+      // Remove the mock logic below
+      /*
+      await new Promise(resolve => setTimeout(resolve, 2000));
+      const moleculeName = storedMolecules.find(m => m.smiles === smiles)?.name || 'Custom Molecule';
       if (simulationType === 'binding') {
         setSimulationResults({
           type: 'binding',
-          moleculeName: molecules.find(m => m.smiles === smiles)?.name || 'Custom Molecule',
+          moleculeName: moleculeName,
           smiles: smiles,
           bindingAffinities: {
             'Dopamine Transporter': { score: 84, classification: 'Strong' },
@@ -292,7 +267,7 @@ const SimulationPanel = () => {
       } else if (simulationType === 'admet') {
         setSimulationResults({
           type: 'admet',
-          moleculeName: molecules.find(m => m.smiles === smiles)?.name || 'Custom Molecule',
+          moleculeName: moleculeName,
           smiles: smiles,
           admet: {
             absorption: {
@@ -345,9 +320,12 @@ const SimulationPanel = () => {
           }
         });
       }
+      */
     } catch (err) {
-      console.error(err);
-      setError('An error occurred while running the simulation. Please try again.');
+      console.error('Simulation API call failed:', err);
+      // Use the error message from the thrown Error object
+      setError(err.message || 'An error occurred while running the simulation. Please check the console and backend logs.');
+      setSimulationResults(null); // Ensure results are cleared on error
     } finally {
       setLoading(false);
     }
@@ -395,7 +373,7 @@ const SimulationPanel = () => {
                   <MenuItem value="">
                     <em>Select a molecule</em>
                   </MenuItem>
-                  {molecules.map((molecule) => (
+                  {storedMolecules.map((molecule) => (
                     <MenuItem key={molecule.id} value={molecule.smiles}>
                       {molecule.name}
                     </MenuItem>
@@ -475,39 +453,42 @@ const SimulationPanel = () => {
               <CircularProgress />
             </Paper>
           ) : simulationResults ? (
-            <Paper className={classes.paper}>
+            <Paper className={classes.resultsPaper}>
               <Typography variant="h6" gutterBottom>
                 {simulationResults.moleculeName} - {simulationType === 'binding' ? 'Receptor Binding Affinity' : 'ADMET Properties'} Results
               </Typography>
               
-              <Grid container spacing={2}>
+              <Grid container spacing={3} style={{ marginBottom: '16px' }}>
                 <Grid item xs={12} md={6}>
-                  <MoleculeViewer smiles={simulationResults.smiles} />
+                  <MoleculeViewer3DImproved smiles={simulationResults.smiles} height={300} />
                 </Grid>
                 
                 <Grid item xs={12} md={6}>
                   <Typography variant="subtitle1" gutterBottom>
                     Molecular Properties
                   </Typography>
-                  
-                  {simulationResults.properties && Object.entries(simulationResults.properties).map(([key, value]) => (
-                    <div className={classes.propertyItem} key={key}>
-                      <Typography className={classes.propertyLabel}>
-                        {key === 'logP' ? 'LogP' :
-                         key === 'tpsa' ? 'TPSA' :
-                         key === 'hDonors' ? 'H-Bond Donors' :
-                         key === 'hAcceptors' ? 'H-Bond Acceptors' :
-                         key === 'lipinskiViolations' ? 'Lipinski Violations' :
-                         key === 'rotatableBonds' ? 'Rotatable Bonds' :
-                         key === 'molecularWeight' ? 'Molecular Weight' : key}
-                      </Typography>
-                      <Typography>
-                        {typeof value === 'number' && key !== 'lipinskiViolations' ? value.toFixed(2) : value}
-                        {key === 'molecularWeight' ? ' g/mol' : 
-                         key === 'tpsa' ? ' Å²' : ''}
-                      </Typography>
-                    </div>
-                  ))}
+                  <Grid container spacing={0}>
+                    {simulationResults.properties && Object.entries(simulationResults.properties)
+                      .filter(([key, value]) => value !== null && value !== undefined && key !== 'png_base64')
+                      .map(([key, value]) => (
+                        <Grid item xs={12} key={key}>
+                          <div className={classes.propertyItem} style={{ padding: '4px 0', alignItems: 'baseline'}}>
+                            <Typography className={classes.propertyLabel} variant="body2" style={{ minWidth: '120px', flexShrink: 0, marginRight: '8px' }}>
+                              { {logP: 'LogP', tpsa: 'TPSA', hDonors: 'H-Bond Donors', hAcceptors: 'H-Bond Acceptors', 
+                                 lipinskiViolations: 'Lipinski Violations', rotatableBonds: 'Rotatable Bonds', 
+                                 molecularWeight: 'Molecular Weight'}[key] || 
+                                key.replace(/_/g, ' ').replace(/\b\w/g, l => l.toUpperCase())}
+                            </Typography>
+                            <Typography variant="body2" style={{ wordBreak: 'break-all' }}>
+                              {typeof value === 'string' && value.length > 100 ? `${value.substring(0, 100)}...` : 
+                               (typeof value === 'number' && !['lipinskiViolations', 'rings', 'heavy_atoms', 'hba', 'hbd', 'rotatable_bonds'].includes(key) ? value.toFixed(2) : value)} 
+                              {key === 'molecularWeight' ? ' g/mol' : 
+                               key === 'tpsa' ? ' Å²' : ''}
+                            </Typography>
+                          </div>
+                        </Grid>
+                    ))}
+                  </Grid>
                 </Grid>
               </Grid>
               
@@ -515,24 +496,25 @@ const SimulationPanel = () => {
               
               {simulationResults.type === 'binding' && (
                 <>
-                  <Typography variant="subtitle1" gutterBottom>
-                    Receptor Binding Affinities
-                  </Typography>
+                  <div className={classes.chartSection}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      Receptor Binding Affinities
+                    </Typography>
+                    <BindingAffinityBarChart data={simulationResults.bindingAffinities} />
+                  </div>
                   
-                  <BindingAffinityChart data={simulationResults.bindingAffinities} />
-                  
-                  <div className={classes.resultsContainer}>
+                  <div className={classes.detailsSection}>
                     <Grid container spacing={2}>
-                      {Object.entries(simulationResults.bindingAffinities).map(([receptor, value]) => (
+                      {Object.entries(simulationResults.bindingAffinities ?? {}).map(([receptor, value]) => (
                         <Grid item xs={12} sm={6} md={4} key={receptor}>
-                          <div className={classes.propertyItem}>
-                            <Typography className={classes.propertyLabel}>
+                          <Paper elevation={0} style={{ padding: '8px', border: `1px solid ${theme.palette.divider}`, height: '100%'}}>
+                            <Typography className={classes.propertyLabel} display="block" variant="body2">
                               {receptor}
                             </Typography>
-                            <Typography>
-                              {value.score}/100 ({value.classification})
+                            <Typography variant="body2">
+                              {value.score ?? 'N/A'}/100 ({value.classification ?? 'N/A'})
                             </Typography>
-                          </div>
+                          </Paper>
                         </Grid>
                       ))}
                     </Grid>
@@ -542,13 +524,17 @@ const SimulationPanel = () => {
               
               {simulationResults.type === 'admet' && (
                 <>
-                  <Typography variant="subtitle1" gutterBottom>
-                    ADMET Properties
-                  </Typography>
+                  <div className={classes.chartSection}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      ADMET Properties
+                    </Typography>
+                    <AdmetRadarChart data={simulationResults.admet} />
+                  </div>
                   
-                  <AdmetPropertiesChart data={simulationResults.admet} />
-                  
-                  <div className={classes.resultsContainer}>
+                  <div className={classes.detailsSection}>
+                    <Typography variant="subtitle1" gutterBottom style={{ marginBottom: '12px' }}>
+                      Detailed ADMET Parameters
+                    </Typography>
                     <Grid container spacing={3}>
                       <Grid item xs={12} md={6}>
                         <Typography variant="subtitle2" gutterBottom>
@@ -557,17 +543,17 @@ const SimulationPanel = () => {
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Oral Absorption</Typography>
-                          <Typography>{simulationResults.admet.absorption.oral.classification} ({simulationResults.admet.absorption.oral.score}/100)</Typography>
+                          <Typography>{simulationResults.admet?.absorption?.oral?.classification ?? 'N/A'} ({simulationResults.admet?.absorption?.oral?.score ?? 'N/A'}/100)</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Blood-Brain Barrier</Typography>
-                          <Typography>{simulationResults.admet.absorption.bbb.classification} ({simulationResults.admet.absorption.bbb.score}/100)</Typography>
+                          <Typography>{simulationResults.admet?.absorption?.bbb?.classification ?? 'N/A'} ({simulationResults.admet?.absorption?.bbb?.score ?? 'N/A'}/100)</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>P-gp Substrate</Typography>
-                          <Typography>{simulationResults.admet.absorption.pgpSubstrate.classification}</Typography>
+                          <Typography>{simulationResults.admet?.absorption?.pgpSubstrate?.classification ?? 'N/A'}</Typography>
                         </div>
                         
                         <Typography variant="subtitle2" gutterBottom style={{ marginTop: 24 }}>
@@ -576,12 +562,12 @@ const SimulationPanel = () => {
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Volume of Distribution</Typography>
-                          <Typography>{simulationResults.admet.distribution.vd.vd} L/kg ({simulationResults.admet.distribution.vd.classification})</Typography>
+                          <Typography>{simulationResults.admet?.distribution?.vd?.vd ?? 'N/A'} L/kg ({simulationResults.admet?.distribution?.vd?.classification ?? 'N/A'})</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Plasma Protein Binding</Typography>
-                          <Typography>{simulationResults.admet.distribution.plasmaProteinBinding.percent}%</Typography>
+                          <Typography>{simulationResults.admet?.distribution?.plasmaProteinBinding?.percent ?? 'N/A'}%</Typography>
                         </div>
                       </Grid>
                       
@@ -592,12 +578,12 @@ const SimulationPanel = () => {
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>CYP3A4 Substrate</Typography>
-                          <Typography>{simulationResults.admet.metabolism.cyp450Substrates.CYP3A4.isSubstrate ? 'Yes' : 'No'}</Typography>
+                          <Typography>{simulationResults.admet?.metabolism?.cyp450Substrates?.CYP3A4?.isSubstrate ? 'Yes' : (simulationResults.admet?.metabolism?.cyp450Substrates?.CYP3A4 !== undefined ? 'No' : 'N/A')}</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Half-life</Typography>
-                          <Typography>{simulationResults.admet.metabolism.halfLife.hours} hours ({simulationResults.admet.metabolism.halfLife.classification})</Typography>
+                          <Typography>{simulationResults.admet?.metabolism?.halfLife?.hours ?? 'N/A'} hours ({simulationResults.admet?.metabolism?.halfLife?.classification ?? 'N/A'})</Typography>
                         </div>
                         
                         <Typography variant="subtitle2" gutterBottom style={{ marginTop: 24 }}>
@@ -606,17 +592,17 @@ const SimulationPanel = () => {
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>hERG Inhibition</Typography>
-                          <Typography>{simulationResults.admet.toxicity.herg.risk} Risk</Typography>
+                          <Typography>{simulationResults.admet?.toxicity?.herg?.risk ?? 'N/A'} Risk</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Hepatotoxicity</Typography>
-                          <Typography>{simulationResults.admet.toxicity.hepatotoxicity.risk} Risk</Typography>
+                          <Typography>{simulationResults.admet?.toxicity?.hepatotoxicity?.risk ?? 'N/A'} Risk</Typography>
                         </div>
                         
                         <div className={classes.propertyItem}>
                           <Typography className={classes.propertyLabel}>Cardiotoxicity</Typography>
-                          <Typography>{simulationResults.admet.toxicity.cardiotoxicity.risk} Risk</Typography>
+                          <Typography>{simulationResults.admet?.toxicity?.cardiotoxicity?.risk ?? 'N/A'} Risk</Typography>
                         </div>
                       </Grid>
                     </Grid>
