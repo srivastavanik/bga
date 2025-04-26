@@ -365,10 +365,31 @@ router.get("/pubmed/:id", async (req, res) => {
   }
 });
 
+// Get research notes for an article
+router.get("/notes/:articleId", async (req, res) => {
+  try {
+    const { articleId } = req.params;
+
+    if (!articleId) {
+      return res.status(400).json({ error: "Article ID is required" });
+    }
+
+    // Here you would typically fetch notes from your database
+    // For now, we'll return an empty array
+    return res.json([]);
+  } catch (error) {
+    logger.error(`Error fetching research notes: ${error.message}`);
+    return res.status(500).json({
+      error: "Error fetching research notes",
+      details: error.message,
+    });
+  }
+});
+
 // Analyze literature using Claude
 router.post("/analyze", async (req, res) => {
   try {
-    const { articles, query } = req.body; // articles can be PMIDs, abstracts, or full texts
+    const { articles, query } = req.body;
 
     if (
       !articles ||
@@ -386,8 +407,7 @@ router.post("/analyze", async (req, res) => {
     articles.forEach((article, index) => {
       context += `--- Article ${index + 1} ---\n`;
       if (typeof article === "string") {
-        // Assume it's abstract or text
-        context += `${article.substring(0, 1500)}...\n`; // Limit context size
+        context += `${article.substring(0, 1500)}...\n`;
       } else if (article.abstract) {
         context += `Title: ${
           article.title
@@ -398,21 +418,36 @@ router.post("/analyze", async (req, res) => {
       context += `\n`;
     });
 
-    const userPrompt = `${query}\n\nBased on the provided literature context:\n${context}`;
+    // Format the messages for Claude
+    const systemPrompt =
+      "You are an expert in neuropharmacology and drug discovery, specializing in ADHD treatments. Analyze the provided literature with a focus on scientific accuracy and clinical relevance.";
+    const userMessage = {
+      role: "user",
+      content: `${query}\n\nBased on the provided literature context:\n${context}`,
+    };
 
     // Call Claude via AI service
     const analysisResponse = await axios.post(
-      "http://localhost:5001/api/ai/ask",
+      "http://localhost:5001/api/ai/chat",
       {
-        question: query, // Keep the original query separate for clarity
-        context: context, // Provide the compiled context
+        system: systemPrompt, // Pass system prompt as top-level parameter
+        messages: [userMessage], // Messages array should only contain user/assistant turns
+        model: "claude-3-7-sonnet-20250219",
+        temperature: 0.7,
+        max_tokens: 4096,
       }
     );
 
-    res.json({ analysis: analysisResponse.data.response });
+    // Handle the response format from Claude
+    const content = Array.isArray(analysisResponse.data.content)
+      ? analysisResponse.data.content[0].text
+      : analysisResponse.data.content;
+
+    res.json({ analysis: content });
   } catch (error) {
     logger.error(`Error analyzing literature: ${error.message}`, {
       stack: error.stack,
+      response: error.response?.data,
     });
     res.status(500).json({
       error: "Error analyzing literature",

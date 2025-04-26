@@ -21,6 +21,7 @@ import {
   DialogActions,
   IconButton,
   Tooltip,
+  Snackbar,
 } from "@material-ui/core";
 import SearchIcon from "@material-ui/icons/Search";
 import MenuBookIcon from "@material-ui/icons/MenuBook";
@@ -148,7 +149,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const LiteratureExplorer = () => {
+const LiteratureExplorer = ({ addGlobalNote }) => {
   const classes = useStyles();
   const [searchQuery, setSearchQuery] = useState("");
   const [loading, setLoading] = useState(false);
@@ -158,10 +159,8 @@ const LiteratureExplorer = () => {
   const [totalResults, setTotalResults] = useState(0);
   const [currentPage, setCurrentPage] = useState(1);
   const [analysisLoading, setAnalysisLoading] = useState(false);
-  const [analysisResult, setAnalysisResult] = useState(null);
-  const [notes, setNotes] = useState([]);
-  const [isNoteModalOpen, setIsNoteModalOpen] = useState(false);
-  const [currentNote, setCurrentNote] = useState({ title: "", content: "" });
+  const [snackbarOpen, setSnackbarOpen] = useState(false);
+  const [snackbarMessage, setSnackbarMessage] = useState("");
   const articlesPerPage = 10;
 
   const handleSearchChange = (e) => {
@@ -177,7 +176,6 @@ const LiteratureExplorer = () => {
     setLoading(true);
     setSelectedArticle(null);
     setError(null);
-    setAnalysisResult(null);
     setCurrentPage(page);
 
     try {
@@ -214,70 +212,40 @@ const LiteratureExplorer = () => {
 
   const handleArticleSelect = async (article) => {
     setSelectedArticle(article);
-    try {
-      const response = await literatureAPI.getNotes(article.doi);
-      setNotes(response.data);
-    } catch (err) {
-      console.error("Error fetching notes:", err);
-      setNotes([]);
-    }
-  };
-
-  const handleCreateNote = () => {
-    setCurrentNote({ title: "", content: "" });
-    setIsNoteModalOpen(true);
-  };
-
-  const handleSaveNote = async () => {
-    if (!currentNote.title || !currentNote.content) {
-      setError("Note title and content are required.");
-      return;
-    }
-
-    try {
-      const noteData = {
-        articleId: selectedArticle.doi,
-        title: currentNote.title,
-        content: currentNote.content,
-      };
-
-      await literatureAPI.createNote(noteData);
-      const response = await literatureAPI.getNotes(selectedArticle.doi);
-      setNotes(response.data);
-      setIsNoteModalOpen(false);
-    } catch (err) {
-      console.error("Error saving note:", err);
-      setError("Failed to save note. Please try again.");
-    }
-  };
-
-  const handleDeleteNote = async (noteId) => {
-    try {
-      await literatureAPI.deleteNote(noteId);
-      const response = await literatureAPI.getNotes(selectedArticle.doi);
-      setNotes(response.data);
-    } catch (err) {
-      console.error("Error deleting note:", err);
-      setError("Failed to delete note. Please try again.");
-    }
   };
 
   const handleAnalyzeArticle = async () => {
     if (!selectedArticle) return;
     setAnalysisLoading(true);
-    setAnalysisResult(null);
     setError(null);
     try {
-      const context = selectedArticle.abstract || "";
-      const query = `Summarize the key findings and relevance to ADHD drug discovery from this article titled "${selectedArticle.title}".`;
+      const query = `Summarize the key findings and relevance to ADHD drug discovery from this article titled "${selectedArticle.title}". Provide a concise summary suitable for a research note.`;
       const response = await literatureAPI.analyzeLiterature(
         [selectedArticle],
         query
       );
-      setAnalysisResult(response.data.analysis);
+
+      const analysisContent = response.data.analysis;
+
+      if (analysisContent) {
+        addGlobalNote({
+          title: `AI Summary: ${selectedArticle.title}`,
+          content: analysisContent,
+        });
+        setSnackbarMessage("AI analysis added to global notes.");
+        setSnackbarOpen(true);
+      } else {
+        throw new Error("AI analysis did not return content.");
+      }
     } catch (err) {
       console.error("Error analyzing article:", err);
-      setError(err.response?.data?.error || "Failed to analyze article.");
+      const errorMsg =
+        err.response?.data?.details ||
+        err.message ||
+        "Failed to analyze article or AI did not return a summary.";
+      setError(errorMsg);
+      setSnackbarMessage(`Error: ${errorMsg}`);
+      setSnackbarOpen(true);
     } finally {
       setAnalysisLoading(false);
     }
@@ -285,7 +253,13 @@ const LiteratureExplorer = () => {
 
   const handleBackToResults = () => {
     setSelectedArticle(null);
-    setNotes([]);
+  };
+
+  const handleCloseSnackbar = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setSnackbarOpen(false);
   };
 
   return (
@@ -475,74 +449,10 @@ const LiteratureExplorer = () => {
                     {analysisLoading ? (
                       <CircularProgress size={24} />
                     ) : (
-                      "Analyze with AI"
+                      "Analyze & Add Note"
                     )}
                   </Button>
-                  <Button
-                    variant="contained"
-                    color="primary"
-                    startIcon={<NoteAddIcon />}
-                    onClick={handleCreateNote}
-                  >
-                    Create Research Note
-                  </Button>
                 </Box>
-
-                {analysisResult && (
-                  <Paper
-                    elevation={0}
-                    style={{
-                      marginTop: 16,
-                      padding: 16,
-                      backgroundColor: "#e3f2fd",
-                    }}
-                  >
-                    <Typography variant="subtitle2" gutterBottom>
-                      AI Analysis:
-                    </Typography>
-                    <Typography variant="body2">{analysisResult}</Typography>
-                  </Paper>
-                )}
-
-                {notes.length > 0 && (
-                  <Box mt={4}>
-                    <Typography variant="h6" gutterBottom>
-                      Research Notes
-                    </Typography>
-                    {notes.map((note) => (
-                      <Paper
-                        key={note.id}
-                        style={{ padding: 16, marginBottom: 16 }}
-                      >
-                        <Box
-                          display="flex"
-                          justifyContent="space-between"
-                          alignItems="center"
-                        >
-                          <Typography variant="subtitle1">
-                            {note.title}
-                          </Typography>
-                          <Box>
-                            <Tooltip title="Delete Note">
-                              <IconButton
-                                size="small"
-                                onClick={() => handleDeleteNote(note.id)}
-                              >
-                                <DeleteIcon />
-                              </IconButton>
-                            </Tooltip>
-                          </Box>
-                        </Box>
-                        <Typography variant="body2" style={{ marginTop: 8 }}>
-                          {note.content}
-                        </Typography>
-                        <Typography variant="caption" color="textSecondary">
-                          Created: {new Date(note.createdAt).toLocaleString()}
-                        </Typography>
-                      </Paper>
-                    ))}
-                  </Box>
-                )}
               </div>
             ) : articles.length > 0 ? (
               <List>
@@ -596,45 +506,13 @@ const LiteratureExplorer = () => {
         </Grid>
       </Grid>
 
-      <Dialog
-        open={isNoteModalOpen}
-        onClose={() => setIsNoteModalOpen(false)}
-        maxWidth="md"
-        fullWidth
-      >
-        <DialogTitle>Create Research Note</DialogTitle>
-        <DialogContent>
-          <TextField
-            autoFocus
-            margin="dense"
-            label="Note Title"
-            fullWidth
-            value={currentNote.title}
-            onChange={(e) =>
-              setCurrentNote({ ...currentNote, title: e.target.value })
-            }
-          />
-          <TextField
-            margin="dense"
-            label="Note Content"
-            fullWidth
-            multiline
-            rows={6}
-            value={currentNote.content}
-            onChange={(e) =>
-              setCurrentNote({ ...currentNote, content: e.target.value })
-            }
-          />
-        </DialogContent>
-        <DialogActions>
-          <Button onClick={() => setIsNoteModalOpen(false)} color="primary">
-            Cancel
-          </Button>
-          <Button onClick={handleSaveNote} color="primary" variant="contained">
-            Save Note
-          </Button>
-        </DialogActions>
-      </Dialog>
+      <Snackbar
+        open={snackbarOpen}
+        autoHideDuration={6000}
+        onClose={handleCloseSnackbar}
+        message={snackbarMessage}
+        anchorOrigin={{ vertical: "bottom", horizontal: "left" }}
+      />
     </div>
   );
 };
