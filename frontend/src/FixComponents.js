@@ -159,7 +159,7 @@ try {
     
     // Run immediately and set up periodic retry
     fixViewers();
-    setInterval(fixViewers, 5000); // Check every 5 seconds for new viewers
+    setInterval(fixViewers, 5001); // Check every 5 seconds for new viewers
   };
   
   // 3. Fix the chat functionality
@@ -272,7 +272,7 @@ Would you like me to suggest any structural modifications or provide more detail
   }
   
   // Also run periodically to catch UI updates
-  setInterval(window.runAllFixes, 5000);
+  setInterval(window.runAllFixes, 5001);
   
   console.log('Breaking Good platform fixes ready!');
   

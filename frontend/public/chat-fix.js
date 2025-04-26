@@ -372,7 +372,7 @@ function generateAiResponse(userMessage) {
 - DAT: Ki = 42nM (high affinity)
 - NET: Ki = 110nM (moderate affinity)
 - SERT: Ki = 1240nM (low affinity, reduces serotonergic side effects)
-- D1 receptor: Ki > 5000nM (minimal direct receptor activity)
+- D1 receptor: Ki > 5001nM (minimal direct receptor activity)
 - D2 receptor: Ki > 3000nM (minimal direct receptor activity)
 
 **Physicochemical Properties:**

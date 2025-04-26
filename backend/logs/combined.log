@@ -3142,3 +3142,75 @@
 {"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:56:50"}
 {"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 13:57:35"}
 >>>>>>> simulation
+{"level":"info","message":"Anthropic API Key status: Loaded","service":"breaking-good-api","timestamp":"2025-04-26 15:16:51"}
+{"level":"info","message":"Received molecule generation request with requirements: plea","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"Created request ID: 98ed7f44-1aea-41ee-879e-5dd8a63eed92","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"API Key Status: Key is set","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"API endpoint URL: https://api.anthropic.com/v1/messages","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"Sending request to Claude API","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"Sending request to Claude API with model: claude-3-7-sonnet-20250219","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"System prompt length: 1130 characters","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"User prompt length: 629 characters","service":"breaking-good-api","timestamp":"2025-04-26 15:17:25"}
+{"level":"info","message":"Claude API response received: msg_01MSZ9E4FwCTM1cXKNXz3yFv","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Response content type: object","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Content is array with 1 items","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Received Claude response with ID: msg_01MSZ9E4FwCTM1cXKNXz3yFv","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Processing Claude response to extract molecules","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Processing Claude response for molecule design","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Using string content directly, length: 5575","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Extracted 5575 characters of text from Claude response","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Found 7 SMILES candidates via regex.","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Validating SMILES: CCC(=O)C(C(=O)OC)C(C(=O)N(C)OC)c1ccccc1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:54"}
+{"level":"info","message":"Attempting 3D structure generation for: CCC(=O)C(C(=O)OC)C(C(=O)N(C)OC)c1ccccc1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:55"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CCC(=O)C(C(=O)OC)C(C(=O)N(C)OC)c1ccccc1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:55"}
+{"level":"info","message":"Validating SMILES: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 15:17:55"}
+{"level":"info","message":"Attempting 3D structure generation for: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 15:17:56"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: Ki(NET - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 15:17:56"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: Ki(NET","service":"breaking-good-api","timestamp":"2025-04-26 15:17:56"}
+{"level":"info","message":"Validating SMILES: COc1cc(CC(C)N)c(OC)cc1OC","service":"breaking-good-api","timestamp":"2025-04-26 15:17:56"}
+{"level":"info","message":"Attempting 3D structure generation for: COc1cc(CC(C)N)c(OC)cc1OC","service":"breaking-good-api","timestamp":"2025-04-26 15:17:56"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): COc1cc(CC(C)N)c(OC)cc1OC","service":"breaking-good-api","timestamp":"2025-04-26 15:17:57"}
+{"level":"info","message":"Validating SMILES: CNCCC(Oc1ccc(NS(=O)(=O)C(F)(F)F)cc1)c1cccs1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:57"}
+{"level":"info","message":"Attempting 3D structure generation for: CNCCC(Oc1ccc(NS(=O)(=O)C(F)(F)F)cc1)c1cccs1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:57"}
+{"level":"info","message":"Successfully validated SMILES (Props & 3D): CNCCC(Oc1ccc(NS(=O)(=O)C(F)(F)F)cc1)c1cccs1","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Validating SMILES: N-methyl-3-(4-((trifluoromethyl)sulfonamido)phenoxy)-3-(thiophen-2-yl)propan-1-amine","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Attempting 3D structure generation for: N-methyl-3-(4-((trifluoromethyl)sulfonamido)phenoxy)-3-(thiophen-2-yl)propan-1-amine","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"warn","message":"Failed 3D structure generation for valid SMILES: N-methyl-3-(4-((trifluoromethyl)sulfonamido)phenoxy)-3-(thiophen-2-yl)propan-1-amine - Unknown structure error","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Added molecule with properties but without 3D structure: N-methyl-3-(4-((trifluoromethyl)sulfonamido)phenoxy)-3-(thiophen-2-yl)propan-1-amine","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Validated 5 molecules (Props & 3D) out of 7 candidates.","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Successfully extracted and validated 5 molecules","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Saving results to file for request 98ed7f44-1aea-41ee-879e-5dd8a63eed92","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Enhancing molecules with ADMET predictions...","service":"breaking-good-api","timestamp":"2025-04-26 15:17:58"}
+{"level":"info","message":"Finished enhancing molecules.","service":"breaking-good-api","timestamp":"2025-04-26 15:17:59"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: OH2","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"0":"OH2","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262515192D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"0":"\n  -INDIGO-04262515192D\n\n  0  0  0  0  0  0  0  0  0  0999 V2000\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"level":"error","message":"Format conversion script reported error: Failed to parse input molecule with format 'smiles'","service":"breaking-good-api","timestamp":"2025-04-26 15:19:27"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: OH2","service":"breaking-good-api","timestamp":"2025-04-26 15:19:31"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:31"}
+{"0":"OH2","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:31"}
+{"level":"error","message":"Format conversion script reported error: Failed to parse input molecule with format 'smiles'","service":"breaking-good-api","timestamp":"2025-04-26 15:19:31"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: O","service":"breaking-good-api","timestamp":"2025-04-26 15:19:43"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:43"}
+{"0":"O","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:43"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262515192D\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n   10.8961   -3.9875    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 15:19:44"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:44"}
+{"0":"\n  -INDIGO-04262515192D\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n   10.8961   -3.9875    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:44"}
+{"level":"debug","message":"Received /convert request. Format: smiles -> mol. Preview: O","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"0":"O","1":"smiles","2":"mol","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"level":"debug","message":"Received /convert request. Format: mol -> smiles. Preview: \n  -INDIGO-04262515192D\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n   10.8961   -3.9875    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"level":"info","message":"Running format converter script...","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"0":"\n  -INDIGO-04262515192D\n\n  1  0  0  0  0  0  0  0  0  0999 V2000\n   10.8961   -3.9875    0.0000 O   0  0  0  0  0  0  0  0  0  0  0  0\nM  END\n","1":"mol","2":"smiles","level":"debug","message":"Script args:","service":"breaking-good-api","timestamp":"2025-04-26 15:19:46"}
+{"level":"info","message":"Searching Crossref for: health, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 15:20:33"}
+{"level":"info","message":"Found 10 articles (total 518479)","service":"breaking-good-api","timestamp":"2025-04-26 15:20:34"}
+{"level":"info","message":"Searching Crossref for: poop, limit: 10, page: 1","service":"breaking-good-api","timestamp":"2025-04-26 15:20:40"}
+{"level":"info","message":"Found 10 articles (total 10)","service":"breaking-good-api","timestamp":"2025-04-26 15:20:40"}
+{"level":"info","message":"Received /api/simulate request for SMILES: O, Type: binding","service":"breaking-good-api","timestamp":"2025-04-26 15:20:47"}
+{"level":"debug","message":"Successfully calculated molecular properties","service":"breaking-good-api","timestamp":"2025-04-26 15:20:48"}
+{"level":"warn","message":"Returning MOCK data for binding affinity simulation","service":"breaking-good-api","timestamp":"2025-04-26 15:20:48"}
+{"level":"info","message":"Simulation successful (ID: 2468ec31-9068-488f-a467-e696812fede6). Type: binding.","service":"breaking-good-api","timestamp":"2025-04-26 15:20:48"}
+{"level":"error","message":"Error comparing molecules: RDKit script exited with code 2: usage: molecule_operations.py [-h] [--smiles SMILES] --operation\n                              {validate,descriptors,svg,optimize_3d,fingerprint}\n                              [--output {json,text}]\nmolecule_operations.py: error: the following arguments are required: --operation\n","service":"breaking-good-api","timestamp":"2025-04-26 15:21:25"}

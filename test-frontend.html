@@ -144,7 +144,7 @@
             resultsElement.innerHTML = '<pre>Loading...</pre>';
 
             try {
-                const response = await fetchWithTimeout('http://localhost:5000/api/molecular/properties', {
+                const response = await fetchWithTimeout('http://localhost:5001/api/molecular/properties', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -170,7 +170,7 @@
             resultsElement.innerHTML = '<pre>Loading...</pre>';
 
             try {
-                const response = await fetchWithTimeout('http://localhost:5000/api/admet/predict', {
+                const response = await fetchWithTimeout('http://localhost:5001/api/admet/predict', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -196,7 +196,7 @@
             resultsElement.innerHTML = '<pre>Loading...</pre>';
 
             try {
-                const response = await fetchWithTimeout('http://localhost:5000/api/structure/generate3d', {
+                const response = await fetchWithTimeout('http://localhost:5001/api/structure/generate3d', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -223,7 +223,7 @@
             resultsElement.innerHTML = '<pre>Loading...</pre>';
 
             try {
-                const response = await fetchWithTimeout('http://localhost:5000/api/simulation/docking', {
+                const response = await fetchWithTimeout('http://localhost:5001/api/simulation/docking', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'
@@ -250,7 +250,7 @@
             resultsElement.innerHTML = '<pre>Loading...</pre>';
 
             try {
-                const response = await fetchWithTimeout('http://localhost:5000/api/molecular/convert', {
+                const response = await fetchWithTimeout('http://localhost:5001/api/molecular/convert', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json'

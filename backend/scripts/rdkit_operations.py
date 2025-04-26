@@ -57,7 +57,7 @@ def predict_admet(smiles):
    # ... (existing ADMET code) ...
    pass # Placeholder
 
-def run_short_md_simulation(smiles, steps=50000, time_step_fs=2.0, temperature_k=300, force_field='MMFF94'):
+def run_short_md_simulation(smiles, steps=50010, time_step_fs=2.0, temperature_k=300, force_field='MMFF94'):
     """Run a short MD simulation using OpenMM via RDKit."""
     if not OPENMM_INSTALLED:
         return {"error": "OpenMM is not installed. Cannot run MD simulation."}
@@ -226,7 +226,7 @@ if __name__ == "__main__":
             print(json.dumps({"error": "SMILES string required"}))
             sys.exit(1)
         smiles_arg = sys.argv[2]
-        steps_arg = int(sys.argv[3]) if len(sys.argv) > 3 else 50000
+        steps_arg = int(sys.argv[3]) if len(sys.argv) > 3 else 50010
         print(json.dumps(run_short_md_simulation(smiles_arg, steps=steps_arg)))
         
     elif operation == "compare":

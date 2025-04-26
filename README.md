@@ -38,7 +38,7 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
 
 3. Create a `.env` file in the backend directory with the following variables:
    ```
-   PORT=5000
+   PORT=5001
    JWT_SECRET=your_secret_key_for_jwt
    ANTHROPIC_API_KEY=your_anthropic_api_key
    ```
@@ -92,7 +92,7 @@ Breaking Good is an end-to-end drug discovery platform that integrates advanced 
    npm start
    ```
 
-3. Access the application at `http://localhost:5000`
+3. Access the application at `http://localhost:5001`
 
 ## User Guide
 
