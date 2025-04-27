@@ -30,6 +30,7 @@ import AccountCircleIcon from "@material-ui/icons/AccountCircle";
 
 // Import all the components
 import LandingPage from "./components/LandingPage";
+import Dashboard from "./components/Dashboard";
 import MoleculeDesigner from "./components/MoleculeDesigner";
 import SimulationPanel from "./components/SimulationPanel";
 import LiteratureExplorer from "./components/LiteratureExplorer";
@@ -484,20 +485,7 @@ function App() {
 
             <Container className={classes.tabPanel}>
               <TabPanel value={tabValue} index={0}>
-                <Typography variant="h4" gutterBottom>
-                  Dashboard
-                </Typography>
-                <Typography paragraph>
-                  Welcome to Breaking Good - an innovative platform for
-                  neuropharmacology drug discovery focused on designing safer
-                  alternatives to Adderall for ADHD treatment.
-                </Typography>
-                <Typography paragraph>
-                  Navigate through the tabs to access different tools and
-                  functionalities of the platform. You can design molecules, run
-                  simulations, explore scientific literature, compare different
-                  molecules, and analyze regulatory pathways.
-                </Typography>
+                <Dashboard />
               </TabPanel>
 
               <TabPanel value={tabValue} index={1}>

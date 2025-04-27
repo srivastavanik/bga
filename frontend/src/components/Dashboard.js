@@ -1,337 +1,179 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React from 'react';
 import { 
   Typography, 
   Grid, 
-  Paper, 
-  Card, 
-  CardContent, 
-  CardActions, 
-  Button, 
-  Divider,
+  Paper,
   makeStyles,
-  LinearProgress
+  Box,
+  Card,
+  CardContent,
 } from '@material-ui/core';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import TrendingDownIcon from '@material-ui/icons/TrendingDown';
-import FiberNewIcon from '@material-ui/icons/FiberNew';
-import ScienceIcon from '@material-ui/icons/Science';
-import MenuBookIcon from '@material-ui/icons/MenuBook';
-import AssessmentIcon from '@material-ui/icons/Assessment';
+import BuildIcon from '@material-ui/icons/Build';
+import CompareIcon from '@material-ui/icons/Compare';
+import SearchIcon from '@material-ui/icons/Search';
+import TimelineIcon from '@material-ui/icons/Timeline';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
-    padding: theme.spacing(3),
+    padding: theme.spacing(4),
+    background: 'linear-gradient(135deg, #fff5f2 0%, #fff9f7 100%)',
+    minHeight: '100vh',
+    fontFamily: 'Inter, sans-serif',
+  },
+  header: {
+    textAlign: 'center',
+    marginBottom: theme.spacing(8),
   },
   title: {
-    marginBottom: theme.spacing(4),
-    fontWeight: 500,
+    fontWeight: 800,
+    color: '#E27B58',
+    fontSize: '3.5rem',
+    marginBottom: theme.spacing(2),
+    textTransform: 'uppercase',
+    letterSpacing: '1px',
+    fontFamily: 'Inter, sans-serif',
+    '& span': {
+      background: 'linear-gradient(45deg, #E27B58 30%, #F29E7A 90%)',
+      WebkitBackgroundClip: 'text',
+      WebkitTextFillColor: 'transparent',
+    }
   },
-  paper: {
-    padding: theme.spacing(2),
+  subtitle: {
+    fontSize: '1.25rem',
+    color: '#666',
+    maxWidth: '800px',
+    margin: '0 auto',
+    lineHeight: 1.6,
+    fontFamily: 'Inter, sans-serif',
+  },
+  overview: {
+    marginBottom: theme.spacing(8),
+    padding: theme.spacing(6),
+    borderRadius: theme.spacing(2),
+    background: 'linear-gradient(135deg, #ffffff 0%, #fff5f2 100%)',
+    boxShadow: '0 4px 20px rgba(226, 123, 88, 0.08)',
+    '& p': {
+      fontSize: '1.1rem',
+      lineHeight: 1.7,
+      color: '#4A4A4A',
+      marginBottom: theme.spacing(2),
+      fontFamily: 'Inter, sans-serif',
+    }
+  },
+  featureCard: {
     height: '100%',
+    borderRadius: theme.spacing(2),
+    transition: 'transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out',
+    background: 'linear-gradient(135deg, #ffffff 0%, #fff9f7 100%)',
+    border: '1px solid rgba(226, 123, 88, 0.1)',
+    '&:hover': {
+      transform: 'translateY(-8px)',
+      boxShadow: '0 12px 24px rgba(226, 123, 88, 0.12)',
+      borderColor: '#E27B58',
+    }
   },
-  card: {
+  cardContent: {
+    padding: theme.spacing(4),
     height: '100%',
     display: 'flex',
     flexDirection: 'column',
-    transition: 'transform 0.3s',
-    '&:hover': {
-      transform: 'translateY(-5px)',
-      boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
-    },
-  },
-  cardContent: {
-    flexGrow: 1,
-  },
-  statCard: {
-    padding: theme.spacing(2),
-    display: 'flex',
     alignItems: 'center',
-    justifyContent: 'space-between',
-    backgroundColor: '#f5f5f5',
-    height: '100%',
-  },
-  statValue: {
-    fontWeight: 500,
-    fontSize: '1.5rem',
-  },
-  statLabel: {
-    color: theme.palette.text.secondary,
-    fontSize: '0.875rem',
-  },
-  trendIcon: {
-    marginLeft: theme.spacing(1),
-    fontSize: '1rem',
-  },
-  trendUp: {
-    color: '#4caf50',
-  },
-  trendDown: {
-    color: '#f44336',
+    textAlign: 'center',
   },
   icon: {
-    fontSize: '2.5rem',
-    color: theme.palette.grey[500],
+    fontSize: '3rem',
+    marginBottom: theme.spacing(2),
+    color: '#E27B58',
+  },
+  featureTitle: {
+    fontWeight: 700,
+    fontSize: '1.4rem',
+    color: '#E27B58',
+    marginBottom: theme.spacing(2),
+    fontFamily: 'Inter, sans-serif',
+  },
+  featureDescription: {
+    color: '#666',
+    lineHeight: 1.6,
+    fontFamily: 'Inter, sans-serif',
   },
   divider: {
-    margin: theme.spacing(2, 0),
-  },
-  progress: {
-    height: 8,
-    borderRadius: 4,
-    marginTop: theme.spacing(1),
-    marginBottom: theme.spacing(1),
-  },
-  recentItem: {
-    padding: theme.spacing(1.5),
-    borderLeft: `3px solid ${theme.palette.primary.main}`,
-    marginBottom: theme.spacing(1),
-    backgroundColor: '#f9f9f9',
-  },
-  recentTitle: {
-    fontWeight: 500,
-  },
-  recentMeta: {
-    fontSize: '0.75rem',
-    color: theme.palette.text.secondary,
-  },
-  newIcon: {
-    color: theme.palette.secondary.main,
-    fontSize: '0.875rem',
-    marginLeft: theme.spacing(1),
-    verticalAlign: 'middle',
-  },
-  cardAction: {
-    justifyContent: 'flex-end',
-  },
-  sectionTitle: {
-    marginBottom: theme.spacing(2),
-    marginTop: theme.spacing(4),
-  },
+    margin: theme.spacing(6, 0),
+    width: '100%',
+    maxWidth: '200px',
+    height: '4px',
+    background: 'linear-gradient(45deg, #E27B58 30%, #F29E7A 90%)',
+    borderRadius: '2px',
+    border: 'none',
+  }
 }));
 
 const Dashboard = () => {
   const classes = useStyles();
-  const [loading, setLoading] = useState(true);
-  const [stats, setStats] = useState({
-    pendingMolecules: 0,
-    completedDesigns: 0,
-    literatureCount: 0,
-    simulationRuns: 0
-  });
-  
-  useEffect(() => {
-    // Simulate loading data
-    const timer = setTimeout(() => {
-      setStats({
-        pendingMolecules: 4,
-        completedDesigns: 12,
-        literatureCount: 347,
-        simulationRuns: 28
-      });
-      setLoading(false);
-    }, 1000);
-    
-    return () => clearTimeout(timer);
-  }, []);
-  
-  const recentMolecules = [
+
+  const features = [
     {
-      id: 'mol-1234',
-      name: 'Modified Methylphenidate Analog',
-      date: '2023-06-10',
-      status: 'In Simulation',
-      isNew: true
+      icon: <BuildIcon className={classes.icon} />,
+      title: "Molecule Designer",
+      description: "Create and modify chemical structures with our intuitive molecular design tools."
     },
     {
-      id: 'mol-1233',
-      name: 'Amphetamine Derivative XJ-42',
-      date: '2023-06-08',
-      status: 'FDA Pathway Analysis',
-      isNew: false
+      icon: <CompareIcon className={classes.icon} />,
+      title: "Comparison Tool",
+      description: "Compare molecular structures and analyze their similarities and differences."
     },
     {
-      id: 'mol-1232',
-      name: 'Novel Dopamine Reuptake Inhibitor',
-      date: '2023-06-05',
-      status: 'Completed',
-      isNew: false
-    }
-  ];
-  
-  const projectProgress = [
-    {
-      name: 'Project Alpha: Methylphenidate Alternative',
-      progress: 78,
-      phase: 'Production Feasibility'
+      icon: <SearchIcon className={classes.icon} />,
+      title: "Literature Explorer",
+      description: "Search and analyze scientific literature related to your molecular research."
     },
     {
-      name: 'Project Beta: Non-stimulant ADHD Treatment',
-      progress: 45,
-      phase: 'Simulation'
-    },
-    {
-      name: 'Project Gamma: Extended Release Formulation',
-      progress: 20,
-      phase: 'Initial Design'
+      icon: <TimelineIcon className={classes.icon} />,
+      title: "Simulations",
+      description: "Run advanced simulations to predict molecular properties and behavior."
     }
   ];
 
   return (
     <div className={classes.root}>
-      <Typography variant="h4" className={classes.title}>
-        Dashboard
-      </Typography>
+      <Box className={classes.header}>
+        <Typography variant="h1" className={classes.title}>
+          Welcome to <span>Breaking Good</span>
+        </Typography>
+        <Typography variant="h2" className={classes.subtitle}>
+          Your comprehensive platform for drug discovery and molecular design
+        </Typography>
+      </Box>
       
-      {loading ? (
-        <LinearProgress />
-      ) : (
-        <>
-          <Grid container spacing={3}>
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.statCard}>
-                <div>
-                  <Typography className={classes.statLabel}>
-                    Pending Molecules
-                  </Typography>
-                  <Typography className={classes.statValue}>
-                    {stats.pendingMolecules}
-                    <TrendingUpIcon className={`${classes.trendIcon} ${classes.trendUp}`} />
-                  </Typography>
-                </div>
-                <ScienceIcon className={classes.icon} />
-              </Paper>
-            </Grid>
-            
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.statCard}>
-                <div>
-                  <Typography className={classes.statLabel}>
-                    Completed Designs
-                  </Typography>
-                  <Typography className={classes.statValue}>
-                    {stats.completedDesigns}
-                    <TrendingUpIcon className={`${classes.trendIcon} ${classes.trendUp}`} />
-                  </Typography>
-                </div>
-                <AssessmentIcon className={classes.icon} />
-              </Paper>
-            </Grid>
-            
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.statCard}>
-                <div>
-                  <Typography className={classes.statLabel}>
-                    Literature References
-                  </Typography>
-                  <Typography className={classes.statValue}>
-                    {stats.literatureCount}
-                    <TrendingUpIcon className={`${classes.trendIcon} ${classes.trendUp}`} />
-                  </Typography>
-                </div>
-                <MenuBookIcon className={classes.icon} />
-              </Paper>
-            </Grid>
-            
-            <Grid item xs={12} sm={6} md={3}>
-              <Paper className={classes.statCard}>
-                <div>
-                  <Typography className={classes.statLabel}>
-                    Simulation Runs
-                  </Typography>
-                  <Typography className={classes.statValue}>
-                    {stats.simulationRuns}
-                    <TrendingDownIcon className={`${classes.trendIcon} ${classes.trendDown}`} />
-                  </Typography>
-                </div>
-                <AssessmentIcon className={classes.icon} />
-              </Paper>
-            </Grid>
+      <Paper className={classes.overview} elevation={0}>
+        <Typography variant="body1">
+          Breaking Good provides a suite of powerful tools for molecular design and analysis. Our platform combines cutting-edge technology with an intuitive interface to streamline your drug discovery process.
+        </Typography>
+        <Typography variant="body1">
+          Whether you're designing new molecules, analyzing existing compounds, or exploring scientific literature, Breaking Good offers the tools you need to accelerate your research.
+        </Typography>
+      </Paper>
+
+      <hr className={classes.divider} />
+
+      <Grid container spacing={4}>
+        {features.map((feature, index) => (
+          <Grid item xs={12} sm={6} md={3} key={index}>
+            <Card className={classes.featureCard} elevation={0}>
+              <CardContent className={classes.cardContent}>
+                {feature.icon}
+                <Typography className={classes.featureTitle}>
+                  {feature.title}
+                </Typography>
+                <Typography className={classes.featureDescription}>
+                  {feature.description}
+                </Typography>
+              </CardContent>
+            </Card>
           </Grid>
-          
-          <Typography variant="h5" className={classes.sectionTitle}>
-            Project Progress
-          </Typography>
-          
-          <Grid container spacing={3}>
-            {projectProgress.map((project, index) => (
-              <Grid item xs={12} md={4} key={index}>
-                <Paper className={classes.paper}>
-                  <Typography variant="h6">{project.name}</Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Current Phase: {project.phase}
-                  </Typography>
-                  <LinearProgress 
-                    variant="determinate" 
-                    value={project.progress} 
-                    className={classes.progress}
-                  />
-                  <Typography variant="body2" align="right">
-                    {project.progress}% Complete
-                  </Typography>
-                </Paper>
-              </Grid>
-            ))}
-          </Grid>
-          
-          <Grid container spacing={3} style={{ marginTop: '16px' }}>
-            <Grid item xs={12} md={8}>
-              <Paper className={classes.paper}>
-                <Typography variant="h6">Recent Molecules</Typography>
-                <Divider className={classes.divider} />
-                
-                {recentMolecules.map((molecule) => (
-                  <div className={classes.recentItem} key={molecule.id}>
-                    <Typography className={classes.recentTitle}>
-                      {molecule.name}
-                      {molecule.isNew && <FiberNewIcon className={classes.newIcon} />}
-                    </Typography>
-                    <Typography className={classes.recentMeta}>
-                      ID: {molecule.id} • Date: {molecule.date} • Status: {molecule.status}
-                    </Typography>
-                  </div>
-                ))}
-                
-                <Button 
-                  component={Link} 
-                  to="/molecule-designer" 
-                  color="primary" 
-                  size="small"
-                >
-                  View All Molecules
-                </Button>
-              </Paper>
-            </Grid>
-            
-            <Grid item xs={12} md={4}>
-              <Card className={classes.card}>
-                <CardContent className={classes.cardContent}>
-                  <ScienceIcon style={{ fontSize: 40, marginBottom: 16 }} />
-                  <Typography variant="h6" gutterBottom>
-                    Create New Molecule
-                  </Typography>
-                  <Typography variant="body2" color="textSecondary">
-                    Start designing a new molecule with the help of our AI-powered tools.
-                    Access literature references, simulation tools, and regulatory analysis.
-                  </Typography>
-                </CardContent>
-                <CardActions className={classes.cardAction}>
-                  <Button 
-                    component={Link} 
-                    to="/molecule-designer" 
-                    color="primary" 
-                    variant="contained"
-                  >
-                    Get Started
-                  </Button>
-                </CardActions>
-              </Card>
-            </Grid>
-          </Grid>
-        </>
-      )}
+        ))}
+      </Grid>
     </div>
   );
 };
