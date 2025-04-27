@@ -1,348 +1,317 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { 
-  Typography, 
-  Grid, 
-  Paper, 
-  TextField, 
-  Button, 
-  FormControl, 
-  InputLabel, 
-  Select, 
-  MenuItem, 
-  Divider,
-  CircularProgress,
-  FormControlLabel,
-  Switch,
-  Chip,
-  Tabs,
-  Tab,
-  Box,
-  makeStyles 
+  Container, Grid, Paper, Typography, TextField, Button, 
+  FormControl, InputLabel, Select, MenuItem, Switch, 
+  FormControlLabel, CircularProgress, Divider
 } from '@material-ui/core';
-import Alert from '@material-ui/lab/Alert';
-import TimelineIcon from '@material-ui/icons/Timeline';
-import AssignmentIcon from '@material-ui/icons/Assignment';
-import BuildIcon from '@material-ui/icons/Build';
-import TrendingUpIcon from '@material-ui/icons/TrendingUp';
-import { regulatoryAPI } from '../services/api';
-import ReactMarkdown from 'react-markdown';
+import { makeStyles } from '@material-ui/core/styles';
+import DescriptionIcon from '@material-ui/icons/Description';
+import regulatoryAPI from '../services/regulatoryAPI';
 
 const useStyles = makeStyles((theme) => ({
   root: {
     flexGrow: 1,
     padding: theme.spacing(3),
   },
-  title: {
-    marginBottom: theme.spacing(4),
-    fontWeight: 500,
-  },
   paper: {
     padding: theme.spacing(3),
     height: '100%',
+    minHeight: '70vh',
   },
   formControl: {
-    margin: theme.spacing(1, 0),
-    minWidth: '100%',
+    marginBottom: theme.spacing(2),
+    width: '100%',
   },
-  sectionTitle: {
-    marginTop: theme.spacing(3),
+  button: {
+    marginTop: theme.spacing(2),
+  },
+  reportContainer: {
+    padding: theme.spacing(2),
+    whiteSpace: 'pre-wrap',
+  },
+  loadingContainer: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '50vh',
+  },
+  reportHeader: {
     marginBottom: theme.spacing(2),
   },
   divider: {
-    margin: theme.spacing(3, 0),
+    margin: theme.spacing(2, 0),
   },
-  progress: {
-    display: 'flex',
-    justifyContent: 'center',
-    margin: theme.spacing(4, 0),
-  },
-  buttonWrapper: {
-    position: 'relative',
-    marginTop: theme.spacing(2),
-  },
-  buttonProgress: {
-    position: 'absolute',
-    top: '50%',
-    left: '50%',
-    marginTop: -12,
-    marginLeft: -12,
-  },
-  chip: {
-    margin: theme.spacing(0.5),
-  },
-  emptyState: {
-    textAlign: 'center',
-    padding: theme.spacing(6),
-  },
-  emptyStateIcon: {
-    fontSize: 64,
-    color: theme.palette.text.disabled,
+  reportSection: {
     marginBottom: theme.spacing(2),
-  },
-  switchFormControl: {
-    margin: theme.spacing(1, 0),
-  },
-  alertMargin: {
-    marginBottom: theme.spacing(2),
-  },
-  reportContainer: {
-    marginTop: theme.spacing(2),
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[50],
-    borderRadius: theme.shape.borderRadius,
-    border: `1px solid ${theme.palette.divider}`,
-    maxHeight: '70vh',
-    overflowY: 'auto',
-  },
-  markdownContent: {
-    '& h1, & h2, & h3, & h4': {
-        marginTop: theme.spacing(2.5),
-        marginBottom: theme.spacing(1),
-        fontWeight: 500,
-    },
-    '& p': {
-        marginBottom: theme.spacing(1.5),
-        lineHeight: 1.6,
-    },
-    '& ul, & ol': {
-        marginBottom: theme.spacing(1.5),
-        paddingLeft: theme.spacing(3),
-    },
-    '& li': {
-        marginBottom: theme.spacing(0.5),
-    },
-    '& pre': {
-      backgroundColor: theme.palette.grey[200],
-      padding: theme.spacing(1),
-      borderRadius: theme.shape.borderRadius,
-      overflowX: 'auto',
-      whiteSpace: 'pre-wrap',
-      wordBreak: 'break-all',
-    },
-    '& code': {
-      fontFamily: 'monospace',
-      backgroundColor: theme.palette.grey[100],
-      padding: theme.spacing(0.2, 0.5),
-      borderRadius: 3,
-    },
   },
 }));
 
 const RegulatoryAnalysis = () => {
   const classes = useStyles();
+  const [molecules, setMolecules] = useState([]);
+  const [selectedMolecule, setSelectedMolecule] = useState('');
+  const [drugClass, setDrugClass] = useState('CNS stimulant');
+  const [targetIndication, setTargetIndication] = useState('ADHD');
+  const [primaryMechanism, setPrimaryMechanism] = useState('dopamine/norepinephrine reuptake inhibition');
+  const [novelMechanism, setNovelMechanism] = useState(false);
+  const [orphanDrug, setOrphanDrug] = useState(false);
+  const [fastTrack, setFastTrack] = useState(false);
+  const [report, setReport] = useState(null);
   const [loading, setLoading] = useState(false);
-  const [parameters, setParameters] = useState({
-    smiles: '',
-    drugClass: 'CNS stimulant',
-    novelMechanism: false,
-    orphanDrug: false,
-    fastTrack: false,
-    targetIndication: 'ADHD',
-    primaryMechanism: 'dopamine/norepinephrine reuptake inhibition',
-  });
-  const [analysisReportText, setAnalysisReportText] = useState(null);
   const [error, setError] = useState(null);
-  
-  const molecules = [
-    { id: 1, name: 'Methylphenidate', smiles: 'CN(C)C(C1=CC=CC=C1)C(C)OC(=O)C' },
-    { id: 2, name: 'Amphetamine', smiles: 'CC(N)CC1=CC=CC=C1' },
-    { id: 3, name: 'Atomoxetine', smiles: 'CC(C)NCC1=CC=CC(OC2=CC=CC=C2)=C1' },
-    { id: 4, name: 'Novel Amphetamine Derivative', smiles: 'CC(CC1=CC=C(C=C1)O)NC' }
-  ];
-  
-  const drugClasses = [
-    'CNS stimulant',
-    'Non-stimulant',
-    'Novel mechanism',
-    'Prodrug'
-  ];
-  
-  const targetIndications = [
-    'ADHD',
-    'ADHD with comorbid anxiety',
-    'Adult ADHD',
-    'Pediatric ADHD'
-  ];
-  
-  const mechanisms = [
-    'dopamine/norepinephrine reuptake inhibition',
-    'norepinephrine reuptake inhibition',
-    'dopamine/norepinephrine release',
-    'alpha-2A adrenergic receptor agonism',
-    'novel dual mechanism'
-  ];
-  
-  const handleInputChange = (e) => {
-    const { name, value } = e.target;
-    setParameters({
-      ...parameters,
-      [name]: value
-    });
-  };
-  
-  const handleSwitchChange = (e) => {
-    const { name, checked } = e.target;
-    setParameters({
-      ...parameters,
-      [name]: checked
-    });
-  };
-  
-  const handleReset = () => {
-    setParameters({
-      smiles: '',
-      drugClass: 'CNS stimulant',
-      novelMechanism: false,
-      orphanDrug: false,
-      fastTrack: false,
-      targetIndication: 'ADHD',
-      primaryMechanism: 'dopamine/norepinephrine reuptake inhibition',
-    });
-    setAnalysisReportText(null);
-    setError(null);
-  };
-  
-  const handleRunAnalysis = async () => {
-    if (!parameters.smiles) {
-      setError('Please select a molecule (SMILES required)');
+
+  // Fetch molecules on component mount
+  useEffect(() => {
+    const fetchMolecules = async () => {
+      try {
+        // This would typically come from your API
+        // For now, we'll use some dummy data
+        const dummyMolecules = [
+          { id: 1, name: 'Methylphenidate', smiles: 'CN1C2CCC1CC(C2)OC(=O)C(C)C' },
+          { id: 2, name: 'Amphetamine', smiles: 'CC(N)CC1=CC=CC=C1' },
+          { id: 3, name: 'Modafinil', smiles: 'CC(C)(C)C(=O)NC(C(=O)NC)CS(=O)C1=CC=CC=C1' },
+          { id: 4, name: 'Atomoxetine', smiles: 'CNCCC1=CC=CC=C1OC2=CC=CC=C2' },
+        ];
+        setMolecules(dummyMolecules);
+      } catch (error) {
+        console.error('Error fetching molecules:', error);
+        setError('Failed to load molecules. Please try again later.');
+      }
+    };
+
+    fetchMolecules();
+  }, []);
+
+  const handleGenerateReport = async () => {
+    if (!selectedMolecule) {
+      setError('Please select a molecule first');
       return;
     }
-    
+
     setLoading(true);
     setError(null);
-    setAnalysisReportText(null);
-    
-    try {
-      const response = await regulatoryAPI.generateRegulatoryReport(parameters); 
-      
-      if (response.data && response.data.regulatoryReport) {
-        setAnalysisReportText(response.data.regulatoryReport);
-      } else {
-        throw new Error('Invalid response from server or missing report data');
-      }
+    setReport(null);
 
-    } catch (err) {
-      console.error('Error running regulatory analysis:', err);
-      setError(err.response?.data?.error || 'An error occurred during analysis. Please try again.');
+    try {
+      const molecule = molecules.find(m => m.id === selectedMolecule);
+      
+      const params = {
+        smiles: molecule.smiles,
+        drugClass,
+        targetIndication,
+        primaryMechanism,
+        novelMechanism,
+        orphanDrug,
+        fastTrack
+      };
+
+      const result = await regulatoryAPI.generateRegulatoryReport(params);
+      setReport(result);
+    } catch (error) {
+      console.error('Error generating report:', error);
+      setError('Failed to generate regulatory report. Please try again later.');
     } finally {
       setLoading(false);
     }
   };
 
-  const renderMarkdown = (text) => {
-      if (!text) return null;
-      if (text.startsWith('Error:')){
-          return <Alert severity="warning">{text}</Alert>;
-      }
-      return <ReactMarkdown className={classes.markdownContent}>{text}</ReactMarkdown>;
-  };
-
   return (
-    <div className={classes.root}>
-      <Typography variant="h4" className={classes.title}>
+    <Container className={classes.root}>
+      <Typography variant="h4" gutterBottom>
         Regulatory Analysis Report Generator
       </Typography>
       
-      <Grid container spacing={3}>
-        <Grid item xs={12} md={4}>
+      <Grid container spacing={4}>
+        {/* Left side - Parameters */}
+        <Grid item xs={12} md={5}>
           <Paper className={classes.paper}>
             <Typography variant="h6" gutterBottom>
               Analysis Parameters
             </Typography>
             
-            <FormControl variant="outlined" className={classes.formControl}>
-              <InputLabel id="molecule-select-label">Select Molecule</InputLabel>
+            <FormControl className={classes.formControl}>
+              <InputLabel>Select Molecule</InputLabel>
               <Select
-                labelId="molecule-select-label"
-                name="smiles"
-                value={parameters.smiles}
-                onChange={handleInputChange}
-                label="Select Molecule"
+                value={selectedMolecule}
+                onChange={(e) => setSelectedMolecule(e.target.value)}
               >
-                <MenuItem value="">
-                  <em>Select a molecule</em>
-                </MenuItem>
                 {molecules.map((molecule) => (
-                  <MenuItem key={molecule.id} value={molecule.smiles}>
-                    {molecule.name} ({molecule.smiles.substring(0, 20)}...)
+                  <MenuItem key={molecule.id} value={molecule.id}>
+                    {molecule.name}
                   </MenuItem>
                 ))}
               </Select>
             </FormControl>
             
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl className={classes.formControl}>
               <InputLabel>Drug Class</InputLabel>
-              <Select name="drugClass" value={parameters.drugClass} onChange={handleInputChange} label="Drug Class">
-                {drugClasses.map((cls) => <MenuItem key={cls} value={cls}>{cls}</MenuItem>)}
+              <Select
+                value={drugClass}
+                onChange={(e) => setDrugClass(e.target.value)}
+              >
+                <MenuItem value="CNS stimulant">CNS stimulant</MenuItem>
+                <MenuItem value="SNRI">SNRI</MenuItem>
+                <MenuItem value="Eugeroic">Eugeroic</MenuItem>
+                <MenuItem value="Nootropic">Nootropic</MenuItem>
               </Select>
             </FormControl>
             
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl className={classes.formControl}>
               <InputLabel>Target Indication</InputLabel>
-              <Select name="targetIndication" value={parameters.targetIndication} onChange={handleInputChange} label="Target Indication">
-                {targetIndications.map((ind) => <MenuItem key={ind} value={ind}>{ind}</MenuItem>)}
+              <Select
+                value={targetIndication}
+                onChange={(e) => setTargetIndication(e.target.value)}
+              >
+                <MenuItem value="ADHD">ADHD</MenuItem>
+                <MenuItem value="Narcolepsy">Narcolepsy</MenuItem>
+                <MenuItem value="Cognitive Enhancement">Cognitive Enhancement</MenuItem>
+                <MenuItem value="Depression">Depression</MenuItem>
               </Select>
             </FormControl>
             
-            <FormControl variant="outlined" className={classes.formControl}>
+            <FormControl className={classes.formControl}>
               <InputLabel>Primary Mechanism</InputLabel>
-              <Select name="primaryMechanism" value={parameters.primaryMechanism} onChange={handleInputChange} label="Primary Mechanism">
-                {mechanisms.map((mech) => <MenuItem key={mech} value={mech}>{mech}</MenuItem>)}
+              <Select
+                value={primaryMechanism}
+                onChange={(e) => setPrimaryMechanism(e.target.value)}
+              >
+                <MenuItem value="dopamine/norepinephrine reuptake inhibition">
+                  Dopamine/norepinephrine reuptake inhibition
+                </MenuItem>
+                <MenuItem value="dopamine release">Dopamine release</MenuItem>
+                <MenuItem value="histamine/orexin modulation">Histamine/orexin modulation</MenuItem>
+                <MenuItem value="glutamate modulation">Glutamate modulation</MenuItem>
               </Select>
             </FormControl>
             
-            <Typography variant="subtitle1" className={classes.sectionTitle}>
+            <Typography variant="h6" gutterBottom style={{ marginTop: '20px' }}>
               Special Designations
             </Typography>
             
-            <FormControlLabel control={<Switch checked={parameters.novelMechanism} onChange={handleSwitchChange} name="novelMechanism" color="primary" />} label="Novel Mechanism" className={classes.switchFormControl}/>
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={novelMechanism}
+                  onChange={(e) => setNovelMechanism(e.target.checked)}
+                  color="primary"
+                />
+              }
+              label="Novel Mechanism"
+            />
             
-            <FormControlLabel control={<Switch checked={parameters.orphanDrug} onChange={handleSwitchChange} name="orphanDrug" color="primary" />} label="Orphan Drug" className={classes.switchFormControl} />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={orphanDrug}
+                  onChange={(e) => setOrphanDrug(e.target.checked)}
+                  color="primary"
+                />
+              }
+              label="Orphan Drug"
+            />
             
-            <FormControlLabel control={<Switch checked={parameters.fastTrack} onChange={handleSwitchChange} name="fastTrack" color="primary" />} label="Fast Track" className={classes.switchFormControl} />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={fastTrack}
+                  onChange={(e) => setFastTrack(e.target.checked)}
+                  color="primary"
+                />
+              }
+              label="Fast Track"
+            />
+            
+            <Button
+              variant="contained"
+              color="primary"
+              className={classes.button}
+              onClick={handleGenerateReport}
+              disabled={loading || !selectedMolecule}
+              startIcon={<DescriptionIcon />}
+              fullWidth
+            >
+              Generate Report
+            </Button>
             
             {error && (
-              <Alert severity="error" className={classes.alertMargin}>{error}</Alert>
-            )}
-            
-            <div className={classes.buttonWrapper}>
-              <Button variant="contained" color="primary" fullWidth onClick={handleRunAnalysis} disabled={loading || !parameters.smiles}>
-                Generate Report
-              </Button>
-              {loading && <CircularProgress size={24} className={classes.buttonProgress} />}
-            </div>
-            
-            {analysisReportText && (
-              <Button variant="outlined" color="secondary" fullWidth onClick={handleReset} style={{ marginTop: 16 }}>
-                Reset / New Analysis
-              </Button>
+              <Typography color="error" style={{ marginTop: '10px' }}>
+                {error}
+              </Typography>
             )}
           </Paper>
         </Grid>
         
-        <Grid item xs={12} md={8}>
-          {loading ? (
-             <Paper className={classes.paper} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center'}}>
+        {/* Right side - Report */}
+        <Grid item xs={12} md={7}>
+          <Paper className={classes.paper}>
+            {loading ? (
+              <div className={classes.loadingContainer}>
                 <CircularProgress />
-             </Paper>
-          ) : analysisReportText ? (
-            <Paper className={`${classes.paper} ${classes.reportContainer}`}>
-              {renderMarkdown(analysisReportText)}
-            </Paper>
-          ) : (
-            <Paper className={classes.paper} style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', minHeight: 500, flexDirection: 'column' }}>
-              <AssignmentIcon className={classes.emptyStateIcon} />
-              <Typography variant="h6" color="textSecondary">
-                No regulatory analysis generated
-              </Typography>
-              <Typography variant="body2" color="textSecondary">
-                Select a molecule and parameters, then click "Generate Report"
-              </Typography>
-            </Paper>
-          )}
+                <Typography variant="h6" style={{ marginTop: '20px' }}>
+                  Generating regulatory analysis...
+                </Typography>
+                <Typography variant="body2" color="textSecondary" style={{ marginTop: '10px' }}>
+                  This may take a minute as we analyze patents and regulatory pathways
+                </Typography>
+              </div>
+            ) : report ? (
+              <div className={classes.reportContainer}>
+                <Typography variant="h5" className={classes.reportHeader}>
+                  Regulatory Analysis Report
+                </Typography>
+                
+                <Divider className={classes.divider} />
+                
+                {report.content && (
+                  <div dangerouslySetInnerHTML={{ __html: report.content.replace(/\n/g, '<br/>') }} />
+                )}
+                
+                {!report.content && (
+                  <>
+                    <div className={classes.reportSection}>
+                      <Typography variant="h6">Executive Summary</Typography>
+                      <Typography variant="body1">{report.summary || 'No summary available'}</Typography>
+                    </div>
+                    
+                    <Divider className={classes.divider} />
+                    
+                    <div className={classes.reportSection}>
+                      <Typography variant="h6">Patent Landscape</Typography>
+                      <Typography variant="body1">{report.patentLandscape || 'No patent information available'}</Typography>
+                    </div>
+                    
+                    <Divider className={classes.divider} />
+                    
+                    <div className={classes.reportSection}>
+                      <Typography variant="h6">Regulatory Pathway</Typography>
+                      <Typography variant="body1">{report.regulatoryPathway || 'No regulatory pathway information available'}</Typography>
+                    </div>
+                    
+                    <Divider className={classes.divider} />
+                    
+                    <div className={classes.reportSection}>
+                      <Typography variant="h6">Market Exclusivity</Typography>
+                      <Typography variant="body1">{report.marketExclusivity || 'No market exclusivity information available'}</Typography>
+                    </div>
+                  </>
+                )}
+              </div>
+            ) : (
+              <div className={classes.loadingContainer}>
+                <DescriptionIcon style={{ fontSize: 60, color: '#ccc' }} />
+                <Typography variant="h6" color="textSecondary" style={{ marginTop: '20px' }}>
+                  No regulatory analysis generated
+                </Typography>
+                <Typography variant="body2" color="textSecondary">
+                  Select a molecule and parameters, then click "Generate Report"
+                </Typography>
+              </div>
+            )}
+          </Paper>
         </Grid>
       </Grid>
-    </div>
+    </Container>
   );
 };
 
